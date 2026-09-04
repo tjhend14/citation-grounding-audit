@@ -4,7 +4,7 @@ Adobe.com's Brand Concierge beta cites its sources. This measures whether those 
 actually support what it said — claim by claim — and then builds a retrieval pipeline over
 the same pages that cites per sentence and verifies each claim before answering.
 
-**[Read the report →](https://USERNAME.github.io/REPO/)**
+**[Read the report →](https://bornthisbad.github.io/citation-grounding-audit/)**
 
 ## The number
 
