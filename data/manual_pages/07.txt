@@ -1,0 +1,56 @@
+https://helpx.adobe.com/premiere/desktop/get-started/technical-requirements/adobe-premiere-pro-technical-requirements.html
+Adobe Premiere system requirements | Premiere
+Adobe Premiere technical requirements
+Last updated on Aug 7, 2026
+Understand the minimum requirements needed to install and run Adobe Premiere. Use recommended system specifications for optimum performance.
+
+Applicable for: Premiere version 26.0, 26.2, 26.3, and 26.3.2. View previous system requirements here.
+
+Note
+
+To activate and use this product, you need an Internet connection, Adobe ID, and acceptance of the license agreement.
+
+This product may integrate with or allow access to certain Adobe or third-party hosted online services. Adobe services are available only to users 13 and older and require agreement to additional terms of use and the Adobe Privacy Policy. Applications and services may not be available in all countries or languages and may be subject to change or discontinuation without notice. Extra fees or membership charges may apply.
+
+The minimum specifications are for editing HD video. The recommended specifications are for editing video in HD, 4K, or higher resolutions.
+
+Windows
+
+Requirement type / Minimum specification / Recommended specification
+
+Processor
+Minimum: Intel 6th Generation or newer CPU - or AMD Ryzen 1000 Series or newer CPU. Advanced Vector Extensions 2 (AVX2) Support required. Windows on Arm: Qualcomm Snapdragon X series processor
+Recommended: Intel 11th Gen or newer CPU with Quick Sync - or AMD Ryzen 3000 Series / Threadripper 3000 series or newer CPU. Windows on Arm: Qualcomm Snapdragon X series processor
+
+Operating system
+Minimum: Windows 11 v24H2. Windows on Arm: Windows 11 v24H2 (OS Build 26100.2033)
+Recommended: Windows 11 v24H2
+
+Memory
+Minimum: 8 GB RAM. Windows on Arm: 16 GB
+Recommended: 16 GB RAM for HD media. 32 GB or more for 4K and higher
+
+GPU
+Minimum: Windows with NVIDIA GPU: GPU must be of the Maxwell generation (2014) or newer and have at least 4GB of GPU memory. Windows with Intel or AMD GPU with at least 4GB of GPU memory. Windows on Arm: Qualcomm Adreno GPU driver 31.0.121.1
+Recommended: 8 GB GPU memory
+
+Storage
+Minimum: 8 GB of available hard disk space, plus additional free space during installation. Note that it cannot be installed on removable flash storage. Additional high-speed drive for media
+Recommended: Fast internal SSD for app installation and cache. Additional high-speed drive for media
+
+Display
+Minimum: 1920x1080 pixels
+Recommended: 1920x1080 pixels or more. DisplayHDR 1000 for HDR workflows
+
+Sound card
+Minimum: ASIO compatible or Microsoft Windows Driver Model
+Recommended: ASIO compatible or Microsoft Windows Driver Model
+
+Network storage connection
+Minimum: 1 Gigabit Ethernet (HD only)
+Recommended: 1 Gigabit Ethernet (HD only). 10 Gigabit Ethernet for 4K shared network workflow
+
+Language versions available for Premiere
+Deutsch, English, Espanol, Francais, Italiano, Portugues (Brasil), Russian, Japanese, Korean, Simplified Chinese
+
+Premiere supports text composition in Middle Eastern and Indic scripts using the South Asian and Middle Eastern text engines.

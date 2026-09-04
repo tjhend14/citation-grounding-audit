@@ -1,0 +1,57 @@
+https://helpx.adobe.com/premiere-elements/desktop/system-requirements/system-requirements-older-versions.html
+System requirements | Older Versions
+System requirements | Older Versions
+Last updated on Oct 1, 2025
+
+Adobe Premiere Elements 2025
+
+Windows
+Intel 6th Generation or newer processor or AMD equivalent with SSE4.2 support.
+Microsoft Windows 10 (version 22H2) or Windows 11 (version 23H2), 64-bit versions only; Windows 7, Windows 8.1 not supported.
+8GB of RAM.
+10GB of available hard disk space to install the application; additional space is required for downloading online content and for temporary files during product installation and usage (it cannot be installed on a volume that uses a case-sensitive file system or on removable flash storage devices).
+1440x900 display resolution (at 100% scale factor).
+Microsoft DirectX 12 compatible sound and display driver.
+Windows Media Player (required if importing Windows Media files).
+
+macOS
+Intel 6th Generation or newer processor; Apple silicon M1 or newer processor.
+macOS 13, macOS 14 (14.4 or later), macOS 15.
+8GB of RAM.
+10GB of available hard-disk space to install the application; additional space required for downloading online content and for temporary files during product installation and usage.
+1440x900 display resolution (at 100% scale factor).
+
+For both Windows and macOS
+Internet connection required for product activation and download of online content.
+Intel 7th Generation or newer processor or AMD equivalent with SSE4.2 and AVX support.
+16GB of RAM for HD media.
+32GB or more of RAM for 4K media.
+4GB of GPU VRAM.
+Fast internal SSD for app installation and cache.
+Additional high-speed drive(s) for media.
+
+Adobe Premiere Elements supported import/export formats include: AVCHD (import), MPEG-1 (import), MPEG-2 (import), MPEG-4 (import), HEVC (import), DV-AVI (import on Windows), Windows Media (import on Windows), Apple ProRes (import), H.264, HDV, MP3, QuickTime (limited codecs), and many more.
+
+Adobe Premiere Elements 2024
+
+Windows
+Intel 6th Generation or newer processor or AMD equivalent with SSE4.1 support
+Microsoft Windows 10 (version 22H2) or Windows 11 (version 22H2), 64-bit versions only; Windows 7, Windows 8.1 not supported
+8GB of RAM
+5GB of available hard-disk space to install application; additional space required for downloading online content and for temporary files during product installation and usage
+1280x800 display resolution (at 100% scale factor)
+Microsoft DirectX 12 compatible sound and display driver
+Windows Media Player (required if importing Windows Media files)
+
+macOS
+Intel 6th Generation or newer processor; Apple silicon M1 or newer processor
+macOS 12, macOS 13 (13.4 or later)
+8GB of RAM
+6GB of available hard-disk space to install application; additional space required for downloading online content and for temporary files during product installation and usage
+1280x800 display resolution (at 100% scale factor)
+
+For both Windows and macOS
+Internet connection required for product activation and download of online content
+Recommended specifications: Intel 7th Generation or newer processor or AMD equivalent with SSE4.1 and AVX support; 16GB of RAM for HD media; 32GB or more of RAM for 4K media; 4GB of GPU VRAM; Fast internal SSD for app installation and cache; Additional high-speed drive(s) for media
+
+System Requirements - Older Versions: Premiere Elements 2023, Premiere Elements 2022, Premiere Elements 2021, Premiere Elements 2020, Premiere Elements 2019, Premiere Elements 2018

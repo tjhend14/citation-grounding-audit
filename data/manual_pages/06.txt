@@ -1,0 +1,56 @@
+https://helpx.adobe.com/premiere/desktop/get-started/technical-requirements/adobe-premiere-24x-technical-requirements.html
+Adobe Premiere technical requirements | Premiere
+Adobe Premiere 24.x technical requirements
+Last updated on Mar 23, 2026
+
+Understand the minimum requirements needed to install and run Adobe Premiere. Use recommended system specifications for optimum performance.
+
+Applicable for: Premiere versions 24.0, 24.1, 24.2, 24.3, 24.4, 24.5, and 24.6.
+
+Note: To activate and use this product, you need an Internet connection, Adobe ID, and acceptance of the license agreement.
+
+The minimum specifications are for editing HD video. The recommended specifications are for editing video in HD, 4K, or higher resolutions.
+
+Minimum and recommended system requirements for Windows
+
+Processor
+Minimum: Intel 6th Generation or newer CPU - or AMD Ryzen 1000 Series or newer CPU. Advanced Vector Extensions 2 (AVX2) Support required. Note: it's not possible to install the 24.x versions on Intel 3rd Generation of processors or older (as well as older AMD processors).
+Recommended: Intel 11th Gen or newer CPU with Quick Sync - or AMD Ryzen 3000 Series / Threadripper 2000 series or newer CPU
+
+Operating system
+Minimum: Windows 10 (64-bit) V22H2
+Recommended: Windows 10 (64-bit) V22H2 or later, Windows 11
+
+Memory
+Minimum: 8 GB RAM
+Recommended: 16 GB RAM for HD media. 32 GB RAM or more for 4K and higher
+
+GPU
+Minimum: 2 GB GPU memory
+Recommended: 4 GB GPU memory for HD and some 4K media. 6 GB or more for 4K and higher
+
+Storage
+Minimum: 8 GB of available hard disk space, plus additional free space during installation. Note that it cannot be installed on removable flash storage. Additional high-speed drive for media
+Recommended: Fast internal SSD for app installation and cache. Additional high-speed drive for media
+
+Display
+Minimum: 1920x1080 pixels
+Recommended: 1920x1080 pixels or more. DisplayHDR 1000 for HDR workflows
+
+Sound card
+Minimum: ASIO compatible or Microsoft Windows Driver Model
+Recommended: ASIO compatible or Microsoft Windows Driver Model
+
+Network storage connection
+Minimum: 1 Gigabit Ethernet (HD only)
+Recommended: 1 Gigabit Ethernet (HD only). 10 Gigabit Ethernet for 4K shared network workflow
+
+Minimum and recommended system requirements for macOS
+
+Processor
+Minimum: Intel 6th Generation or newer CPU. Advanced Vector Extensions 2 (AVX2) Support required. Note: The 24.x versions will not install on Mac Pro 2013 or older systems.
+Recommended: Apple silicon M1 or newer
+
+Operating system
+Minimum: macOS Monterey (version 12). Note: Support for macOS 11.0 (Big Sur) has been discontinued. Installing the 24.x versions of our video applications on macOS 11.0 or older isn't possible. The 24.x versions of Premiere are not supported on Rosetta.
+Recommended: macOS Monterey

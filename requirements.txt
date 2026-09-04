@@ -1,0 +1,6 @@
+anthropic
+httpx
+trafilatura
+rank_bm25
+jinja2
+python-dotenv

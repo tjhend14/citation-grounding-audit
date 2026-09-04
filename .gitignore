@@ -1,0 +1,18 @@
+# Secrets — never commit
+.env
+
+# Fetched pages and LLM responses (regenerable, large)
+cache/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Working scratch — not part of the deliverable
+.mockups/
+*.zip
+*.bak
+out/labelling_worksheet.txt

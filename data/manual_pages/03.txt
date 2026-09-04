@@ -1,0 +1,72 @@
+https://helpx.adobe.com/after-effects/desktop/get-started/technical-requirements/2025.html
+After Effects 25.x system requirements
+After Effects 25.x system requirements
+Last updated on Jan 21, 2026
+
+Your computer must meet the minimum technical specifications outlined below to run and use After Effects.
+
+Applicable for: After Effects 25.6 (November 2025), After Effects 25.4 (August 2025), After Effects 25.3.2 (July 2025), After Effects 25.3.1 (June 2025), After Effects 25.3 (June 2025), After Effects 25.2.2 (April 2025), After Effects 25.2 (April 2025), After Effects 25.1 (December 2024), After Effects 25.0.1 (October 2024), After Effects 25.0 (October 2024).
+
+Minimum and recommended system requirements for Windows
+
+Processor
+Minimum: Intel 6th Generation or newer CPU, or AMD Ryzen 1000 Series or newer CPU. Advanced Vector Extensions 2 (AVX2) support required. Note: It is not possible to install the 24.x or later versions on Intel 3rd Generation of processors or older (as well as older AMD processors).
+Recommended: Intel 11th Gen or newer CPU with Quick Sync - or AMD Ryzen 3000 Series / Threadripper 3000 series or newer CPU
+
+Operating system
+Minimum: Windows 10 (64-bit) version 22H2 or later
+Recommended: Windows 10 (64-bit) version 22H2 (or later) or Windows 11
+
+Memory
+Minimum: 16 GB of RAM
+Recommended: 16 GB of RAM for HD media. 32 GB or more for 4K and higher
+
+GPU
+Minimum: Windows with NVIDIA GPU: GPU must be of the Maxwell generation or newer and have at least 4GB of VRAM. Windows with Intel or AMD GPU: Discrete GPU with at least 4GB VRAM and support for OpenCL. Starting with release 25.6, OpenCL 2.0 is required. Support for OpenCL 1.2 and earlier versions has been discontinued.
+Recommended: 8 GB of GPU Memory
+
+Storage
+Minimum: 8 GB of available hard-disk space for installation; additional free space required during installation (will not install on removable flash storage). Additional high-speed drive for media
+Recommended: Fast internal SSD for app installation and cache. Additional high-speed drive(s) for media
+
+Display
+Minimum: 1440x900
+Recommended: 1920x1080 or greater. DisplayHDR 1000 for HDR workflows
+
+Sound card
+Minimum: ASIO compatible or Microsoft Windows Driver Model
+Recommended: ASIO compatible or Microsoft Windows Driver Model
+
+Network storage connection
+Minimum: 1 Gigabit Ethernet (HD only)
+Recommended: 10 Gigabit ethernet for 4K shared network workflow
+
+Minimum and recommended system requirements for macOS
+
+Processor
+Minimum: Intel 6th Generation or newer CPU. Advanced Vector Extensions 2 (AVX2) Support required. Note: The 24.x or later versions will not install on Mac Pro 2013 or older systems.
+Recommended: Apple silicon M1 Pro, M1 Max, M1 Ultra or newer
+
+Operating system
+Minimum: macOS Ventura (version 13). After Effects 25.4 and later versions aren't supported on macOS Monterey (version 12.x). Support for macOS 11.0 (Big Sur) has been discontinued.
+Recommended: macOS Ventura (version 13) and later
+
+Memory
+Minimum: 16 GB of RAM
+Recommended: Apple silicon: 16 GB of unified memory
+
+GPU
+Minimum: Apple silicon: 16GB of RAM. Intel Macs with a discrete AMD GPU: 4GB of VRAM
+Recommended: Apple silicon: 16 GB of unified memory
+
+Storage
+Minimum: 8 GB of available hard-disk space for installation; additional free space required during installation. Additional high-speed drive for media
+Recommended: Fast internal SSD for app installation and cache
+
+Display
+Minimum: 1440x900
+Recommended: 1920x1080 or greater. DisplayHDR 1000 for HDR workflows
+
+Internet connection and registration are necessary for required software activation, validation of subscriptions, and access to online services. Internet connection, Adobe ID, and acceptance of license agreement required to activate and use this product.
+
+Language versions available for After Effects: Deutsch, English, Espanol, Francais, Italiano, Portugues (Brasil), Russian, Japanese, Korean, Simplified Chinese

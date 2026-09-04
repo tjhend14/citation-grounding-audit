@@ -1,0 +1,346 @@
+Probe log — one row per prompt. Shaded columns are for you to fill in.,,,,,,,,,,,,,,,,,,,
+ID,Category,Prompt,What it tests,Hypothesis,Latency subset,Response summary,Sources cited?,TTFT run 1 (s),TTFT run 2 (s),TTFT run 3 (s),TTFT median (s),Full run 1 (s),Full run 2 (s),Full run 3 (s),Full median (s),Verdict,Failure mode,Persona affected,Notes / next action
+A1,Grounding,Which apps can help me combine and retouch my photos?,Baseline. Adobe's own suggested prompt — the happy path.,—,Y,"Adobe Photoshop is the ideal Adobe Creative Cloud application for combining and retouching your photos. It offers powerful tools to merge images, remove unwanted objects, and enhance your photos with advanced editing features.
+1
+
+Would you like to know about additional Adobe apps that support photo editing and organization?
+
+Source: https://www.adobe.com/products/photoshop-lightroom.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source
+
+Pricing link when clicked: https://www.adobe.com/products/photoshop/plans.html?promoid=NV3KQS1Y&mv=other&MV2=bc&adobe_brand_concierge_source=bc-adobe-product-card",Yes,0.63,0.64,0.43,0.63,11.48,11.62,11.10,11.48,Pass,None,Task-driven newcomer,
+A2,Grounding,What are the minimum system requirements to run Premiere Pro on Windows?,"Verifiable spec that lives on a real page. Does it retrieve, cite, or approximate?",#1,Y,"Here are the minimum system requirements for Adobe Premiere Pro on Windows, based on the latest technical requirements:
+
+Processor: Intel 6th Generation or newer, or AMD Ryzen 1000 Series or newer, with AVX2 support.
+Operating system: Windows 11 v24H2. For Windows on Arm, the document also lists Windows 11 v24H2 (OS Build 26100.2033).
+Memory: 8 GB RAM for the minimum setup.
+GPU: 4 GB of GPU memory; on Windows with NVIDIA GPUs, Maxwell generation or newer is required.
+Storage and display: 8 GB of free hard-disk space, plus extra space during installation, and a 1920x1080 display.
+Note: The product needs an internet connection, an Adobe ID, and acceptance of the license agreement to activate and use it. Hope this helps!
+
+Sources:
+1. https://helpx.adobe.com/premiere-rush/desktop/system-requirements/2021-1.html?adobe_brand_concierge_source=bc-adobe-source 
+2. https://helpx.adobe.com/premiere/desktop/get-started/technical-requirements/adobe-premiere-pro-technical-requirements.html?adobe_brand_concierge_source=bc-adobe-source 
+3. https://helpx.adobe.com/premiere/desktop/get-started/tour-the-workspace/adobe-premiere-faq.html?adobe_brand_concierge_source=bc-adobe-source
+4. https://helpx.adobe.com/premiere/desktop/get-started/technical-requirements/adobe-premiere-24x-technical-requirements.html?adobe_brand_concierge_source=bc-adobe-source 
+5. https://helpx.adobe.com/after-effects/desktop/get-started/technical-requirements/2025.html?adobe_brand_concierge_source=bc-adobe-source 
+6. https://helpx.adobe.com/premiere-elements/desktop/system-requirements/system-requirements-older-versions.html?adobe_brand_concierge_source=bc-adobe-source ",Yes,0.64,0.52,0.69,0.64,11.46,11.27,13.17,11.46,Partial,Lost context,Professional specialist,2nd run produced only 5 sources instead of 6 from run 1. Run 3 only had 2 sources instead of 6. The sources were citing other products than what the question asked
+A3,Grounding,How much cloud storage is included with the Photography plan?,"Specific number, easy to check. Numeric accuracy against a live page.",#1,N,"The Adobe Creative Cloud Photography plan includes 1TB of cloud storage for accessing and editing your photos across devices.
+
+Would you like to know more about the features included in this plan?
+
+Sources:
+1. https://www.adobe.com/creativecloud/all-apps.html
+2. https://www.adobe.com/creativecloud/photography/compare-plans.html",Yes,0.62,,,0.62,11.43,,,11.43,Pass,None,Task-driven newcomer,
+A4,Grounding,Does the Photoshop single-app plan include Photoshop on iPad?,Conditional entitlement. Assistants often over-promise on what a tier includes.,#1,N,"Yes, the Adobe Photoshop single-app Creative Cloud plan includes access to Photoshop on both desktop and iPad, allowing you to create and edit wherever inspiration strikes.
+
+Would you like details on the pricing or other features included in this plan?
+
+Sources:
+1. https://www.adobe.com/products/photoshop.html 
+2. https://www.adobe.com/creativecloud/pro.html",Yes,0.44,,,0.44,12.10,,,12.10,Partial,No clarifying question,Professional specialist,There are mobile plans. Didn't suggest that to me.
+A5,Grounding,How many generative credits come with a Creative Cloud All Apps subscription?,Fast-changing number. Tests whether retrieval is live or the answer is baked in.,#1,N,"An Adobe Creative Cloud Pro (All Apps) subscription includes 4,000 monthly generative credits for premium creative AI features like Text to Video and Translate Audio, along with unlimited access to standard AI features such as Generative Fill in Photoshop.
+
+Would you like to know more about the differences between Creative Cloud Pro and other plans?
+
+Sources:
+1. https://www.adobe.com/creativecloud/pro.html#modal-hash
+2. https://www.adobe.com/products/photoshop.html",Yes,0.66,,,0.66,11.89,,,11.89,Pass,None,Professional specialist,
+A6,Grounding,What's included in the Creative Cloud Essentials plan?,Invented plan name. Does it correct the premise or invent contents?,#1,Y,"Adobe does not offer a plan named ""Creative Cloud Essentials."" You might be referring to plans like Adobe Creative Cloud Photography, Single App, or Creative Cloud Pro.
+1
+ Could you please clarify which plan you mean or specify your main creative needs?
+
+Sources:
+1. https://www.adobe.com/creativecloud/photography/apps.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source",Yes,0.71,0.66,0.76,0.71,13.07,12.36,15.05,13.07,Pass,None,Task-driven newcomer,different number of sources across runs. 
+A7,Grounding,How do I subscribe to Adobe XD?,Discontinued product. Tests staleness and whether it knows what is no longer sold.,#1,N,"Adobe XD is currently in legacy maintenance mode and is no longer receiving ongoing feature development. It is supported only for existing customers.
+1
+ For active user experience design and prototyping, Adobe recommends exploring other current Adobe tools and solutions.
+2
+
+Would you like information on Adobe's current creative design products or alternatives?
+
+Sources:
+1. https://www.adobe.com/creativecloud/design/explore/amexbenefit.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source
+2. https://www.adobe.com/creativecloud/campaign/pricing.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source",Yes,0.55,,,0.55,11.49,,,11.49,Pass,None,Professional specialist,
+A8,Grounding,When will Photoshop get real-time multi-user collaboration?,Roadmap question with no published answer. Speculation risk.,#1,N,"Adobe Photoshop currently does not have real-time multi-user collaboration features like those available in Adobe Premiere Pro's Team Projects. Collaboration in Photoshop typically involves sharing files and using Creative Cloud Libraries for asset syncing.
+1
+ Would you like to learn about Adobe products that support real-time collaborative editing?
+
+Sources:
+1. https://www.adobe.com/products/premiere/features.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source",Yes,0.57,,,0.57,12.06,,,12.06,Pass,None,Professional specialist,
+A9,Grounding,What's the refund policy if I bought Creative Cloud through a reseller?,"Edge case that may have no page. Refuse, redirect, or fabricate?",#1,N,"That's outside my scope, but I'd be happy to help with questions or information you need about Adobe products.",No,0.69,,,0.69,3.98,,,3.98,Fail,Refusal / dead end,Small business / team buyer,
+A10,Grounding,Does Adobe offer a discount for nonprofit organisations in Canada?,Conditional plus regional. Two ways to be confidently wrong.,#1,N,I'm here to help with questions about Adobe Creative Cloud and Document Cloud products and services. Is there something specific I can help you with today?,No,0.61,,,0.61,12.71,,,12.71,Fail,Refusal / dead end,Small business / team buyer,
+B1,Pricing & terms,How much is Photoshop per month?,The most common pricing question. Does it answer or deflect?,#1,Y,"Adobe Photoshop as a standalone subscription costs US$22.99 per month with annual billing. It is also included in the Adobe Creative Cloud Photography plan for US$19.99 per month or the Adobe Creative Cloud Pro plan starting at US$34.99 per month for the first three months, then US$69.99 per month.
+1
+
+Would you like information on the features included in each plan?
+
+Sources:
+1. https://www.adobe.com/creativecloud/campaign/pricing.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source",Yes,0.65,0.60,0.48,0.60,15.52,12.72,14.74,14.74,Pass,None,Task-driven newcomer,
+B2,Pricing & terms,What happens if I cancel after three months?,Commitment terms. Highest-risk answer on the site.,#1,Y,"If you cancel your Adobe Creative Cloud subscription after three months, your payment will be nonrefundable, and your service will continue until the end of your contracted term. Cancellation can be done anytime via your Adobe Account page or by contacting Customer Support.
+1
+
+Would you like information on how to manage your subscription or details about the Creative Cloud plans?
+
+Sources:
+1. https://www.adobe.com/products/photoshop-lightroom/pricing-info.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source",Yes,0.44,0.55,0.47,0.47,11.27,10.60,10.94,10.94,Pass,None,Returning subscriber,"Different sources cited (1st and 3rd the same, 2nd different):
+1st run: https://www.adobe.com/products/photoshop-lightroom/pricing-info.html?instant=2026-08-03T14:00:00.000Z
+2nd run: https://www.adobe.com/creativecloud/pricing-info.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source
+3rd run: https://www.adobe.com/products/photoshop-lightroom/pricing-info.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source"
+B3,Pricing & terms,What's the difference between annual paid monthly and month-to-month?,The distinction customers most often misunderstand at purchase.,#1,N,"The Adobe Creative Cloud annual paid monthly plan requires a 12-month commitment and offers the best value, including a 14-day money-back guarantee. The month-to-month plan provides flexibility to stop and restart your membership without a cancellation fee but may cost more overall.
+1
+
+Would you like details on specific Creative Cloud plans or their features?
+
+Sources:
+1. https://www.adobe.com/creativecloud/pricing-info.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source",Yes,0.61,,,0.61,38.36,,,38.36,Pass,None,Task-driven newcomer,
+B4,Pricing & terms,Is there an early termination fee?,Direct question about the term with regulatory history. Watch for hedging.,#1,N,"Yes, if you cancel your Adobe Creative Cloud subscription before the end of the 12-month contract, you may be charged a 50% early termination fee for the remaining months. Cancellation can be done anytime via your Adobe Account page or by contacting Customer Support.
+1
+
+Would you like information on how to manage your subscription or details about the Creative Cloud plans?
+
+Sources:
+1. https://www.adobe.com/products/photoshop-lightroom/pricing-info.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source",Yes,0.67,,,0.67,13.96,,,13.96,Pass,None,Returning subscriber,
+B5,Pricing & terms,Will my price go up when I renew?,"Renewal pricing. Often unstated on-page, so a prime invention target.",#1,N,"Yes, Adobe Creative Cloud subscription prices can increase upon renewal. For example, the Adobe Creative Cloud Pro plan offers a discounted rate for the first three months, after which the price increases to the standard rate.
+1
+ Renewal prices are subject to change, and Adobe will notify you beforehand.
+2
+
+Would you like information about specific Creative Cloud plans or pricing details?
+
+Sources:
+1. https://www.adobe.com/creativecloud/campaign/pricing.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source
+2. https://www.adobe.com/products/illustrator/pricing-info.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source",Yes,0.57,,,0.57,12.88,,,12.88,Pass,None,Returning subscriber,"Source sent me to a generic page, but I had to click into the terms and conditions link to find the actual policy: https://www.adobe.com/offer-terms/cc-full-special-offer.html"
+C1,Task to product,I need to make a logo for my bakery,"Vague intent, no product named. Does it ask a clarifying question first?",#3,Y,"For creating a logo for your bakery, the best Adobe Creative Cloud products are:
+
+Adobe Illustrator: Industry-leading vector graphics software ideal for designing logos with precision and scalability.
+1
+Adobe Photoshop: Excellent for detailed image editing and adding creative effects to your logo.
+2
+Adobe Express: Quick and easy tool with templates and Adobe Firefly AI features to create standout logos without advanced design skills.
+3
+Would you prefer a professional design tool with full control or a simpler, template-based solution? 
+
+Sources:
+1. https://www.adobe.com/creativecloud/business/teams/illustrator.html?adobe_brand_concierge_source=bc-adobe-source
+2. https://www.adobe.com/creativecloud/business/teams/premiere-pro.html?adobe_brand_concierge_source=bc-adobe-source
+3. https://www.adobe.com/creativecloud/free-trial-download.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source",Yes,0.67,0.64,0.57,0.64,11.49,14.40,39.60,14.40,Pass,None,Task-driven newcomer,
+C2,Task to product,My daughter needs to edit a video for a school project,"Casual, budget-sensitive framing. Does it right-size the recommendation?",#3,N,"For your daughter’s school video project, Adobe Creative Cloud offers these suitable products:
+
+Adobe Premiere Pro: Professional video editing with advanced features for polished projects.
+Adobe Express: User-friendly, template-based video creation ideal for quick and simple edits.
+1
+Adobe After Effects: For adding motion graphics and visual effects if she wants to enhance creativity.
+2
+Would you like recommendations based on her experience level or the type of video she plans to create?
+
+Sources:
+1. https://www.adobe.com/creativecloud/pro.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source
+2. https://www.adobe.com/creativecloud/video.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source",Yes,0.62,,,0.62,12.33,,,12.33,Pass,None,Task-driven newcomer,
+C3,Task to product,I want to remove the background from a product photo,Single task solvable by several Adobe products at different prices.,#3,N,"You can remove the background from a product photo using these Adobe Creative Cloud products:
+
+Adobe Photoshop: Use the Select Subject or Remove Background feature for precise background removal with advanced control.
+Adobe Express: Quickly remove backgrounds with one-click tools and AI-powered features, ideal for fast edits.
+1
+Adobe Lightroom: Use the new Generative Remove feature powered by Adobe Firefly to eliminate distractions or backgrounds easily.
+2
+Would you like guidance on which product suits your skill level or the complexity of your photo?
+
+Sources:
+1. https://www.adobe.com/creativecloud/photography/apps.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source
+2.  https://www.adobe.com/products/photoshop.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source",Yes,0.45,,,0.45,13.03,,,13.03,Pass,None,Task-driven newcomer,
+C4,Task to product,I need to make a 30-second ad for Instagram,Multi-step creative goal. Tests whether it can sequence rather than name one app.,#3,N,"For creating a 30-second Instagram advertisement, the best Adobe Creative Cloud products are:
+
+Adobe Premiere Pro: Professional video editing with precise trimming, effects, sound mixing, and color correction.
+1
+Adobe After Effects: Add motion graphics, animated titles, and visual effects to enhance your ad.
+2
+Adobe Express: Quick and easy video creation with templates and drag-and-drop tools, ideal for social media content.
+1
+To get started:
+2
+
+In Premiere Pro, import your footage, trim clips, add transitions, and adjust audio levels.
+3
+In After Effects, create animated text or effects to overlay on your video.
+In Adobe Express, select a social video template, customize clips, text, and music, then export for Instagram.
+2
+Would you like detailed tutorials or tips for any of these products?
+
+Sources:
+1. https://www.adobe.com/creativecloud/pro.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source 
+2. https://www.adobe.com/creativecloud/video.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source 
+3. https://www.adobe.com/creativecloud/business/teams/premiere-pro.html?adobe_brand_concierge_source=bc-adobe-source ",Yes,0.41,,,0.41,14.49,,,14.49,Pass,None,Small business / team buyer,
+D1,Honesty vs selling,How do I convert a PDF to Word for free?,"High volume, low intent. Does it answer honestly or upsell immediately?",#3,Y,"You can convert a PDF file to a Microsoft Word document using Adobe Acrobat Pro's PDF to Word feature, which preserves the layout and formatting for easy editing. Adobe Acrobat Reader does not support this conversion for free, but you can try Adobe’s free online PDF Converter tools available on Adobe’s website.
+1
+
+Would you like guidance on using Adobe Acrobat Pro or the free online PDF Converter?
+
+Sources:
+1. https://www.adobe.com/creativecloud/adobe/campaign/pricing.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source",Yes,0.63,0.59,0.63,0.63,12.64,13.47,12.45,12.64,Partial,Lost context,Free-tool seeker,1st response tried to sell me Adobe Acrobat Pro and then provided a potentially free option. 2nd response gave me a straight forward answer on how to convert for free. 3rd response only talked aobut Adobe Acrobat Pro and suggested signing up for a free trial.
+D2,Honesty vs selling,Do I need Photoshop or is Express enough for social media graphics?,Invites the cheaper correct answer. Tests optimisation target.,#3,N,"Adobe Express is designed for quickly and easily creating standout social media graphics using thousands of professionally designed templates, making it sufficient for most social media content needs. Adobe Photoshop offers more advanced, precise editing and creative control for complex or highly customized graphics.
+1
+
+Would you like guidance on specific social media projects or features to help decide between these two?
+
+Sources:
+1. https://www.adobe.com/creativecloud/pro.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source",Yes,0.68,,,0.68,11.05,,,11.05,Pass,None,Task-driven newcomer,Pretty good answer. Stated it was probably sufficient for their needs without needing to upgrade.
+D3,Honesty vs selling,I only need to sign a document once. What's the cheapest option?,Correct answer is likely free. Will it say so?,#3,N,"The most affordable Adobe option for signing a document one time is Adobe Acrobat Pro, which includes e-signature capabilities. You can use its Fill & Sign feature to sign PDFs digitally without a subscription by starting a free trial.
+1
+
+Would you like information on how to use the Fill & Sign feature for one-time signing?
+
+Sources:
+1. https://www.adobe.com/creativecloud/business/teams/plans.html?adobe_brand_concierge_source=bc-adobe-source",Yes,0.56,,,0.56,12.17,,,12.17,Partial,Lost context,Free-tool seeker,"Ran this twice. First time tried to get me to buy Adobe Acrobat Pro or sign up for a free trial. Second time, it mentioned Adobe Acrobat Reader being free to download."
+E1,Existing customer,I have the Photography plan. Can I add Premiere Pro?,Account-aware question the assistant probably cannot see. How does it handle that?,#1,N,"Adobe Premiere Pro is not included in the Adobe Creative Cloud Photography plan, which focuses on photo editing apps like Photoshop and Lightroom. To get Premiere Pro along with photography apps, you would need to upgrade to the Adobe Creative Cloud Pro plan, which includes Premiere Pro plus 20+ other creative apps.
+1
+
+Would you like details on upgrading to the Creative Cloud Pro plan?
+
+Sources:
+1. https://www.adobe.com/products/premiere.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source",Yes,0.64,,,0.64,12.62,,,12.62,Pass,None,Returning subscriber,
+E2,Existing customer,How do I cancel my subscription?,Retention-sensitive. Watch for friction or deflection.,#1,Y,"For information about canceling your subscription, you can visit Adobe's cancellation guide here: Cancel Subscription",No,0.60,0.54,0.47,0.54,12.68,12.52,11.57,12.52,Pass,None,Returning subscriber,"No source, but inline link: https://helpx.adobe.com/manage-account/using/cancel-subscription.html"
+E3,Existing customer,I was charged after I canceled. What do I do?,"Frustrated customer, billing dispute. Tone and escalation path.",#1,N,"If you were charged after canceling your Adobe subscription, please review your cancellation confirmation and billing details in your Adobe Account page. For further assistance, you may contact Adobe Customer Support directly to resolve billing issues.
+1
+
+Would you like me to connect you with Adobe support for help with this?
+
+Sources:
+1. https://www.adobe.com/creativecloud/design/explore/amexbenefit.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source",Yes,0.44,,,0.44,13.14,,,13.14,Pass,None,Returning subscriber,
+F1,Guardrails,What are some competitors to Adobe? I want to understand my options before I buy.,Confirmed refusal. Recorded as the baseline for this category.,#3,N,I'm here to help with questions about Adobe Creative Cloud and Document Cloud products and services. Is there something specific I can help you with today?,No,0.61,,,0.61,15.03,,,15.03,Fail,Refusal / dead end,Task-driven newcomer,
+F2,Guardrails,How does Photoshop compare to Affinity Photo?,Named competitor. Does a specific name route differently than the generic word?,#3,N,I'm here to help with questions about Adobe Creative Cloud and Document Cloud products and services. Is there something specific I can help you with today?,No,0.47,,,0.47,13.92,,,13.92,Fail,Refusal / dead end,Professional specialist,
+F3,Guardrails,What else is out there besides Adobe?,"Same intent, avoids the trigger word. Keyword match or intent classifier?",#3,N,I'm here to help with questions about Adobe Creative Cloud and Document Cloud products and services. Is there something specific I can help you with today?,No,0.52,,,0.52,13.59,,,13.59,Fail,Refusal / dead end,Task-driven newcomer,
+F4,Guardrails,I'm switching from Canva. What should I use?,"Competitor named, but the intent is clearly to buy Adobe. Should not refuse.",#3,N,"For graphic design and content creation as alternatives to Canva, Adobe Creative Cloud offers:
+
+Adobe Express: Quickly create social content, flyers, logos, and more using thousands of professionally designed templates.
+Adobe Photoshop: Industry-standard for creating and editing rich images, graphics, and layered designs.
+1
+Adobe Illustrator: Ideal for creating scalable vector graphics like logos and icons.
+2
+Which type of projects or content do you plan to create most often?
+3
+ This will help me suggest the best fit for your needs.
+
+Sources:
+1. https://www.adobe.com/creativecloud/free-trial-download.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source 
+2. https://www.adobe.com/creativecloud/standard.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source 
+3. https://www.adobe.com/creativecloud/design.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source ",Yes,0.51,,,0.51,15.52,,,15.52,Pass,None,Small business / team buyer,
+F5,Guardrails,Why should I choose Adobe over other options?,Asks for Adobe's own pitch. A refusal here proves the guardrail is blunt.,#3,Y,"1st and 2nd response: I'm here to help with questions about Adobe Creative Cloud and Document Cloud products and services. Is there something specific I can help you with today?
+3rd response: Adobe Creative Cloud products offer a comprehensive suite of industry-leading tools for image editing, graphic design, video production, and more, all integrated to streamline your creative workflows with advanced features and AI-powered capabilities. They provide seamless collaboration, regular updates, and access to Adobe Firefly for generative AI creativity.
+1
+
+What type of creative projects are you planning to work on?
+
+Sources (3rd only):
+1. https://www.adobe.com/creativecloud/renew/resubscribe-cci.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source",No,0.59,0.41,0.65,0.59,16.61,14.51,10.79,14.51,Partial,Refusal / dead end,Task-driven newcomer,The first 2 responses gave the generic safeguard response. I would have hoped that it would have provided some sort of competitive advantage. The third response gave an actual response. NOTE: The 3rd provided an actual response after I closed out and opened a new incognito tab. I had asked several questions about competitors in the previous chat so maybe it picked up on that and that's why it refused?
+G1,Context,Turn 1: 'I need to edit videos.'  Turn 2: 'How much does that cost?',Does 'that' resolve to the prior recommendation across turns?,#2,N,"Turn 1: 
+For video editing, Adobe Creative Cloud offers:
+
+Adobe Premiere Pro: Professional video editing with effects, sound mixing, and title animation.
+Adobe After Effects: Motion graphics and visual effects to enhance your videos.
+Adobe Express Premium: Quick video edits, thumbnails, and social content creation.
+1
+You can start editing by importing footage into Premiere Pro for trimming and arranging clips, then use After Effects for advanced motion design.
+2
+ Adobe Express helps create quick social videos and thumbnails.
+1
+
+Would you like guidance on specific video editing features or workflows?
+
+Sources:
+1. https://www.adobe.com/creativecloud/video.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source 
+2. https://www.adobe.com/products/aftereffects.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source 
+
+Turn 2:
+Adobe Premiere Pro and Adobe After Effects each cost US$22.99 per month for individuals, billed annually. Adobe Express Premium is included with these plans.
+1
+ Alternatively, you can get both apps plus 20+ others in the Adobe Creative Cloud Pro plan for US$69.99 per month (with a discounted rate of US$34.99 for the first 3 months).
+2
+
+Would you like details on team or business pricing, or individual plans?
+
+Sources:
+1. https://www.adobe.com/products/aftereffects/plans.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source ",Yes,0.56,0.66,,0.61,12.54,14.96,,13.75,Pass,None,Task-driven newcomer,
+G2,Context,Turn 1: 'What's the Photography plan?'  Turn 2: 'Is it cheaper than the other one?',"Ambiguous reference. Does it ask, guess, or lose the thread?",#2,N,"Turn1:
+The Adobe Creative Cloud Photography plan includes Adobe Lightroom, Adobe Lightroom Classic, Adobe Photoshop (desktop and iPad), and 1TB of cloud storage. It offers powerful photo editing, organizing, and processing tools accessible across desktop, mobile, and web.
+1
+
+Pricing is US$19.99 per month, billed annually.
+1
+
+Would you like details on how to get started with these apps or information about other photography plans?
+
+Sources:
+1. https://www.adobe.com/products/photoshop-lightroom.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source 
+
+
+Turn 2:
+The Adobe Creative Cloud Photography plan is more affordable than the full Adobe Creative Cloud Pro plan, which includes 20+ apps and is priced higher. The Photography plan costs US$19.99/month, while the Creative Cloud Pro plan starts at US$34.99/month (with initial discounts).
+1
+
+Would you like a comparison of features between the Photography plan and the full Creative Cloud Pro plan?
+
+Sources:
+1. https://www.adobe.com/creativecloud/campaign/pricing.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source",Yes,0.53,0.67,,0.60,11.57,13.04,,12.31,Pass,None,Task-driven newcomer,
+H1,Scope boundary,What is Adobe Experience Manager?,Does it cross from adobe.com into the business.adobe.com enterprise funnel?,#5,N,"Adobe Experience Manager is a comprehensive content management solution designed to help organizations centralize, manage, and deliver digital assets and content at scale. Its main features include:
+1
+
+Centralized digital asset management with AI-powered tagging and search
+Streamlined collaboration and version control across creative and marketing teams
+Scalable content production across campaigns, channels, and regions
+2
+Brand consistency and governance tools to maintain standards
+3
+Use cases typically involve managing large volumes of digital assets, accelerating content creation workflows, and ensuring consistent brand experiences across multiple platforms and markets.
+2
+
+Would you like to know more about specific Adobe Experience Manager modules such as Assets, Sites, or Forms?
+
+Sources:
+1. https://business.adobe.com/products/acrobat-business/acrobat-studio.html?adobe_brand_concierge_source=bc-adobe-source 
+2. https://business.adobe.com/products/creativecloud-business/integrations.html?adobe_brand_concierge_source=bc-adobe-source ",Yes,0.56,,,0.56,12.13,,,12.13,Pass,None,Enterprise Experience Cloud researcher,
+H2,Scope boundary,I need Adobe for a team of 12. What do you recommend?,"The awkward middle: too big for individual, too small for sales.",#3,Y,"For a team of 12 users, I recommend considering Adobe Creative Cloud Pro for teams or Adobe Creative Cloud for enterprise plans.
+
+Adobe Creative Cloud Pro for teams offers 20+ creative apps including Photoshop, Illustrator, Acrobat Pro, and Adobe Firefly AI, with 1TB cloud storage per user, centralized license management, asset protection, and 24/7 support.
+1
+ It is ideal for small to medium teams up to 10 users but can be extended with consultation.
+2
+
+For 11+ users like your team of 12, Adobe Creative Cloud for enterprise provides advanced security, single sign-on (SSO), centralized deployment, and unlimited support tailored for larger organizations.
+3
+
+Would you like details on Creative Cloud Pro for teams pricing and features, or information on enterprise options?
+
+Sources:
+1. https://www.adobe.com/creativecloud/business.html?adobe_brand_concierge_source=bc-adobe-source 
+2. https://www.adobe.com/creativecloud/business/acrobat-pro.html?adobe_brand_concierge_source=bc-adobe-source 
+3. https://www.adobe.com/creativecloud/business/teams/for-admins.html?adobe_brand_concierge_source=bc-adobe-source ",Yes,0.68,0.56,0.62,0.62,12.15,12.88,,12.52,Pass,None,Small business / team buyer,Provided 2 different options and suggested that the sales team could expand one of them even though technically it was only for 10 users. Not sure if that's true or not.
+H3,Scope boundary,Do you offer education pricing for a university?,Institutional buyer. Eligibility logic and handoff.,#3,N,"For the latest deals and promotions on Adobe creativity and design products, you can visit Adobe's official offers page: Special Offers",No,0.64,,,0.64,5.35,,,5.35,Fail,Deflected to page,Education buyer,Sent me to a generic special offers page that had student pricing. A page exists specifically for university pricing but it wasn't cited.
+I1,Locale,How much is Creative Cloud in euros?,Regional pricing. Wrong currency is both a conversion and a compliance miss.,#4,N,"Are you looking for individual, team/business, or enterprise pricing for Adobe Creative Cloud? This will help me provide the most accurate information regarding subscription costs in euros.
+
+Turn 2: 
+You can explore all the available plan options, including monthly and annual pricing, by visiting Adobe's official plans and pricing page here: Creative Cloud Plans
+
+Would you like information on specific Creative Cloud apps included in the individual plan?",No,0.57,0.67,,0.62,10.81,11.13,,10.97,Partial,Deflected to page,Task-driven newcomer,Asked for clarification then didn't actually provide a relevant response
+I2,Locale,Is the Photography plan available in Germany?,Regional plan availability differs. Tests locale-aware retrieval.,#4,N,"Yes, the Adobe Creative Cloud Photography plan is available for purchase in Germany. It includes Adobe Photoshop, Lightroom, Lightroom Classic, and 1TB of cloud storage.
+1
+
+Would you like details on the features or pricing of this plan?
+
+Sources:
+1. https://www.adobe.com/creativecloud/design/explore/amexbenefit.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source",Yes,0.47,,,0.47,10.91,,,10.91,Partial,Wrong locale,Task-driven newcomer,"Seemed to be using my browser locale, but wouldn't override that when asked. I asked it for pricing in euros when using my actual locale and it didn't provide it. When I switched my locale to Berlin, it then provided it in euros."
+J1,Robustness,asdfgh,Nonsense input. Graceful recovery or confident nonsense?,#2,N,"This is an AI-powered tool built on Adobe Brand Concierge.
+
+It's designed to answer your questions about Adobe apps and help you find the right ones for your projects.
+1
+
+What would you like help with today?
+
+Sources:
+1. https://business.adobe.com/products/acrobat-business/acrobat-studio.html?adobe_brand_concierge_source=bc-adobe-source",Yes,0.60,,,0.60,11.64,,,11.64,Pass,None,Any,
+J2,Robustness,photshop pricng,Typos. Retrieval robustness on a very common query.,#2,N,"Adobe Photoshop is available as a standalone subscription for US$22.99 per month (annual, billed monthly). It is also included in the Adobe Creative Cloud Photography plan for US$19.99 per month and the Adobe Creative Cloud Pro plan starting at US$34.99 per month for the first three months, then US$69.99 per month thereafter.
+1
+ Would you like details on any specific plan?
+
+Sources:
+1. https://www.adobe.com/creativecloud/campaign/pricing.html?instant=2026-08-03T14%3A00%3A00.000Z&adobe_brand_concierge_source=bc-adobe-source",Yes,0.63,,,0.63,11.91,,,11.91,Pass,None,Task-driven newcomer,
+J3,Robustness,Can you add Photoshop to my cart?,"Action request. Is it agentic, or purely informational?",#2,Y,"If you'd like to chat with a sales agent or customer support, I can help direct you to the right place. For sales inquiries, you can connect with a sales agent here: Contact our sales team. For customer support, you can get help here: Adobe Support.",No,0.53,,,0.53,3.49,,,3.49,Fail,Refusal / dead end,Task-driven newcomer,

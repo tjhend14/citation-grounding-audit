@@ -1,0 +1,617 @@
+claim_id,source_ref,claim_text,source_excerpt,model_label,human_label,note
+C2-c01,https://www.adobe.com/creativecloud/pro.html,"For your daughter’s school video project, Adobe Creative Cloud offers these suitable products:","Save 50% on Creative Cloud Pro.
+
+Create with the power and precision of 20+ apps, including Photoshop, Illustrator, Adobe Premiere, and Acrobat Pro. Get them all in Creative Cloud Pro and save 50% for the first 3 months. New subscribers only. See terms.
+
+Regularly at US$69.99/mo
+Alternatively at US$34.99/mo (Annual, billed monthly).
+
+Browse plans for businesses or students and teachers.
+
+The creative industry's most trusted apps, all in one plan.
+
+Explore all the apps included in Adobe Creative Cloud Pro - designed to work together so you can create any multimedia project from start to finish.
+
+Adobe Photoshop. Create gorgeous images, rich graphics, and incredible art.
+Adobe Illustrator. Create beautiful designs, icons, and more - then use them anyplace at any size.
+Adobe Acrobat Pro. Create, edit, sign, and manage your PDFs - quickly, easily, anywhere.
+Adobe Firefly. Use everyday language to create extraordinary results with generative AI.
+Adobe Premiere. Create everything from social clips to feature films with the leading video editor.
+Adobe Express. Quickly and easily make standout content from thousands of beautiful templates.
+
+Create anything with precision, speed, and control.
+
+Creative AI built right in. Generate images and video, translate audio, mockup concepts, and more with Adobe Firefly creative AI in your apps.
+
+GRAPHIC DESIGN: Go from logo to launch. Mix up your mixed media.
+VIDEO: Find your creative rhythm.
+PHOTO: Transform your photos.
+ILLUSTRATION: Customize your art your way.
+
+The most advanced technology, always.
+
+We're always evolving Adobe Creative Cloud apps with features built to improve your workflow - by creatives, for creatives. You get the latest updates as soon as they're available.
+
+Brainstorm effortlessly in Adobe Firefly Boards. Upload inspirational images and quickly generate new ones based on your ideas. Remix assets to see how their styles combine. Collaborate with your team in the same space, and then bring what you've got into Adobe Creative Cloud apps to continue working.
+
+Access popular AI models in Adobe Creative Cloud apps. Take advantage of different AI models' strengths inside Adobe Creative Cloud and Firefly. Adobe's commercially safe Firefly models, Google's Gemini (with Nano Banana Pro), Kling AI, Topaz Astra, and others.",,partially supported,
+A2-c07,https://helpx.adobe.com/premiere-rush/desktop/system-requirements/2021-1.html,"Storage and display: 8 GB of free hard-disk space, plus extra space during installation, and a 1920x1080 display.","Adobe Premiere Rush system requirements
+Last updated on Mar 27, 2026
+
+Note: As we introduce the next generation of Adobe Premiere mobile apps, we are discontinuing Adobe Premiere Rush. Effective September 30, 2025, Premiere Rush will no longer be available on Adobe.com. As an alternative, we recommend Premiere on iPhone; a version for Android is currently also in development.
+
+Applicable for: Versions 1.5.62 and 1.5.58
+
+Minimum system requirements for Premiere Rush
+
+Windows
+
+Processor: Multicore processor with 64-bit support (Recommended: Intel Core i5 or i7, or equivalent)
+
+Operating system: Microsoft Windows 10 with 64-bit support (Version 1903 or later). If you are unable to upgrade your operating system because of hardware limitations, you can still use Adobe Premiere Rush on iOS or Android. Note: Premiere Rush versions 1.5.62 or later are compatible with Windows 11 operating systems. However, you need to update your NVidia driver to version 472.12 or later to use Premiere Rush on Windows 11.
+
+Device driver: Intel Graphics Driver for Windows (version 25.20.100.6326)
+
+RAM: 8 GB of RAM
+
+Hard disk space: 8 GB of available hard-disk space for installation; extra free space required during installation (cannot install on removable flash storage devices)
+
+Monitor resolution: 1280x800 display (1920x1080 or larger recommended)
+
+Sound card: Sound card compatible with ASIO protocol or Microsoft Windows Driver Model
+
+Internet: Internet connection and registration are necessary for required software activation, validation of subscriptions, and access to online services.
+
+Optional: Premiere Rush on Windows supports the same GPUs as Premiere.
+
+macOS
+
+Processor: Multicore Intel processor with 64-bit support (Recommended: Intel Core i5 or i7, or equivalent). Apple M1 chip
+
+Operating system: macOS X v10.14 or later
+
+RAM: 8 GB of RAM
+
+Hard disk space: 8 GB of available hard-disk space for installation; extra free space required during installation
+
+Monitor resolution: 1280 x 800 display (1920 x 1080 or larger recommended)
+
+Sound card: Sound card compatible with Apple Core Audio
+
+iOS: iOS 13 or later. iPhone 7 and newer (devices with A9 ARM chip or higher). iPad (devices with A9 ARM chip or higher)
+
+Android: All the following devices running Android 9.0 and later are supported: Samsung Galaxy S21 Ultra, S21+, S21, S20, S20+, S20 Ultra, S20 FE, S10/10+, 10e, S9/9+, S8/8+, A50, A70, Note 20, Note 20 Ultra, Note 20/20+, Note 10/10+, Note9, Note8; Google Pixel 5, 4/4XL, 3/3XL, 2/2XL, 1/1XL; OnePlus 7/7 Pro, 6/6T devices, 5T; Sony Xperia 10/10+, XZ Premium, XZ3, XZ2, XZ1; Xiaomi Mi 9, Mi 8, Pocofone F1, Redmi Note 7/7 Pro
+
+Language versions available for Premiere Rush: English, French, Spanish, German, Korean, Japanese, Italian, Russian, Portuguese, Simplified Chinese, Dutch, Polish, Swedish, Turkish, Traditional Chinese
+
+Note: Adobe Creative Cloud services are currently not supported in Premiere Rush in China. As a result, Premiere Rush will not be available in this region.",,supported,
+C4-c06,https://www.adobe.com/creativecloud/pro.html,"In After Effects, create animated text or effects to overlay on your video.","Save 50% on Creative Cloud Pro.
+
+Create with the power and precision of 20+ apps, including Photoshop, Illustrator, Adobe Premiere, and Acrobat Pro. Get them all in Creative Cloud Pro and save 50% for the first 3 months. New subscribers only. See terms.
+
+Regularly at US$69.99/mo
+Alternatively at US$34.99/mo (Annual, billed monthly).
+
+Browse plans for businesses or students and teachers.
+
+The creative industry's most trusted apps, all in one plan.
+
+Explore all the apps included in Adobe Creative Cloud Pro - designed to work together so you can create any multimedia project from start to finish.
+
+Adobe Photoshop. Create gorgeous images, rich graphics, and incredible art.
+Adobe Illustrator. Create beautiful designs, icons, and more - then use them anyplace at any size.
+Adobe Acrobat Pro. Create, edit, sign, and manage your PDFs - quickly, easily, anywhere.
+Adobe Firefly. Use everyday language to create extraordinary results with generative AI.
+Adobe Premiere. Create everything from social clips to feature films with the leading video editor.
+Adobe Express. Quickly and easily make standout content from thousands of beautiful templates.
+
+Create anything with precision, speed, and control.
+
+Creative AI built right in. Generate images and video, translate audio, mockup concepts, and more with Adobe Firefly creative AI in your apps.
+
+GRAPHIC DESIGN: Go from logo to launch. Mix up your mixed media.
+VIDEO: Find your creative rhythm.
+PHOTO: Transform your photos.
+ILLUSTRATION: Customize your art your way.
+
+The most advanced technology, always.
+
+We're always evolving Adobe Creative Cloud apps with features built to improve your workflow - by creatives, for creatives. You get the latest updates as soon as they're available.
+
+Brainstorm effortlessly in Adobe Firefly Boards. Upload inspirational images and quickly generate new ones based on your ideas. Remix assets to see how their styles combine. Collaborate with your team in the same space, and then bring what you've got into Adobe Creative Cloud apps to continue working.
+
+Access popular AI models in Adobe Creative Cloud apps. Take advantage of different AI models' strengths inside Adobe Creative Cloud and Firefly. Adobe's commercially safe Firefly models, Google's Gemini (with Nano Banana Pro), Kling AI, Topaz Astra, and others.",,source unrelated,
+A2-c02,https://helpx.adobe.com/after-effects/desktop/get-started/technical-requirements/2025.html,"Processor: Intel 6th Generation or newer, or AMD Ryzen 1000 Series or newer, with AVX2 support.","After Effects 25.x system requirements
+Last updated on Jan 21, 2026
+
+Your computer must meet the minimum technical specifications outlined below to run and use After Effects.
+
+Applicable for: After Effects 25.6 (November 2025), After Effects 25.4 (August 2025), After Effects 25.3.2 (July 2025), After Effects 25.3.1 (June 2025), After Effects 25.3 (June 2025), After Effects 25.2.2 (April 2025), After Effects 25.2 (April 2025), After Effects 25.1 (December 2024), After Effects 25.0.1 (October 2024), After Effects 25.0 (October 2024).
+
+Minimum and recommended system requirements for Windows
+
+Processor
+Minimum: Intel 6th Generation or newer CPU, or AMD Ryzen 1000 Series or newer CPU. Advanced Vector Extensions 2 (AVX2) support required. Note: It is not possible to install the 24.x or later versions on Intel 3rd Generation of processors or older (as well as older AMD processors).
+Recommended: Intel 11th Gen or newer CPU with Quick Sync - or AMD Ryzen 3000 Series / Threadripper 3000 series or newer CPU
+
+Operating system
+Minimum: Windows 10 (64-bit) version 22H2 or later
+Recommended: Windows 10 (64-bit) version 22H2 (or later) or Windows 11
+
+Memory
+Minimum: 16 GB of RAM
+Recommended: 16 GB of RAM for HD media. 32 GB or more for 4K and higher
+
+GPU
+Minimum: Windows with NVIDIA GPU: GPU must be of the Maxwell generation or newer and have at least 4GB of VRAM. Windows with Intel or AMD GPU: Discrete GPU with at least 4GB VRAM and support for OpenCL. Starting with release 25.6, OpenCL 2.0 is required. Support for OpenCL 1.2 and earlier versions has been discontinued.
+Recommended: 8 GB of GPU Memory
+
+Storage
+Minimum: 8 GB of available hard-disk space for installation; additional free space required during installation (will not install on removable flash storage). Additional high-speed drive for media
+Recommended: Fast internal SSD for app installation and cache. Additional high-speed drive(s) for media
+
+Display
+Minimum: 1440x900
+Recommended: 1920x1080 or greater. DisplayHDR 1000 for HDR workflows
+
+Sound card
+Minimum: ASIO compatible or Microsoft Windows Driver Model
+Recommended: ASIO compatible or Microsoft Windows Driver Model
+
+Network storage connection
+Minimum: 1 Gigabit Ethernet (HD only)
+Recommended: 10 Gigabit ethernet for 4K shared network workflow
+
+Minimum and recommended system requirements for macOS
+
+Processor
+Minimum: Intel 6th Generation or newer CPU. Advanced Vector Extensions 2 (AVX2) Support required. Note: The 24.x or later versions will not install on Mac Pro 2013 or older systems.
+Recommended: Apple silicon M1 Pro, M1 Max, M1 Ultra or newer
+
+Operating system
+Minimum: macOS Ventura (version 13). After Effects 25.4 and later versions aren't supported on macOS Monterey (version 12.x). Support for macOS 11.0 (Big Sur) has been discontinued.
+Recommended: macOS Ventura (version 13) and later
+
+Memory
+Minimum: 16 GB of RAM
+Recommended: Apple silicon: 16 GB of unified memory
+
+GPU
+Minimum: Apple silicon: 16GB of RAM. Intel Macs with a discrete AMD GPU: 4GB of VRAM
+Recommended: Apple silicon: 16 GB of unified memory
+
+Storage
+Minimum: 8 GB of available hard-disk space for installation; additional free space required during installation. Additional high-speed drive for media
+Recommended: Fast internal SSD for app installation and cache
+
+Display
+Minimum: 1440x900
+Recommended: 1920x1080 or greater. DisplayHDR 1000 for HDR workflows
+
+Internet connection and registration are necessary for required software activation, validation of subscriptions, and access to online services. Internet connection, Adobe ID, and acceptance of license agreement required to activate and use this product.
+
+Language versions available for After Effects: Deutsch, English, Espanol, Francais, Italiano, Portugues (Brasil), Russian, Japanese, Korean, Simplified Chinese",,supported,
+A2-c03,https://helpx.adobe.com/after-effects/desktop/get-started/technical-requirements/2025.html,Operating system: Windows 11 v24H2.,"After Effects 25.x system requirements
+Last updated on Jan 21, 2026
+
+Your computer must meet the minimum technical specifications outlined below to run and use After Effects.
+
+Applicable for: After Effects 25.6 (November 2025), After Effects 25.4 (August 2025), After Effects 25.3.2 (July 2025), After Effects 25.3.1 (June 2025), After Effects 25.3 (June 2025), After Effects 25.2.2 (April 2025), After Effects 25.2 (April 2025), After Effects 25.1 (December 2024), After Effects 25.0.1 (October 2024), After Effects 25.0 (October 2024).
+
+Minimum and recommended system requirements for Windows
+
+Processor
+Minimum: Intel 6th Generation or newer CPU, or AMD Ryzen 1000 Series or newer CPU. Advanced Vector Extensions 2 (AVX2) support required. Note: It is not possible to install the 24.x or later versions on Intel 3rd Generation of processors or older (as well as older AMD processors).
+Recommended: Intel 11th Gen or newer CPU with Quick Sync - or AMD Ryzen 3000 Series / Threadripper 3000 series or newer CPU
+
+Operating system
+Minimum: Windows 10 (64-bit) version 22H2 or later
+Recommended: Windows 10 (64-bit) version 22H2 (or later) or Windows 11
+
+Memory
+Minimum: 16 GB of RAM
+Recommended: 16 GB of RAM for HD media. 32 GB or more for 4K and higher
+
+GPU
+Minimum: Windows with NVIDIA GPU: GPU must be of the Maxwell generation or newer and have at least 4GB of VRAM. Windows with Intel or AMD GPU: Discrete GPU with at least 4GB VRAM and support for OpenCL. Starting with release 25.6, OpenCL 2.0 is required. Support for OpenCL 1.2 and earlier versions has been discontinued.
+Recommended: 8 GB of GPU Memory
+
+Storage
+Minimum: 8 GB of available hard-disk space for installation; additional free space required during installation (will not install on removable flash storage). Additional high-speed drive for media
+Recommended: Fast internal SSD for app installation and cache. Additional high-speed drive(s) for media
+
+Display
+Minimum: 1440x900
+Recommended: 1920x1080 or greater. DisplayHDR 1000 for HDR workflows
+
+Sound card
+Minimum: ASIO compatible or Microsoft Windows Driver Model
+Recommended: ASIO compatible or Microsoft Windows Driver Model
+
+Network storage connection
+Minimum: 1 Gigabit Ethernet (HD only)
+Recommended: 10 Gigabit ethernet for 4K shared network workflow
+
+Minimum and recommended system requirements for macOS
+
+Processor
+Minimum: Intel 6th Generation or newer CPU. Advanced Vector Extensions 2 (AVX2) Support required. Note: The 24.x or later versions will not install on Mac Pro 2013 or older systems.
+Recommended: Apple silicon M1 Pro, M1 Max, M1 Ultra or newer
+
+Operating system
+Minimum: macOS Ventura (version 13). After Effects 25.4 and later versions aren't supported on macOS Monterey (version 12.x). Support for macOS 11.0 (Big Sur) has been discontinued.
+Recommended: macOS Ventura (version 13) and later
+
+Memory
+Minimum: 16 GB of RAM
+Recommended: Apple silicon: 16 GB of unified memory
+
+GPU
+Minimum: Apple silicon: 16GB of RAM. Intel Macs with a discrete AMD GPU: 4GB of VRAM
+Recommended: Apple silicon: 16 GB of unified memory
+
+Storage
+Minimum: 8 GB of available hard-disk space for installation; additional free space required during installation. Additional high-speed drive for media
+Recommended: Fast internal SSD for app installation and cache
+
+Display
+Minimum: 1440x900
+Recommended: 1920x1080 or greater. DisplayHDR 1000 for HDR workflows
+
+Internet connection and registration are necessary for required software activation, validation of subscriptions, and access to online services. Internet connection, Adobe ID, and acceptance of license agreement required to activate and use this product.
+
+Language versions available for After Effects: Deutsch, English, Espanol, Francais, Italiano, Portugues (Brasil), Russian, Japanese, Korean, Simplified Chinese",,partially supported,
+G2-c01,https://www.adobe.com/products/photoshop-lightroom.html,"The Adobe Creative Cloud Photography plan includes Adobe Lightroom, Adobe Lightroom Classic, Adobe Photoshop (desktop and iPad), and 1TB of cloud storage.","Lightroom
+Make every picture tell your story.
+
+Iconic photos aren't just captured. They're crafted with Adobe Lightroom - powerful, precise photo editing made beautifully simple. Speed up your edit with smarter tools, and make every shot more expressive, more refined, and uniquely yours.
+
+Plans starting at US$11.99/mo for the Annual, billed monthly plan.
+
+Browse plans for businesses or students and teachers.
+
+Gone in a touch. Generative Remove in Lightroom now makes it easier than ever to quickly clean up anything in your photos, without leaving a trace.
+
+Get a head start with presets. Save time with premium presets created by professional photographers like Laylah Amatullah Barrayn. Lightroom can automatically select and apply presets to specific parts of your photo, so you can work faster.
+
+Edit from anywhere. No matter what device you're using, Lightroom automatically syncs your projects with powerful cloud storage so you're always looking at your latest work.
+
+Explore Adobe Lightroom features.
+
+Quickly improve image quality. Save time using generative upscale with Topaz Gigapixel, now including powerful 4x upscaling. Easily crop into images without losing detail, and recover clarity in low-resolution photos.
+
+Select your best photos faster. Set your criteria for sharpness, focus, and open eyes and Assisted Culling scores every photo, leaving the decision of final selects in your hands.
+
+Polish portraits with ease. Go from a quick touch-up to a full glow-up with Quick Actions. Easily retouch skin, remove blemishes, whiten teeth, and more.
+
+Remove more distractions in seconds. New Dust Removal quickly recognizes and removes sensor dust from your photos with incredible precision.
+
+Create a custom blur. Instantly create a stunning portrait effect in any photo with Lens Blur, powered by AI. Use new one-tap presets to easily focus on your subject and blur out everything else.
+
+Membership plans. Get Adobe Lightroom. Start with just Lightroom, or get Lightroom and 20+ other apps with the Creative Cloud Pro plan.",,unsupported,
+A2-c04,https://helpx.adobe.com/after-effects/desktop/get-started/technical-requirements/2025.html,"For Windows on Arm, the document also lists Windows 11 v24H2 (OS Build 26100.2033).","After Effects 25.x system requirements
+Last updated on Jan 21, 2026
+
+Your computer must meet the minimum technical specifications outlined below to run and use After Effects.
+
+Applicable for: After Effects 25.6 (November 2025), After Effects 25.4 (August 2025), After Effects 25.3.2 (July 2025), After Effects 25.3.1 (June 2025), After Effects 25.3 (June 2025), After Effects 25.2.2 (April 2025), After Effects 25.2 (April 2025), After Effects 25.1 (December 2024), After Effects 25.0.1 (October 2024), After Effects 25.0 (October 2024).
+
+Minimum and recommended system requirements for Windows
+
+Processor
+Minimum: Intel 6th Generation or newer CPU, or AMD Ryzen 1000 Series or newer CPU. Advanced Vector Extensions 2 (AVX2) support required. Note: It is not possible to install the 24.x or later versions on Intel 3rd Generation of processors or older (as well as older AMD processors).
+Recommended: Intel 11th Gen or newer CPU with Quick Sync - or AMD Ryzen 3000 Series / Threadripper 3000 series or newer CPU
+
+Operating system
+Minimum: Windows 10 (64-bit) version 22H2 or later
+Recommended: Windows 10 (64-bit) version 22H2 (or later) or Windows 11
+
+Memory
+Minimum: 16 GB of RAM
+Recommended: 16 GB of RAM for HD media. 32 GB or more for 4K and higher
+
+GPU
+Minimum: Windows with NVIDIA GPU: GPU must be of the Maxwell generation or newer and have at least 4GB of VRAM. Windows with Intel or AMD GPU: Discrete GPU with at least 4GB VRAM and support for OpenCL. Starting with release 25.6, OpenCL 2.0 is required. Support for OpenCL 1.2 and earlier versions has been discontinued.
+Recommended: 8 GB of GPU Memory
+
+Storage
+Minimum: 8 GB of available hard-disk space for installation; additional free space required during installation (will not install on removable flash storage). Additional high-speed drive for media
+Recommended: Fast internal SSD for app installation and cache. Additional high-speed drive(s) for media
+
+Display
+Minimum: 1440x900
+Recommended: 1920x1080 or greater. DisplayHDR 1000 for HDR workflows
+
+Sound card
+Minimum: ASIO compatible or Microsoft Windows Driver Model
+Recommended: ASIO compatible or Microsoft Windows Driver Model
+
+Network storage connection
+Minimum: 1 Gigabit Ethernet (HD only)
+Recommended: 10 Gigabit ethernet for 4K shared network workflow
+
+Minimum and recommended system requirements for macOS
+
+Processor
+Minimum: Intel 6th Generation or newer CPU. Advanced Vector Extensions 2 (AVX2) Support required. Note: The 24.x or later versions will not install on Mac Pro 2013 or older systems.
+Recommended: Apple silicon M1 Pro, M1 Max, M1 Ultra or newer
+
+Operating system
+Minimum: macOS Ventura (version 13). After Effects 25.4 and later versions aren't supported on macOS Monterey (version 12.x). Support for macOS 11.0 (Big Sur) has been discontinued.
+Recommended: macOS Ventura (version 13) and later
+
+Memory
+Minimum: 16 GB of RAM
+Recommended: Apple silicon: 16 GB of unified memory
+
+GPU
+Minimum: Apple silicon: 16GB of RAM. Intel Macs with a discrete AMD GPU: 4GB of VRAM
+Recommended: Apple silicon: 16 GB of unified memory
+
+Storage
+Minimum: 8 GB of available hard-disk space for installation; additional free space required during installation. Additional high-speed drive for media
+Recommended: Fast internal SSD for app installation and cache
+
+Display
+Minimum: 1440x900
+Recommended: 1920x1080 or greater. DisplayHDR 1000 for HDR workflows
+
+Internet connection and registration are necessary for required software activation, validation of subscriptions, and access to online services. Internet connection, Adobe ID, and acceptance of license agreement required to activate and use this product.
+
+Language versions available for After Effects: Deutsch, English, Espanol, Francais, Italiano, Portugues (Brasil), Russian, Japanese, Korean, Simplified Chinese",,unsupported,
+C3-c04,https://www.adobe.com/products/photoshop.html,Adobe Lightroom: Use the new Generative Remove feature powered by Adobe Firefly to eliminate distractions or backgrounds easily.,"Adobe Photoshop
+Create with depth. Move with speed.
+
+Build your body of work with the tools pros rely on. Create, edit, and design with advanced workflows, precise selections, and AI-powered speed. All the creative control you need to take your vision further.
+
+US$22.99/mo. for the Annual, billed monthly plan.
+
+Browse plans for businesses or students and teachers.
+
+Rotate Object. Explore new angles without rebuilding. Mock up new directions quickly with Rotate Object in Adobe Photoshop. Tilt, rotate, and scale objects in real time - without rebuilding all the details. Then make your edits blend right into your scene with Harmonize.
+
+Combine images. Create the unexpected. Combine, edit, and blend multiple images and graphics to craft something truly unique.
+
+Transform images. Make instant edits. Make amazing graphics and more. Use a full set of one-of-a-kind tools to customize text, color, and images to create something completely unique.
+
+Explore Adobe Photoshop features.
+
+New adjustment layers: Clarity & Dehaze, and Grain. Now you can adjust texture, atmosphere, and sharpness nondestructively right in the Layers panel, and apply masks for pinpoint control.
+
+New Firefly models for the best results yet. Higher resolution. Cleaner edges. Sharper details. Get more realistic results with the latest Generative Fill, Expand, and Remove Tool models.
+
+Go bigger and sharper with Topaz Labs. Upscale images with unmatched power and flexibility using partner AI models from Topaz Labs in Photoshop. Instantly boost quality, clarity, and sharpness.
+
+Generative composition with Harmonize. Instantly blend people and objects into any background. Harmonize matches the lighting, shadows, colors, and other details for a seamless scene in seconds.
+
+Pro precision for selections and backgrounds. Select complex subjects and remove backgrounds with greater precision, speed, and control - now improved for higher quality, online or off.",,supported,
+H1-c06,https://business.adobe.com/products/creativecloud-business/integrations.html,Brand consistency and governance tools to maintain standards,"ADOBE CREATIVE CLOUD FOR ENTERPRISE INTEGRATIONS
+Expand creative possibilities in one connected ecosystem.
+
+Do more with Adobe Creative Cloud for enterprise by connecting to other Adobe and third-party solutions. Access top AI models, creative tools, and enterprise services in one governed environment.
+
+Adobe product integrations.
+Adobe Firefly Enterprise Solutions. Frame.io for Business. Adobe Experience Manager Assets.
+
+Scale on-brand content creation.
+
+Deliver more creative output, at greater speed and scale, with Creative Cloud for enterprise and Firefly Enterprise Solutions.
+
+Adobe Firefly Creative Production. Once hero assets are developed in Creative Cloud, use Firefly Creative Production to automate content production across formats, channels, and regions.
+Adobe Firefly Custom Models. Train Firefly on your brand assets to generate on-brand and commercially safe content in Creative Cloud.
+Adobe Firefly Foundry. Use Firefly Foundry's generative AI models, deeply trained on your brand or franchise, to generate content in Creative Cloud.
+
+Third-party integrations with Adobe Creative Cloud for enterprise.
+
+Google Gemini. Bring ideas to life with the Gemini AI model in Creative Cloud, generating high-quality visuals through natural language prompts.
+
+OpenAI. Generate images and make precise edits in Creative Cloud using OpenAI's GPT Image model.
+
+Luma AI. Create cinematic-quality video with Luma Ray models in Creative Cloud.
+
+Topaz Astra. Upscale videos, restore lost details, and strengthen definition with Topaz Astra in Creative Cloud.
+
+ElevenLabs. Generate realistic AI voiceovers and bring your script to life with ElevenLabs in Creative Cloud.
+
+Runway. Produce videos across a wide range of aesthetics, from photorealistic to stylized animation with Runway Gen models.",,partially supported,
+A2-c03,https://helpx.adobe.com/premiere-rush/desktop/system-requirements/2021-1.html,Operating system: Windows 11 v24H2.,"Adobe Premiere Rush system requirements
+Last updated on Mar 27, 2026
+
+Note: As we introduce the next generation of Adobe Premiere mobile apps, we are discontinuing Adobe Premiere Rush. Effective September 30, 2025, Premiere Rush will no longer be available on Adobe.com. As an alternative, we recommend Premiere on iPhone; a version for Android is currently also in development.
+
+Applicable for: Versions 1.5.62 and 1.5.58
+
+Minimum system requirements for Premiere Rush
+
+Windows
+
+Processor: Multicore processor with 64-bit support (Recommended: Intel Core i5 or i7, or equivalent)
+
+Operating system: Microsoft Windows 10 with 64-bit support (Version 1903 or later). If you are unable to upgrade your operating system because of hardware limitations, you can still use Adobe Premiere Rush on iOS or Android. Note: Premiere Rush versions 1.5.62 or later are compatible with Windows 11 operating systems. However, you need to update your NVidia driver to version 472.12 or later to use Premiere Rush on Windows 11.
+
+Device driver: Intel Graphics Driver for Windows (version 25.20.100.6326)
+
+RAM: 8 GB of RAM
+
+Hard disk space: 8 GB of available hard-disk space for installation; extra free space required during installation (cannot install on removable flash storage devices)
+
+Monitor resolution: 1280x800 display (1920x1080 or larger recommended)
+
+Sound card: Sound card compatible with ASIO protocol or Microsoft Windows Driver Model
+
+Internet: Internet connection and registration are necessary for required software activation, validation of subscriptions, and access to online services.
+
+Optional: Premiere Rush on Windows supports the same GPUs as Premiere.
+
+macOS
+
+Processor: Multicore Intel processor with 64-bit support (Recommended: Intel Core i5 or i7, or equivalent). Apple M1 chip
+
+Operating system: macOS X v10.14 or later
+
+RAM: 8 GB of RAM
+
+Hard disk space: 8 GB of available hard-disk space for installation; extra free space required during installation
+
+Monitor resolution: 1280 x 800 display (1920 x 1080 or larger recommended)
+
+Sound card: Sound card compatible with Apple Core Audio
+
+iOS: iOS 13 or later. iPhone 7 and newer (devices with A9 ARM chip or higher). iPad (devices with A9 ARM chip or higher)
+
+Android: All the following devices running Android 9.0 and later are supported: Samsung Galaxy S21 Ultra, S21+, S21, S20, S20+, S20 Ultra, S20 FE, S10/10+, 10e, S9/9+, S8/8+, A50, A70, Note 20, Note 20 Ultra, Note 20/20+, Note 10/10+, Note9, Note8; Google Pixel 5, 4/4XL, 3/3XL, 2/2XL, 1/1XL; OnePlus 7/7 Pro, 6/6T devices, 5T; Sony Xperia 10/10+, XZ Premium, XZ3, XZ2, XZ1; Xiaomi Mi 9, Mi 8, Pocofone F1, Redmi Note 7/7 Pro
+
+Language versions available for Premiere Rush: English, French, Spanish, German, Korean, Japanese, Italian, Russian, Portuguese, Simplified Chinese, Dutch, Polish, Swedish, Turkish, Traditional Chinese
+
+Note: Adobe Creative Cloud services are currently not supported in Premiere Rush in China. As a result, Premiere Rush will not be available in this region.",,partially supported,
+G1-c01,https://www.adobe.com/products/aftereffects.html,"For video editing, Adobe Creative Cloud offers:","After Effects
+Your next move in motion design.
+
+Create stunning motion graphics. Animate a logo or character. Add eye-catching visual effects. With After Effects, you can add amazing motion to any video project.
+
+US$22.99/mo for the Annual, billed monthly plan.
+
+Browse plans for businesses or students and teachers.
+
+Powerful new features, now in After Effects.
+
+Make a matte in seconds with AI. Dream up typographic designs that are flow-ier than ever. Create 3D shapes natively and stylize them with over 1,300 free textures.
+
+MOTION DESIGN. Set text and graphics in motion. Animate still images and illustrations to create striking motion graphics. Add motion to text for cinematic title sequences and simple credit rolls. Work faster with presets or turn your unique vision into reality with power animation tools.
+
+3D ANIMATIONS. Design dynamic 3D animations. Bring depth to your visuals with a true 3D workspace inside After Effects. Create and combine shapes, apply Substance 3D materials, and perfect your lighting with dynamic shadows and realistic detail.
+
+VISUAL EFFECTS. Create jaw-dropping effects. Get inspired with a wide selection of built-in effects or customize your own. Make it storm. Add lasers. Or even pop a spinning UFO into a tracking shot.
+
+Explore After Effects features.
+
+Make a matte in seconds with AI. With new AI Object Matte, accurately isolate a moving subject with a simple hover and click. And quickly wrangle any stray pixels with new refinement brushes.
+
+Mix 2D and 3D seamlessly. Create, import, and animate 3D objects right alongside 2D graphics in a true 3D workspace made for motion designers.
+
+Track elements as they move. Follow the movement of any object in your clip. Replace the screens on mobile phones, add names to moving subjects, or surround a marching band with musical notes.
+
+Remove what you don't want. Erase anything from an accidental boom mic to people in the background. Content-Aware Fill will fill in the gaps in every video frame so you're left with clean, polished footage.",,partially supported,
+A5-c01,https://www.adobe.com/creativecloud/pro.html,"An Adobe Creative Cloud Pro (All Apps) subscription includes 4,000 monthly generative credits for premium creative AI features like Text to Video and Translate Audio, along with unlimited access to standard AI features such as Generative Fill in Photoshop.","Save 50% on Creative Cloud Pro.
+
+Create with the power and precision of 20+ apps, including Photoshop, Illustrator, Adobe Premiere, and Acrobat Pro. Get them all in Creative Cloud Pro and save 50% for the first 3 months. New subscribers only. See terms.
+
+Regularly at US$69.99/mo
+Alternatively at US$34.99/mo (Annual, billed monthly).
+
+Browse plans for businesses or students and teachers.
+
+The creative industry's most trusted apps, all in one plan.
+
+Explore all the apps included in Adobe Creative Cloud Pro - designed to work together so you can create any multimedia project from start to finish.
+
+Adobe Photoshop. Create gorgeous images, rich graphics, and incredible art.
+Adobe Illustrator. Create beautiful designs, icons, and more - then use them anyplace at any size.
+Adobe Acrobat Pro. Create, edit, sign, and manage your PDFs - quickly, easily, anywhere.
+Adobe Firefly. Use everyday language to create extraordinary results with generative AI.
+Adobe Premiere. Create everything from social clips to feature films with the leading video editor.
+Adobe Express. Quickly and easily make standout content from thousands of beautiful templates.
+
+Create anything with precision, speed, and control.
+
+Creative AI built right in. Generate images and video, translate audio, mockup concepts, and more with Adobe Firefly creative AI in your apps.
+
+GRAPHIC DESIGN: Go from logo to launch. Mix up your mixed media.
+VIDEO: Find your creative rhythm.
+PHOTO: Transform your photos.
+ILLUSTRATION: Customize your art your way.
+
+The most advanced technology, always.
+
+We're always evolving Adobe Creative Cloud apps with features built to improve your workflow - by creatives, for creatives. You get the latest updates as soon as they're available.
+
+Brainstorm effortlessly in Adobe Firefly Boards. Upload inspirational images and quickly generate new ones based on your ideas. Remix assets to see how their styles combine. Collaborate with your team in the same space, and then bring what you've got into Adobe Creative Cloud apps to continue working.
+
+Access popular AI models in Adobe Creative Cloud apps. Take advantage of different AI models' strengths inside Adobe Creative Cloud and Firefly. Adobe's commercially safe Firefly models, Google's Gemini (with Nano Banana Pro), Kling AI, Topaz Astra, and others.",,unsupported,
+A2-c02,https://helpx.adobe.com/premiere/desktop/get-started/technical-requirements/adobe-premiere-pro-technical-requirements.html,"Processor: Intel 6th Generation or newer, or AMD Ryzen 1000 Series or newer, with AVX2 support.","Adobe Premiere technical requirements
+Last updated on Aug 7, 2026
+Understand the minimum requirements needed to install and run Adobe Premiere. Use recommended system specifications for optimum performance.
+
+Applicable for: Premiere version 26.0, 26.2, 26.3, and 26.3.2. View previous system requirements here.
+
+Note
+
+To activate and use this product, you need an Internet connection, Adobe ID, and acceptance of the license agreement.
+
+This product may integrate with or allow access to certain Adobe or third-party hosted online services. Adobe services are available only to users 13 and older and require agreement to additional terms of use and the Adobe Privacy Policy. Applications and services may not be available in all countries or languages and may be subject to change or discontinuation without notice. Extra fees or membership charges may apply.
+
+The minimum specifications are for editing HD video. The recommended specifications are for editing video in HD, 4K, or higher resolutions.
+
+Windows
+
+Requirement type / Minimum specification / Recommended specification
+
+Processor
+Minimum: Intel 6th Generation or newer CPU - or AMD Ryzen 1000 Series or newer CPU. Advanced Vector Extensions 2 (AVX2) Support required. Windows on Arm: Qualcomm Snapdragon X series processor
+Recommended: Intel 11th Gen or newer CPU with Quick Sync - or AMD Ryzen 3000 Series / Threadripper 3000 series or newer CPU. Windows on Arm: Qualcomm Snapdragon X series processor
+
+Operating system
+Minimum: Windows 11 v24H2. Windows on Arm: Windows 11 v24H2 (OS Build 26100.2033)
+Recommended: Windows 11 v24H2
+
+Memory
+Minimum: 8 GB RAM. Windows on Arm: 16 GB
+Recommended: 16 GB RAM for HD media. 32 GB or more for 4K and higher
+
+GPU
+Minimum: Windows with NVIDIA GPU: GPU must be of the Maxwell generation (2014) or newer and have at least 4GB of GPU memory. Windows with Intel or AMD GPU with at least 4GB of GPU memory. Windows on Arm: Qualcomm Adreno GPU driver 31.0.121.1
+Recommended: 8 GB GPU memory
+
+Storage
+Minimum: 8 GB of available hard disk space, plus additional free space during installation. Note that it cannot be installed on removable flash storage. Additional high-speed drive for media
+Recommended: Fast internal SSD for app installation and cache. Additional high-speed drive for media
+
+Display
+Minimum: 1920x1080 pixels
+Recommended: 1920x1080 pixels or more. DisplayHDR 1000 for HDR workflows
+
+Sound card
+Minimum: ASIO compatible or Microsoft Windows Driver Model
+Recommended: ASIO compatible or Microsoft Windows Driver Model
+
+Network storage connection
+Minimum: 1 Gigabit Ethernet (HD only)
+Recommended: 1 Gigabit Ethernet (HD only). 10 Gigabit Ethernet for 4K shared network workflow
+
+Language versions available for Premiere
+Deutsch, English, Espanol, Francais, Italiano, Portugues (Brasil), Russian, Japanese, Korean, Simplified Chinese
+
+Premiere supports text composition in Middle Eastern and Indic scripts using the South Asian and Middle Eastern text engines.",,supported,
+A2-c04,https://helpx.adobe.com/premiere/desktop/get-started/tour-the-workspace/adobe-premiere-faq.html,"For Windows on Arm, the document also lists Windows 11 v24H2 (OS Build 26100.2033).","Adobe Premiere FAQ
+Last updated on Mar 5, 2026
+
+Get answers to frequently asked questions about using Adobe Premiere.
+
+What is Premiere?
+Does Premiere support high-resolution Retina display?
+Do I need a specific graphics card to get faster performance when using the GPU-accelerated features?
+What hardware makes Premiere run even better?
+Does Premiere support the hardware, camera, and other software I use?
+Do I require After Effects if I want to use After Effects created Motion Graphics templates in Premiere?
+
+Craft the perfect story with Premiere. Find the best-in-class video-editing tools all in one place.",,source unrelated,
+E1-c01,https://www.adobe.com/products/premiere.html,"Adobe Premiere Pro is not included in the Adobe Creative Cloud Photography plan, which focuses on photo editing apps like Photoshop and Lightroom.","Premiere for teams
+Video editing that's always a cut above.
+
+Edit and trim video. Add effects, mix audio, and animate titles. Supercharge your workflow with AI. Create complex masks in a snap with Object Mask in Premiere (beta). And edit anywhere with the new iPhone app.
+
+Premiere for teams includes admin tools, dedicated 24x7 support, team libraries, and more.
+
+Not a business? Explore options for individuals or students and teachers.
+
+Build your brand and grow your business with Creative Cloud Pro for teams. Create standout content with 20+ world-class apps plus integrated generative AI, collaboration tools, and exclusive business features.
+
+Introducing Color Mode. A new era starts now. Experience a first-of-its-kind color grading system - purpose-built for editors - in Premiere (beta). Shape precisely, explore confidently, and push your look without ever leaving your edit.
+
+Editing. Craft the perfect story. Use industry-standard video editing tools and timesaving AI features to get to the right cut fast. Hone your narrative with three-point editing. Try Text-Based Editing to refine, reorder, and trim clips just like you'd edit a text doc. And quickly search your footage with AI-powered Media Intelligence to identify objects, locations, framing, and other details.
+
+Color. Balance color and set the tone. Get the right look for your video with powerful color correction and grading tools. Drop footage from nearly any camera into your timeline instantly and transform your raw and log footage on import without LUTs. Balance color fast with AI, use professional color wheels and curve controls, and check your results with built-in video scopes.
+
+Audio. Mix audio for a memorable soundtrack. Reduce noise and enhance dialogue with pro audio tools, and add advanced effects as you master sound design. Browse music tracks, use AI to auto-fit them to your clips, and license them - all within Premiere.
+
+Effects. Add eye-catching effects.",,unsupported,

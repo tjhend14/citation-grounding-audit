@@ -1,0 +1,15 @@
+https://helpx.adobe.com/premiere/desktop/get-started/tour-the-workspace/adobe-premiere-faq.html
+Adobe Premiere FAQ | Premiere
+Adobe Premiere FAQ
+Last updated on Mar 5, 2026
+
+Get answers to frequently asked questions about using Adobe Premiere.
+
+What is Premiere?
+Does Premiere support high-resolution Retina display?
+Do I need a specific graphics card to get faster performance when using the GPU-accelerated features?
+What hardware makes Premiere run even better?
+Does Premiere support the hardware, camera, and other software I use?
+Do I require After Effects if I want to use After Effects created Motion Graphics templates in Premiere?
+
+Craft the perfect story with Premiere. Find the best-in-class video-editing tools all in one place.

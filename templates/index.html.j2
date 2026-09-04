@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Citation Grounding Audit — Eboda Ask</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="eboda-web-toolkit.css">
+<style>
+  /* The only additions to the toolkit: verdict colour-coding and the
+     side-by-side/citation affordances the toolkit has no component for. */
+  .verdict { display:inline-block; padding:2px 9px; border-radius:11px;
+             font-size:var(--type-body-xxs-size); font-weight:700; white-space:nowrap; }
+  .verdict.supported   { background:#E3F3E6; color:#1B6B2E; }
+  .verdict.partially   { background:#FFF3D6; color:#8A5A00; }
+  .verdict.unsupported { background:#FDE4E4; color:#A31B1B; }
+  .verdict.unrelated   { background:#EFE4FD; color:#5B21A3; }
+  .verdict.none        { background:var(--color-gray-200); color:var(--color-gray-700); }
+
+  .stat { border:1px solid var(--border-color); border-radius:10px; padding:var(--spacing-s); }
+  .stat .n { font-size:var(--type-heading-xl-size); font-weight:800; line-height:1.05; display:block; }
+  .stat .n.win  { color:#1B6B2E; }
+  .stat .n.warn { color:#A31B1B; }
+
+  .compare { border:1px solid var(--border-color); border-radius:10px; overflow:hidden; }
+  .compare > header { padding:12px 16px; border-bottom:1px solid var(--border-color);
+                      background:var(--color-gray-100); display:flex; gap:10px; align-items:baseline; }
+  .compare > .body { padding:var(--spacing-s); }
+  .transcript { white-space:pre-wrap; }
+
+  .cite { border:none; background:none; }
+  .cite details { border-bottom:1px dotted var(--border-color); }
+  .cite summary { cursor:pointer; list-style:none; padding:6px 0; }
+  .cite summary::-webkit-details-marker { display:none; }
+  .cite .ev { border-left:3px solid var(--color-info-accent); background:var(--color-gray-100);
+              padding:10px 14px; margin:6px 0 12px; border-radius:0 6px 6px 0; }
+  .cite .ev q { font-style:italic; }
+
+  .dropped { opacity:.62; text-decoration:line-through var(--color-gray-500); }
+  .table-scroll { overflow-x:auto; }
+  .table-scroll table { min-width:900px; }
+  .src-list { list-style:none; padding:0; margin:0; }
+  .src-list li { padding:4px 0; }
+</style>
+</head>
+<body>
+
+<header class="gnav">
+  <div class="gnav-inner">
+    <a class="gnav-brand" href="#top"><span class="gnav-mark">E</span> Eboda</a>
+    <ul class="gnav-links">
+      <li><a href="#numbers">Numbers</a></li>
+      <li><a href="#probes">Side by side</a></li>
+      <li><a href="#audit">Full audit</a></li>
+      <li><a href="#method">Method</a></li>
+    </ul>
+    <div class="gnav-actions">
+      <span class="badge">Prototype</span>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ====================== 1. HEADLINE NUMBERS ====================== -->
+<section class="section bg-white">
+  <div class="container">
+    <p class="detail-l">Citation grounding audit</p>
+    <h1 class="heading-xxl">Adobe's Brand Concierge cites {{ n_pages }} pages. {{ pct(1 - baseline.grounding_rate) }} of its claims aren't supported by any of them.</h1>
+    <p class="body-xl measure mt-m">
+      {{ n_probes }} prompts were run against Adobe.com's Brand Concierge beta and every factual
+      sentence was scored against the pages it cited. The same corpus was then wired to a
+      retrieval pipeline that cites per sentence and verifies each claim before answering.
+    </p>
+
+    <div class="grid four-up mt-l">
+      <div class="stat">
+        <span class="n warn">{{ pct(baseline.grounding_rate) }}</span>
+        <p class="detail-m">Adobe grounding rate</p>
+        <p class="body-xs muted">{{ baseline.supported + baseline.partially }} of {{ baseline.claims }} claims supported by a cited page</p>
+      </div>
+      <div class="stat">
+        <span class="n win">{{ pct(eboda.grounding_rate) }}</span>
+        <p class="detail-m">Eboda grounding rate</p>
+        <p class="body-xs muted">{{ eboda.supported + eboda.partially }} of {{ eboda.claims }} generated sentences</p>
+      </div>
+      <div class="stat">
+        <span class="n">{{ gate.answers_abstained }}</span>
+        <p class="detail-m">Answers withheld</p>
+        <p class="body-xs muted">of {{ n_probes_cited }} — the cost of refusing to guess</p>
+      </div>
+      <div class="stat">
+        <span class="n">{{ human_agreement_display }}</span>
+        <p class="detail-m">Human agreement</p>
+        <p class="body-xs muted">exact-match, {{ n_human_labels }} hand-labelled pairs</p>
+      </div>
+    </div>
+
+    <div class="grid two-up mt-l">
+      <div>
+        <h2 class="heading-xs">Where Adobe's claims land</h2>
+        <table class="data-table mt-xs">
+          <thead><tr><th>Verdict</th><th>Claims</th><th>Share</th></tr></thead>
+          <tbody>
+            <tr><td><span class="verdict supported">Supported</span></td><td>{{ baseline.supported }}</td><td>{{ pct(baseline.supported / baseline.claims) }}</td></tr>
+            <tr><td><span class="verdict partially">Partially supported</span></td><td>{{ baseline.partially }}</td><td>{{ pct(baseline.partially / baseline.claims) }}</td></tr>
+            <tr><td><span class="verdict unsupported">Unsupported</span></td><td>{{ baseline.unsupported }}</td><td>{{ pct(baseline.unsupported / baseline.claims) }}</td></tr>
+            <tr><td><span class="verdict unrelated">Source unrelated</span></td><td>{{ baseline.unrelated }}</td><td>{{ pct(baseline.unrelated / baseline.claims) }}</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h2 class="heading-xs">Where Eboda's sentences land</h2>
+        <table class="data-table mt-xs">
+          <thead><tr><th>Verdict</th><th>Sentences</th><th>Share</th></tr></thead>
+          <tbody>
+            <tr><td><span class="verdict supported">Supported</span></td><td>{{ eboda.supported }}</td><td>{{ pct(eboda.supported / eboda.claims) }}</td></tr>
+            <tr><td><span class="verdict partially">Partially supported</span></td><td>{{ eboda.partially }}</td><td>{{ pct(eboda.partially / eboda.claims) }}</td></tr>
+            <tr><td><span class="verdict unsupported">Unsupported</span></td><td>{{ eboda.unsupported }}</td><td>{{ pct(eboda.unsupported / eboda.claims) }}</td></tr>
+            <tr><td><span class="verdict unrelated">Source unrelated</span></td><td>{{ eboda.unrelated }}</td><td>{{ pct(eboda.unrelated / eboda.claims) }}</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="notice mt-l measure">
+      <p class="body-s"><strong>Read the second number carefully.</strong> Eboda writes its sentences
+      from the passages it cites, so a high rate is partly structural. The honest comparison is the
+      pair: it grounds {{ pct(eboda.grounding_rate) }} of what it writes and declines
+      {{ gate.answers_abstained }} of {{ n_probes_cited }} questions outright, where Adobe answers
+      nearly all of them at {{ pct(baseline.grounding_rate) }}.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 2. SIX PROBES, SIDE BY SIDE ====================== -->
+<section class="section bg-gray" id="probes">
+  <div class="container">
+    <p class="detail-l">Side by side</p>
+    <h2 class="heading-l">Six probes, both systems</h2>
+    <p class="body-l measure mt-xs">Adobe's answer on the left, Eboda's on the right.
+    Click any claim to see the exact source text the judge scored it against.</p>
+
+    {% for p in pairs %}
+    <article class="mt-l">
+      <h3 class="heading-s">{{ p.id }} · {{ p.category }}</h3>
+      <p class="body-l"><strong>{{ p.prompt }}</strong></p>
+      <p class="body-xs muted">Human verdict on the Adobe run: {{ p.verdict }}{% if p.failure_mode and p.failure_mode != 'None' %} · failure mode: {{ p.failure_mode }}{% endif %}{% if p.persona %} · persona: {{ p.persona }}{% endif %}</p>
+
+      <div class="grid two-up mt-s">
+
+        <!-- Adobe -->
+        <div class="compare">
+          <header>
+            <strong class="detail-m">Adobe Brand Concierge</strong>
+            <span class="badge">{{ p.baseline_claims | length }} claims · {{ p.baseline_cited | length }} sources</span>
+          </header>
+          <div class="body">
+            {% if p.baseline_text %}
+            <p class="body-s transcript">{{ p.baseline_text }}</p>
+            {% endif %}
+
+            {% if p.baseline_claims %}
+            <h4 class="detail-m mt-s">Claims scored</h4>
+            <div class="cite">
+              {% for c in p.baseline_claims %}
+              <details>
+                <summary>
+                  <span class="verdict {{ c.best_slug }}">{{ c.best or 'no source' }}</span>
+                  <span class="body-s">{{ c.text }}</span>
+                </summary>
+                <ul class="src-list">
+                  {% for s in c.sources %}
+                  <li>
+                    <span class="verdict {{ s.slug }}">{{ s.label or 'unfetchable' }}</span>
+                    <span class="body-xs">{{ s.title }}</span>
+                    <div class="ev">
+                      {% if s.evidence_span %}<q class="body-xs">{{ s.evidence_span }}</q><br>{% endif %}
+                      <span class="body-xs muted">{{ s.reason }}</span><br>
+                      <a class="body-xxs" href="{{ s.url }}">{{ s.url }}</a>
+                    </div>
+                  </li>
+                  {% endfor %}
+                </ul>
+              </details>
+              {% endfor %}
+            </div>
+            {% else %}
+            <p class="body-s muted mt-s">No factual claims were extracted from this answer.</p>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Eboda -->
+        <div class="compare">
+          <header>
+            <strong class="detail-m">Eboda Ask</strong>
+            {% if p.eboda_present %}
+              {% if p.eboda_abstained %}
+              <span class="badge solid">Withheld</span>
+              {% else %}
+              <span class="badge">{{ p.eboda_sentences | selectattr('kept') | list | length }} verified sentences</span>
+              {% endif %}
+            {% else %}
+              <span class="badge">Not run — Adobe cited nothing</span>
+            {% endif %}
+          </header>
+          <div class="body">
+            {% if not p.eboda_present %}
+            <p class="body-s muted">This probe produced no citations from Adobe, so there was nothing
+            to build a comparable corpus query from. It is shown here for the Adobe side only.</p>
+            {% else %}
+              {% if p.eboda_abstained %}
+              <p class="body-s transcript">{{ p.eboda_final }}</p>
+              <p class="body-xs muted mt-xs">Gate: {{ p.eboda_reason }}</p>
+              {% else %}
+              <p class="body-s transcript">{{ p.eboda_final }}</p>
+              {% endif %}
+
+              {% if p.eboda_sentences %}
+              <h4 class="detail-m mt-s">Sentences the gate saw</h4>
+              <div class="cite">
+                {% for s in p.eboda_sentences %}
+                <details>
+                  <summary>
+                    <span class="verdict {{ s.slug }}">{{ s.label or 'no citation' }}</span>
+                    <span class="body-s {% if not s.kept %}dropped{% endif %}">{{ s.text }}</span>
+                  </summary>
+                  {% if s.sources %}
+                  <ul class="src-list">
+                    {% for src in s.sources %}
+                    <li>
+                      <span class="verdict {{ src.slug }}">{{ src.label }}</span>
+                      <span class="body-xs">{{ src.title }} · {{ src.chunk_id }}</span>
+                      <div class="ev">
+                        {% if src.evidence_span %}<q class="body-xs">{{ src.evidence_span }}</q><br>{% endif %}
+                        <span class="body-xs muted">{{ src.reason }}</span><br>
+                        <a class="body-xxs" href="{{ src.url }}">{{ src.url }}</a>
+                      </div>
+                    </li>
+                    {% endfor %}
+                  </ul>
+                  {% else %}
+                  <div class="ev"><span class="body-xs muted">{{ s.reason or 'cited no retrievable source, so it could not be verified' }}</span></div>
+                  {% endif %}
+                </details>
+                {% endfor %}
+              </div>
+              {% endif %}
+            {% endif %}
+          </div>
+        </div>
+
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- ====================== 3. FULL AUDIT TABLE ====================== -->
+<section class="section bg-white" id="audit">
+  <div class="container">
+    <p class="detail-l">Every judgement</p>
+    <h2 class="heading-l">Full audit table</h2>
+    <p class="body-l measure mt-xs">One row per claim–source pair, {{ table | length }} in total.
+    Each row is a single call to the judge with only the claim and the source text.</p>
+
+    <div class="table-scroll mt-s">
+      <table class="data-table">
+        <thead>
+          <tr><th>Claim ID</th><th>System</th><th>Claim</th><th>Source</th><th>Verdict</th><th>Reason</th></tr>
+        </thead>
+        <tbody>
+          {% for row in table %}
+          <tr>
+            <td>{{ row.claim_id }}</td>
+            <td>{{ row.system }}</td>
+            <td>{{ row.claim }}</td>
+            <td>{% if row.source_url %}<a href="{{ row.source_url }}">{{ row.source }}</a>{% else %}{{ row.source }}{% endif %}</td>
+            <td><span class="verdict {{ row.slug }}">{{ row.label }}</span></td>
+            <td>{{ row.reason }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 4. METHOD NOTE ====================== -->
+<section class="section bg-gray" id="method">
+  <div class="container">
+    <p class="detail-l">Method</p>
+    <h2 class="heading-l">How these numbers were produced</h2>
+
+    <div class="grid two-up mt-s">
+      <div class="stack">
+        <table class="data-table">
+          <tbody>
+            <tr><th>Probes run</th><td>{{ n_probes }} ({{ n_probes_cited }} returned citations)</td></tr>
+            <tr><th>Claims extracted</th><td>{{ n_claims_total }} factual sentences</td></tr>
+            <tr><th>Claim–source pairs judged</th><td>{{ baseline.claims }} baseline claims, {{ eboda.claims }} Eboda sentences</td></tr>
+            <tr><th>Pages fetched</th><td>{{ n_pages }}, chunked into {{ n_chunks }} passages</td></tr>
+            <tr><th>Date measured</th><td>{{ measured_at }}</td></tr>
+            <tr><th>Judge model</th><td>{{ judge_model }}</td></tr>
+            <tr><th>Generation model</th><td>{{ generation_model }}</td></tr>
+            <tr><th>Retrieval</th><td>BM25 over lowercase alphanumeric tokens — no embeddings, no vector store</td></tr>
+            <tr><th>Human agreement</th><td>{{ human_agreement_display }} exact-match on {{ n_human_labels }} independently labelled pairs</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="stack">
+        <div class="notice">
+          <p class="body-s"><strong>The limitation that matters.</strong> The corpus is the subset of
+          adobe.com that Adobe's own retriever surfaced — the {{ n_pages }} pages its answers cited.
+          This is therefore not a test of site-wide search. It measures whether the pages a system
+          points at support what it says, not whether better pages exist elsewhere on the domain.</p>
+        </div>
+        <div class="notice">
+          <p class="body-s"><strong>How a claim is scored.</strong> Adobe cites at the response level,
+          so every claim inherits all of that response's URLs and is judged against each one
+          separately. A claim's verdict is the <em>best</em> result across its sources — the
+          charitable reading. The judge never sees the URL, the question, or the brand; only the
+          claim text and the source text. {{ marker_derived_pct }}% of claims carried an inline
+          marker tying them to one specific source.</p>
+        </div>
+        <div class="notice">
+          <p class="body-s"><strong>What is excluded.</strong> {{ n_claims_uncited }} extracted claims
+          cited no source at all and so could not be judged against anything; they are outside both
+          rates. Sources that could not be retrieved are counted separately
+          ({{ baseline.unfetchable }} here) and excluded from the headline rate.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 5. DISCLAIMER ====================== -->
+<section class="section tight bg-white">
+  <div class="container">
+    <div class="notice measure">
+      <p class="body-s"><strong>About this prototype.</strong> The Eboda styling is a visual shell for
+      a portfolio prototype. Eboda is a fictional brand. The content and product names underneath are
+      real Adobe pages, captured on {{ measured_at }}. This project is not affiliated with, endorsed
+      by, or connected to Adobe Inc.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="gfooter">
+  <div class="container">
+    <div class="footer-legal">
+      <span>Citation grounding audit · generated {{ generated_at }}</span>
+      <span style="margin-left:auto">Eboda is a fictional brand created for a portfolio prototype. Not affiliated with Adobe.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

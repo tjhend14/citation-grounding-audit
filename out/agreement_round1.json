@@ -1,0 +1,61 @@
+{
+  "n_rows": 15,
+  "n_labeled": 15,
+  "exact_match_agreement": 0.4667,
+  "matches": 7,
+  "confusion": {
+    "Partially supported -> Partially supported": 1,
+    "Partially supported -> Source unrelated": 1,
+    "Partially supported -> Supported": 1,
+    "Partially supported -> Unsupported": 1,
+    "Source unrelated -> Unsupported": 3,
+    "Supported -> Partially supported": 2,
+    "Supported -> Supported": 1,
+    "Unsupported -> Unsupported": 5
+  },
+  "disagreements": [
+    {
+      "claim_id": "A2-c01",
+      "human_label": "Partially supported",
+      "model_label": "Source unrelated"
+    },
+    {
+      "claim_id": "B4-c01",
+      "human_label": "Partially supported",
+      "model_label": "Unsupported"
+    },
+    {
+      "claim_id": "A8-c01",
+      "human_label": "Source unrelated",
+      "model_label": "Unsupported"
+    },
+    {
+      "claim_id": "A2-c06",
+      "human_label": "Supported",
+      "model_label": "Partially supported"
+    },
+    {
+      "claim_id": "A2-c05",
+      "human_label": "Partially supported",
+      "model_label": "Supported"
+    },
+    {
+      "claim_id": "H2-c01",
+      "human_label": "Supported",
+      "model_label": "Partially supported"
+    },
+    {
+      "claim_id": "A2-c02",
+      "human_label": "Source unrelated",
+      "model_label": "Unsupported"
+    },
+    {
+      "claim_id": "A2-c01",
+      "human_label": "Source unrelated",
+      "model_label": "Unsupported"
+    }
+  ],
+  "threshold": 0.8,
+  "meets_threshold": false,
+  "generated_at": "2026-09-04T18:19:47Z"
+}

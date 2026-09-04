@@ -1,0 +1,1167 @@
+[
+  {
+    "probe_id": "A1",
+    "prompt": "Which apps can help me combine and retouch my photos?",
+    "kept": [
+      {
+        "sentence": "Photoshop can combine, retouch, and remix your images.[c0036]",
+        "chunk_ids": [
+          "c0036"
+        ],
+        "label": "Supported",
+        "reason": "Source directly states Photoshop can combine, retouch, and remix images.",
+        "evidence_span": "Photoshop. Combine, retouch, and remix your images."
+      },
+      {
+        "sentence": "Lightroom can polish portraits with ease, allowing you to retouch skin, remove blemishes, whiten teeth, and more.[c0049]",
+        "chunk_ids": [
+          "c0049"
+        ],
+        "label": "Supported",
+        "reason": "Source directly states this claim nearly verbatim.",
+        "evidence_span": "Polish portraits with ease. Go from a quick touch-up to a full glow-up with Quick Actions. Easily retouch skin, remove blemishes, whiten teeth, and more."
+      }
+    ],
+    "dropped": [],
+    "abstained": false,
+    "reason": "answer passed the gate",
+    "final_text": "Photoshop can combine, retouch, and remix your images.[c0036] Lightroom can polish portraits with ease, allowing you to retouch skin, remove blemishes, whiten teeth, and more.[c0049]",
+    "retrieved_chunk_ids": [
+      "c0036",
+      "c0037",
+      "c0051",
+      "c0030",
+      "c0001",
+      "c0049"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "A2",
+    "prompt": "What are the minimum system requirements to run Premiere Pro on Windows?",
+    "kept": [
+      {
+        "sentence": "The minimum processor requirement is Intel 6th Generation or newer CPU or AMD Ryzen 1000 Series or newer CPU with Advanced Vector Extensions 2 (AVX2) support.",
+        "chunk_ids": [
+          "c0012"
+        ],
+        "label": "Supported",
+        "reason": "Claim matches source's minimum processor requirement exactly, including AVX2 support requirement.",
+        "evidence_span": "Minimum: Intel 6th Generation or newer CPU - or AMD Ryzen 1000 Series or newer CPU. Advanced Vector Extensions 2 (AVX2) Support required."
+      },
+      {
+        "sentence": "The minimum operating system is Windows 11 v24H2.",
+        "chunk_ids": [
+          "c0012"
+        ],
+        "label": "Supported",
+        "reason": "Source directly states Windows 11 v24H2 as the minimum operating system requirement.",
+        "evidence_span": "Minimum: Windows 11 v24H2."
+      },
+      {
+        "sentence": "The minimum RAM requirement is 8 GB.",
+        "chunk_ids": [
+          "c0012"
+        ],
+        "label": "Partially supported",
+        "reason": "8 GB applies generally, but Windows on Arm minimum is 16 GB, not 8 GB.",
+        "evidence_span": "Minimum: 8 GB RAM. Windows on Arm: 16 GB"
+      },
+      {
+        "sentence": "The minimum GPU requirement is a GPU with at least 4GB of VRAM.",
+        "chunk_ids": [
+          "c0013"
+        ],
+        "label": "Partially supported",
+        "reason": "4GB requirement true but only for NVIDIA/AMD/Intel; also has generation and driver conditions not in claim.",
+        "evidence_span": "Maxwell generation (2014) or newer and have at least 4GB of GPU memory"
+      },
+      {
+        "sentence": "The minimum storage requirement is 8 GB of available hard disk space, plus additional free space during installation, and cannot be installed on removable flash storage.",
+        "chunk_ids": [
+          "c0013"
+        ],
+        "label": "Supported",
+        "reason": "Source states exact storage requirement, extra free space note, and flash storage restriction verbatim.",
+        "evidence_span": "Minimum: 8 GB of available hard disk space, plus additional free space during installation. Note that it cannot be installed on removable flash storage."
+      }
+    ],
+    "dropped": [],
+    "abstained": false,
+    "reason": "answer passed the gate",
+    "final_text": "The minimum processor requirement is Intel 6th Generation or newer CPU or AMD Ryzen 1000 Series or newer CPU with Advanced Vector Extensions 2 (AVX2) support. The minimum operating system is Windows 11 v24H2. The minimum RAM requirement is 8 GB. The minimum GPU requirement is a GPU with at least 4GB of VRAM. The minimum storage requirement is 8 GB of available hard disk space, plus additional free space during installation, and cannot be installed on removable flash storage.",
+    "retrieved_chunk_ids": [
+      "c0012",
+      "c0004",
+      "c0010",
+      "c0008",
+      "c0007",
+      "c0013"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "A3",
+    "prompt": "How much cloud storage is included with the Photography plan?",
+    "kept": [
+      {
+        "sentence": "The Photography plan includes 1TB of cloud storage.",
+        "chunk_ids": [
+          "c0037",
+          "c0036"
+        ],
+        "label": "Supported",
+        "reason": "Source explicitly states Photography plan includes 1TB of cloud storage.",
+        "evidence_span": "Photography (1TB). Get both Lightroom and Photoshop plus 1TB of cloud storage."
+      }
+    ],
+    "dropped": [],
+    "abstained": false,
+    "reason": "answer passed the gate",
+    "final_text": "The Photography plan includes 1TB of cloud storage.",
+    "retrieved_chunk_ids": [
+      "c0037",
+      "c0051",
+      "c0036",
+      "c0021",
+      "c0038",
+      "c0055"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "A4",
+    "prompt": "Does the Photoshop single-app plan include Photoshop on iPad?",
+    "kept": [
+      {
+        "sentence": "The Photoshop single-app plan is listed at US$22.99/mo and US$37.99/mo depending on the plan type, but the sources do not specify whether iPad access is included with the single-app Photoshop plan.",
+        "chunk_ids": [
+          "c0036",
+          "c0032"
+        ],
+        "label": "Partially supported",
+        "reason": "Both prices appear but for different plans (Teams vs individual), not one plan with two price tiers.",
+        "evidence_span": "Photoshop - US$37.99/mo per license. Create beautiful graphics, photos, and art on desktop, web, and iPad."
+      },
+      {
+        "sentence": "The sources do mention that Photoshop for teams includes access on 'desktop, web, and iPad,' but this refers to the teams plan, not the individual single-app plan.",
+        "chunk_ids": [
+          "c0032"
+        ],
+        "label": "Partially supported",
+        "reason": "Source lists Photoshop once under Teams section but doesn't distinguish individual single-app plan lacking iPad/web access.",
+        "evidence_span": "Photoshop - US$37.99/mo per license. Create beautiful graphics, photos, and art on desktop, web, and iPad."
+      }
+    ],
+    "dropped": [],
+    "abstained": true,
+    "reason": "abstained: the generator declined to answer from these sources",
+    "final_text": "I don't have that documented in the material I can cite, so I'm not going to guess. The closest page I found is “Adobe Creative Cloud | Details and products | Adobe”, which covers related ground but doesn't answer this. If it's useful, I can put you in touch with someone who can confirm it directly.",
+    "retrieved_chunk_ids": [
+      "c0030",
+      "c0022",
+      "c0036",
+      "c0026",
+      "c0025",
+      "c0032"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "A5",
+    "prompt": "How many generative credits come with a Creative Cloud All Apps subscription?",
+    "kept": [
+      {
+        "sentence": "However, the Creative Cloud Pro plan includes 250 monthly generative credits for the Lightroom plan and 1,000 monthly generative credits for the Photography plan [c0037], and the Photography plan (1TB) costs US$19.99/mo Annual, billed monthly [c0037].",
+        "chunk_ids": [
+          "c0037"
+        ],
+        "label": "Partially supported",
+        "reason": "Credits attributed to plans not Creative Cloud Pro; claim conflates plan names with Pro plan structure.",
+        "evidence_span": "Generative credits: 250 monthly (Lightroom plan); 1,000 monthly (Photography plan)"
+      }
+    ],
+    "dropped": [
+      {
+        "sentence": "The sources do not specify the number of generative credits included with a Creative Cloud All Apps subscription.",
+        "chunk_ids": [],
+        "label": null,
+        "reason": "no citable source id"
+      },
+      {
+        "sentence": "For specific generative credit information about the All Apps plan, clarification from Adobe is needed.",
+        "chunk_ids": [],
+        "label": null,
+        "reason": "no citable source id"
+      }
+    ],
+    "abstained": true,
+    "reason": "abstained: the generator declined to answer from these sources",
+    "final_text": "I don't have that documented in the material I can cite, so I'm not going to guess. The closest page I found is “Adobe Creative Cloud Resubscribe Promo”, which covers related ground but doesn't answer this. If it's useful, I can put you in touch with someone who can confirm it directly.",
+    "retrieved_chunk_ids": [
+      "c0043",
+      "c0055",
+      "c0024",
+      "c0037",
+      "c0028",
+      "c0022"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "A6",
+    "prompt": "What's included in the Creative Cloud Essentials plan?",
+    "kept": [],
+    "dropped": [],
+    "abstained": true,
+    "reason": "abstained: the generator declined to answer from these sources",
+    "final_text": "I don't have that documented in the material I can cite, so I'm not going to guess. The closest page I found is “Creative Cloud Standard | Adobe”, which covers related ground but doesn't answer this. If it's useful, I can put you in touch with someone who can confirm it directly.",
+    "retrieved_chunk_ids": [
+      "c0044",
+      "c0051",
+      "c0037",
+      "c0038",
+      "c0041",
+      "c0048"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "A7",
+    "prompt": "How do I subscribe to Adobe XD?",
+    "kept": [
+      {
+        "sentence": "The sources document Creative Cloud Pro, Creative Cloud for teams, and individual Creative Cloud memberships that include 20+ apps such as Photoshop, Illustrator, InDesign, Premiere, and Adobe Express [c0022, c0030, c0024].",
+        "chunk_ids": [
+          "c0022",
+          "c0030",
+          "c0024"
+        ],
+        "label": "Partially supported",
+        "reason": "InDesign never mentioned; Premiere and Express appear only as separate team products, not within the 20+ apps list.",
+        "evidence_span": "20+ apps, including Photoshop and Illustrator, plus Adobe Firefly creative AI for images, video, and audio."
+      }
+    ],
+    "dropped": [
+      {
+        "sentence": "The provided sources do not contain information about how to subscribe to Adobe XD.",
+        "chunk_ids": [],
+        "label": null,
+        "reason": "no citable source id"
+      },
+      {
+        "sentence": "For specific information about Adobe XD subscription options, please contact Adobe at 800-915-9428 or request a consultation [c0022].",
+        "chunk_ids": [
+          "c0022"
+        ],
+        "label": "Unsupported",
+        "reason": "Phone number matches but source concerns Creative Cloud teams, not Adobe XD subscriptions specifically.",
+        "evidence_span": "Call 800-915-9428 or request a consultation"
+      }
+    ],
+    "abstained": true,
+    "reason": "abstained: the generator declined to answer from these sources",
+    "final_text": "I don't have that documented in the material I can cite, so I'm not going to guess. The closest page I found is “Admin console | Adobe Creative Cloud for teams”, which covers related ground but doesn't answer this. If it's useful, I can put you in touch with someone who can confirm it directly.",
+    "retrieved_chunk_ids": [
+      "c0022",
+      "c0031",
+      "c0030",
+      "c0035",
+      "c0024",
+      "c0014"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "A8",
+    "prompt": "When will Photoshop get real-time multi-user collaboration?",
+    "kept": [
+      {
+        "sentence": "The closest related information available discusses team collaboration features in Adobe Acrobat Pro for Teams, which includes real-time review, commenting, and approval capabilities [c0019], and Creative Cloud for teams, which offers team libraries and smooth collaboration [c0026].",
+        "chunk_ids": [
+          "c0019",
+          "c0026"
+        ],
+        "label": "Supported",
+        "reason": "Source confirms Acrobat's real-time review/commenting/approval and Creative Cloud's team libraries and collaboration features.",
+        "evidence_span": "Share assets as PDFs for real-time review, commenting, and approval."
+      }
+    ],
+    "dropped": [
+      {
+        "sentence": "The provided sources do not contain information about when Photoshop will get real-time multi-user collaboration features.",
+        "chunk_ids": [],
+        "label": null,
+        "reason": "no citable source id"
+      }
+    ],
+    "abstained": true,
+    "reason": "abstained: the generator declined to answer from these sources",
+    "final_text": "I don't have that documented in the material I can cite, so I'm not going to guess. The closest page I found is “Adobe Acrobat for small business: PDF and e-sign solutions for teams”, which covers related ground but doesn't answer this. If it's useful, I can put you in touch with someone who can confirm it directly.",
+    "retrieved_chunk_ids": [
+      "c0019",
+      "c0020",
+      "c0026",
+      "c0039",
+      "c0052",
+      "c0014"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "B1",
+    "prompt": "How much is Photoshop per month?",
+    "kept": [
+      {
+        "sentence": "Photoshop costs US$22.99/mo when billed monthly on an annual plan.",
+        "chunk_ids": [
+          "c0055"
+        ],
+        "label": "Supported",
+        "reason": "Source explicitly states Photoshop plan costs $22.99/mo, annual billed monthly.",
+        "evidence_span": "US$22.99/mo Annual, billed monthly."
+      }
+    ],
+    "dropped": [],
+    "abstained": false,
+    "reason": "answer passed the gate",
+    "final_text": "Photoshop costs US$22.99/mo when billed monthly on an annual plan.",
+    "retrieved_chunk_ids": [
+      "c0038",
+      "c0055",
+      "c0051",
+      "c0048",
+      "c0033",
+      "c0021"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "B2",
+    "prompt": "What happens if I cancel after three months?",
+    "kept": [
+      {
+        "sentence": "If you cancel after 14 days of your order, your payment will be nonrefundable, and your service will continue until the end of your contracted term.",
+        "chunk_ids": [
+          "c0039"
+        ],
+        "label": "Supported",
+        "reason": "Source states this exact condition verbatim, matching the claim entirely.",
+        "evidence_span": "If you cancel after 14 days, your payment will be nonrefundable and your service will continue until the end of your contracted term."
+      },
+      {
+        "sentence": "Cancellations can be made anytime by visiting your Manage Account page or by contacting Customer Support.",
+        "chunk_ids": [
+          "c0039"
+        ],
+        "label": "Supported",
+        "reason": "The claim is copied verbatim from the source text.",
+        "evidence_span": "Cancellations can be made anytime by visiting your Manage Account page or by contacting Customer Support."
+      }
+    ],
+    "dropped": [],
+    "abstained": false,
+    "reason": "answer passed the gate",
+    "final_text": "If you cancel after 14 days of your order, your payment will be nonrefundable, and your service will continue until the end of your contracted term. Cancellations can be made anytime by visiting your Manage Account page or by contacting Customer Support.",
+    "retrieved_chunk_ids": [
+      "c0051",
+      "c0048",
+      "c0039",
+      "c0052",
+      "c0034",
+      "c0014"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "B3",
+    "prompt": "What's the difference between annual paid monthly and month-to-month?",
+    "kept": [],
+    "dropped": [],
+    "abstained": true,
+    "reason": "abstained: the generator declined to answer from these sources",
+    "final_text": "I don't have that documented in the material I can cite, so I'm not going to guess. The closest page I found is “Lightroom pricing and subscription plans | Adobe Lightroom”, which covers related ground but doesn't answer this. If it's useful, I can put you in touch with someone who can confirm it directly.",
+    "retrieved_chunk_ids": [
+      "c0051",
+      "c0038",
+      "c0048",
+      "c0024",
+      "c0028",
+      "c0033"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "B4",
+    "prompt": "Is there an early termination fee?",
+    "kept": [
+      {
+        "sentence": "According to the sources, there is no fee if you cancel within 14 days of starting your Creative Cloud free trial.",
+        "chunk_ids": [
+          "c0015"
+        ],
+        "label": "Supported",
+        "reason": "Source directly states no fee if you cancel within 14 days of the free trial.",
+        "evidence_span": "No fee if you cancel within 14 days."
+      }
+    ],
+    "dropped": [
+      {
+        "sentence": "However, the sources do not specify whether an early termination fee applies to paid Creative Cloud plans after the 14-day cancellation window.",
+        "chunk_ids": [],
+        "label": null,
+        "reason": "no citable source id"
+      }
+    ],
+    "abstained": true,
+    "reason": "abstained: the generator declined to answer from these sources",
+    "final_text": "I don't have that documented in the material I can cite, so I'm not going to guess. The closest page I found is “Adobe Creative Cloud | Details and products | Adobe”, which covers related ground but doesn't answer this. If it's useful, I can put you in touch with someone who can confirm it directly.",
+    "retrieved_chunk_ids": [
+      "c0015",
+      "c0035",
+      "c0024",
+      "c0028",
+      "c0055",
+      "c0022"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "B5",
+    "prompt": "Will my price go up when I renew?",
+    "kept": [
+      {
+        "sentence": "Renewal rates are subject to change, but we'll always notify you beforehand.",
+        "chunk_ids": [
+          "c0039",
+          "c0052"
+        ],
+        "label": "Supported",
+        "reason": "Claim is stated verbatim in the source text.",
+        "evidence_span": "Renewal rates are subject to change, but we'll always notify you beforehand."
+      },
+      {
+        "sentence": "This means your price may go up when you renew, though Adobe will notify you of any changes before they take effect.",
+        "chunk_ids": [
+          "c0039",
+          "c0052"
+        ],
+        "label": "Partially supported",
+        "reason": "Source supports renewal price change and notice, but doesn't mention Adobe specifically.",
+        "evidence_span": "Renewal rates are subject to change, but we'll always notify you beforehand."
+      }
+    ],
+    "dropped": [],
+    "abstained": false,
+    "reason": "answer passed the gate",
+    "final_text": "Renewal rates are subject to change, but we'll always notify you beforehand. This means your price may go up when you renew, though Adobe will notify you of any changes before they take effect.",
+    "retrieved_chunk_ids": [
+      "c0048",
+      "c0051",
+      "c0014",
+      "c0039",
+      "c0052",
+      "c0036"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "C1",
+    "prompt": "I need to make a logo for my bakery",
+    "kept": [
+      {
+        "sentence": "To create a logo for your bakery, you can use Adobe Illustrator, which is included in Creative Cloud Pro for creating logos, graphics, and icons [c0038].",
+        "chunk_ids": [
+          "c0038"
+        ],
+        "label": "Partially supported",
+        "reason": "Illustrator's logo/graphics purpose is stated, but bakery-specific use is not mentioned in source.",
+        "evidence_span": "Create logos, graphics, and icons with Adobe Illustrator."
+      },
+      {
+        "sentence": "Creative Cloud Pro is available at US$779.88/yr (annual plan, prepaid) and includes 20+ apps for design, photo, and video [c0038].",
+        "chunk_ids": [
+          "c0038"
+        ],
+        "label": "Supported",
+        "reason": "Source states the price and separately lists '20+ apps for design, photo, and video', matching both claim details.",
+        "evidence_span": "Annual plan, prepaid: US$779.88/yr"
+      },
+      {
+        "sentence": "Alternatively, Adobe Express is included in Creative Cloud Pro for easy ways to create graphics [c0038].",
+        "chunk_ids": [
+          "c0038"
+        ],
+        "label": "Supported",
+        "reason": "Source lists Adobe Express as included in Creative Cloud Pro for creating graphics.",
+        "evidence_span": "Adobe Express for easy ways to create graphics, web pages, and video stories"
+      }
+    ],
+    "dropped": [],
+    "abstained": false,
+    "reason": "answer passed the gate",
+    "final_text": "To create a logo for your bakery, you can use Adobe Illustrator, which is included in Creative Cloud Pro for creating logos, graphics, and icons [c0038]. Creative Cloud Pro is available at US$779.88/yr (annual plan, prepaid) and includes 20+ apps for design, photo, and video [c0038]. Alternatively, Adobe Express is included in Creative Cloud Pro for easy ways to create graphics [c0038].",
+    "retrieved_chunk_ids": [
+      "c0051",
+      "c0022",
+      "c0014",
+      "c0037",
+      "c0036",
+      "c0038"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "C2",
+    "prompt": "My daughter needs to edit a video for a school project",
+    "kept": [
+      {
+        "sentence": "For video editing, Adobe offers Premiere, which is best for creating professional-quality video, and Adobe Express, which is best for quick and easy edits and creating shareable social videos [c0045].",
+        "chunk_ids": [
+          "c0045"
+        ],
+        "label": "Supported",
+        "reason": "Source directly states Premiere and Adobe Express descriptions matching the claim exactly.",
+        "evidence_span": "Premiere: Best for creating professional-quality video for film, TV, commercials, branded content, and social platforms.\nAfter Effects: Best for creating professional-quality motion graphics, animations, and visual effects.\nAdobe Express: Best for quick and easy edits and creating sharable social videos."
+      },
+      {
+        "sentence": "These video apps are available through Creative Cloud Pro, which includes 20+ apps and can be accessed with a 7-day free trial [c0029, c0045].",
+        "chunk_ids": [
+          "c0029",
+          "c0045"
+        ],
+        "label": "Supported",
+        "reason": "Source confirms Creative Cloud Pro's 20+ apps, 7-day trial, and lists Premiere/After Effects/Adobe Express as included video apps.",
+        "evidence_span": "Try Creative Cloud Pro with a 7-day free trial. Get 20+ industry-standard creative apps including Photoshop and Illustrator."
+      },
+      {
+        "sentence": "Alternatively, individual video apps like Premiere can be purchased as single-app subscriptions [c0032].",
+        "chunk_ids": [
+          "c0032"
+        ],
+        "label": "Supported",
+        "reason": "Premiere listed with its own per-license monthly price, showing it's purchasable as a single-app subscription.",
+        "evidence_span": "Adobe Premiere - US$37.99/mo per license. Professional video and film editing."
+      }
+    ],
+    "dropped": [],
+    "abstained": false,
+    "reason": "answer passed the gate",
+    "final_text": "For video editing, Adobe offers Premiere, which is best for creating professional-quality video, and Adobe Express, which is best for quick and easy edits and creating shareable social videos [c0045]. These video apps are available through Creative Cloud Pro, which includes 20+ apps and can be accessed with a 7-day free trial [c0029, c0045]. Alternatively, individual video apps like Premiere can be purchased as single-app subscriptions [c0032].",
+    "retrieved_chunk_ids": [
+      "c0037",
+      "c0051",
+      "c0030",
+      "c0045",
+      "c0032",
+      "c0029"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "C3",
+    "prompt": "I want to remove the background from a product photo",
+    "kept": [
+      {
+        "sentence": "Photoshop allows you to swap out a boring background and make unwanted objects disappear using generative AI [c0036].",
+        "chunk_ids": [
+          "c0036"
+        ],
+        "label": "Partially supported",
+        "reason": "Swap background and remove objects are listed separately from generative AI feature, not explicitly linked.",
+        "evidence_span": "Photoshop. Combine, retouch, and remix your images. Swap out a boring background. Make unwanted objects disappear. Add, extend, or remove content from your images with generative AI."
+      },
+      {
+        "sentence": "Photoshop includes a Generative Fill, Expand, and Remove Tool with improved models for cleaner edges and sharper details [c0053].",
+        "chunk_ids": [
+          "c0053"
+        ],
+        "label": "Supported",
+        "reason": "Source confirms Firefly models improve Fill/Expand/Remove with cleaner edges, sharper details.",
+        "evidence_span": "Get more realistic results with the latest Generative Fill, Expand, and Remove Tool models."
+      },
+      {
+        "sentence": "Photoshop also features Harmonize, which can instantly blend objects into any background by matching lighting, shadows, and colors [c0053].",
+        "chunk_ids": [
+          "c0053"
+        ],
+        "label": "Supported",
+        "reason": "Source directly states Harmonize blends objects into backgrounds matching lighting, shadows, and colors.",
+        "evidence_span": "Generative composition with Harmonize. Instantly blend people and objects into any background. Harmonize matches the lighting, shadows, colors, and other details for a seamless scene in seconds."
+      }
+    ],
+    "dropped": [],
+    "abstained": false,
+    "reason": "answer passed the gate",
+    "final_text": "Photoshop allows you to swap out a boring background and make unwanted objects disappear using generative AI [c0036]. Photoshop includes a Generative Fill, Expand, and Remove Tool with improved models for cleaner edges and sharper details [c0053]. Photoshop also features Harmonize, which can instantly blend objects into any background by matching lighting, shadows, and colors [c0053].",
+    "retrieved_chunk_ids": [
+      "c0047",
+      "c0036",
+      "c0037",
+      "c0014",
+      "c0049",
+      "c0053"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "C4",
+    "prompt": "I need to make a 30-second ad for Instagram",
+    "kept": [
+      {
+        "sentence": "Adobe Premiere can turn clips into polished social videos [c0030], and Creative Cloud Pro includes 20+ apps plus Adobe Firefly creative AI [c0030].",
+        "chunk_ids": [
+          "c0030"
+        ],
+        "label": "Partially supported",
+        "reason": "Source asks question without naming Premiere; Firefly/20+ apps detail is confirmed, but app name unspecified.",
+        "evidence_span": "Which app can turn clips into polished social videos?"
+      },
+      {
+        "sentence": "Adobe Express is also available for quickly making social content [c0031].",
+        "chunk_ids": [
+          "c0031"
+        ],
+        "label": "Supported",
+        "reason": "Source explicitly states Adobe Express quickly makes social content.",
+        "evidence_span": "Adobe Express. Quickly and easily make social content, flyers, logos, and more from thousands of professionally designed templates."
+      }
+    ],
+    "dropped": [],
+    "abstained": false,
+    "reason": "answer passed the gate",
+    "final_text": "Adobe Premiere can turn clips into polished social videos [c0030], and Creative Cloud Pro includes 20+ apps plus Adobe Firefly creative AI [c0030]. Adobe Express is also available for quickly making social content [c0031].",
+    "retrieved_chunk_ids": [
+      "c0030",
+      "c0014",
+      "c0008",
+      "c0022",
+      "c0051",
+      "c0031"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "D1",
+    "prompt": "How do I convert a PDF to Word for free?",
+    "kept": [
+      {
+        "sentence": "Adobe Acrobat Studio and Adobe Acrobat Pro for Teams offer PDF conversion capabilities that can convert between PDF and Microsoft Word while preserving layout and formatting [c0001], but these are paid solutions, not free options.",
+        "chunk_ids": [
+          "c0001"
+        ],
+        "label": "Partially supported",
+        "reason": "Source confirms Acrobat Studio's PDF-Word conversion, but doesn't mention Acrobat Pro for Teams or pricing/free status.",
+        "evidence_span": "Convert, combine, and export files between PDF, Microsoft Word, PowerPoint, Excel, and more while preserving layout, formatting, and document quality."
+      },
+      {
+        "sentence": "Adobe does offer a 7-day free trial of Creative Cloud apps, which could potentially include relevant tools [c0015], but the sources do not specify whether free PDF-to-Word conversion is included.",
+        "chunk_ids": [
+          "c0015"
+        ],
+        "label": "Partially supported",
+        "reason": "7-day trial confirmed, but PDF-to-Word conversion inclusion is not addressed in source at all.",
+        "evidence_span": "Get a 7-day free trial with the full app and latest features."
+      }
+    ],
+    "dropped": [
+      {
+        "sentence": "The sources do not document a free method to convert PDF to Word.",
+        "chunk_ids": [],
+        "label": null,
+        "reason": "no citable source id"
+      }
+    ],
+    "abstained": true,
+    "reason": "abstained: the generator declined to answer from these sources",
+    "final_text": "I don't have that documented in the material I can cite, so I'm not going to guess. The closest page I found is “Adobe Acrobat Studio | Enterprise Document AI and Governance”, which covers related ground but doesn't answer this. If it's useful, I can put you in touch with someone who can confirm it directly.",
+    "retrieved_chunk_ids": [
+      "c0001",
+      "c0015",
+      "c0030",
+      "c0035",
+      "c0019",
+      "c0055"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "D2",
+    "prompt": "Do I need Photoshop or is Express enough for social media graphics?",
+    "kept": [
+      {
+        "sentence": "Adobe Express is described as 'Best for fast and easy design projects' and can be used to 'Quickly make logos, social posts, collages, resumes, and more' [c0031].",
+        "chunk_ids": [
+          "c0031"
+        ],
+        "label": "Supported",
+        "reason": "Source states this exact description of Adobe Express verbatim.",
+        "evidence_span": "Adobe Express: Best for fast and easy design projects. Quickly make logos, social posts, collages, resumes, and more."
+      },
+      {
+        "sentence": "Photoshop is 'Best for combining photos, graphics, and text' and designed for 'Design rich images using layers and customizable tools' [c0031].",
+        "chunk_ids": [
+          "c0031"
+        ],
+        "label": "Supported",
+        "reason": "Exact wording from source matches claim verbatim.",
+        "evidence_span": "Photoshop: Best for combining photos, graphics, and text. Design rich images using layers and customizable tools."
+      },
+      {
+        "sentence": "Express appears sufficient for basic social media graphics, while Photoshop offers more advanced photo and layer editing capabilities if you need precision photo manipulation for your social content.",
+        "chunk_ids": [
+          "c0031"
+        ],
+        "label": "Supported",
+        "reason": "Source describes Express as fast/easy for social posts, Photoshop as advanced for layered photo editing.",
+        "evidence_span": "Adobe Express: Best for fast and easy design projects. Quickly make logos, social posts, collages, resumes, and more.\nPhotoshop: Best for combining photos, graphics, and text. Design rich images using layers and customizable tools."
+      }
+    ],
+    "dropped": [],
+    "abstained": false,
+    "reason": "answer passed the gate",
+    "final_text": "Adobe Express is described as 'Best for fast and easy design projects' and can be used to 'Quickly make logos, social posts, collages, resumes, and more' [c0031]. Photoshop is 'Best for combining photos, graphics, and text' and designed for 'Design rich images using layers and customizable tools' [c0031]. Express appears sufficient for basic social media graphics, while Photoshop offers more advanced photo and layer editing capabilities if you need precision photo manipulation for your social content.",
+    "retrieved_chunk_ids": [
+      "c0031",
+      "c0034",
+      "c0024",
+      "c0045",
+      "c0014",
+      "c0037"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "D3",
+    "prompt": "I only need to sign a document once. What's the cheapest option?",
+    "kept": [
+      {
+        "sentence": "The sources provided discuss Adobe Acrobat Studio's document management and e-signature capabilities, including the ability to 'create fillable forms, collect e-signatures, and track document completion,' but do not specify pricing for one-time signing needs.",
+        "chunk_ids": [
+          "c0001"
+        ],
+        "label": "Supported",
+        "reason": "Source mentions e-signature/form features but never discusses pricing, matching claim's absence-of-pricing observation.",
+        "evidence_span": "Create fillable forms, collect e-signatures, and track document completion for secure collaboration and faster approvals."
+      }
+    ],
+    "dropped": [
+      {
+        "sentence": "I don't have documentation of pricing for signing a single document.",
+        "chunk_ids": [],
+        "label": null,
+        "reason": "no citable source id"
+      },
+      {
+        "sentence": "For information about the cheapest option to sign a single document, I'd recommend contacting Adobe directly or exploring their small business plans.",
+        "chunk_ids": [],
+        "label": null,
+        "reason": "no citable source id"
+      }
+    ],
+    "abstained": true,
+    "reason": "abstained: the generator declined to answer from these sources",
+    "final_text": "I don't have that documented in the material I can cite, so I'm not going to guess. The closest page I found is “Lightroom pricing and subscription plans | Adobe Lightroom”, which covers related ground but doesn't answer this. If it's useful, I can put you in touch with someone who can confirm it directly.",
+    "retrieved_chunk_ids": [
+      "c0051",
+      "c0002",
+      "c0014",
+      "c0022",
+      "c0001",
+      "c0003"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "E1",
+    "prompt": "I have the Photography plan. Can I add Premiere Pro?",
+    "kept": [
+      {
+        "sentence": "The Photography plan includes Lightroom, Lightroom Classic, Photoshop on desktop and mobile, and 1TB of cloud storage [c0036].",
+        "chunk_ids": [
+          "c0036"
+        ],
+        "label": "Supported",
+        "reason": "Source confirms Photography plan includes Lightroom, Lightroom Classic, Photoshop, and 1TB storage across two listings.",
+        "evidence_span": "Photography (1TB). Edit your photos in Lightroom, transform them with Photoshop, and get 1TB of cloud storage."
+      },
+      {
+        "sentence": "Creative Cloud Pro includes 20+ apps including Premiere Pro and costs US$34.99/mo for the first 3 months and US$69.99/mo after that for new subscribers [c0030].",
+        "chunk_ids": [
+          "c0030"
+        ],
+        "label": "Partially supported",
+        "reason": "Pricing and 20+ apps confirmed, but Premiere Pro is not specifically mentioned in source.",
+        "evidence_span": "Save 50% for the first 3 months on 20+ apps plus Adobe Firefly creative AI. Pay US$34.99/mo for the first 3 months and US$69.99/mo after that."
+      }
+    ],
+    "dropped": [
+      {
+        "sentence": "The sources do not document whether Premiere Pro can be added to the Photography plan.",
+        "chunk_ids": [],
+        "label": null,
+        "reason": "no citable source id"
+      }
+    ],
+    "abstained": true,
+    "reason": "abstained: the generator declined to answer from these sources",
+    "final_text": "I don't have that documented in the material I can cite, so I'm not going to guess. The closest page I found is “Compare pricing & plans | Adobe Creative Cloud Photography Plan”, which covers related ground but doesn't answer this. If it's useful, I can put you in touch with someone who can confirm it directly.",
+    "retrieved_chunk_ids": [
+      "c0037",
+      "c0036",
+      "c0051",
+      "c0022",
+      "c0055",
+      "c0030"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "E3",
+    "prompt": "I was charged after I canceled. What do I do?",
+    "kept": [
+      {
+        "sentence": "If you cancel within 14 days of your order, you'll be fully refunded [c0048]. If you cancel after 14 days, your payment will be nonrefundable, and your service will continue until the end of your contracted term [c0048].",
+        "chunk_ids": [
+          "c0048"
+        ],
+        "label": "Supported",
+        "reason": "Claim is verbatim from the source's Membership and Cancellation Terms section.",
+        "evidence_span": "If you cancel within 14 days of your order, you'll be fully refunded. If you cancel after 14 days, your payment will be nonrefundable, and your service will continue until the end of your contracted term."
+      },
+      {
+        "sentence": "Cancellations can be made anytime by visiting your Manage Account page or by contacting Customer Support [c0048].",
+        "chunk_ids": [
+          "c0048"
+        ],
+        "label": "Supported",
+        "reason": "Source states this exact sentence verbatim.",
+        "evidence_span": "Cancellations can be made anytime by visiting your Manage Account page or by contacting Customer Support."
+      }
+    ],
+    "dropped": [],
+    "abstained": true,
+    "reason": "abstained: the generator declined to answer from these sources",
+    "final_text": "I don't have that documented in the material I can cite, so I'm not going to guess. The closest page I found is “Adobe Premiere FAQ | Premiere”, which covers related ground but doesn't answer this. If it's useful, I can put you in touch with someone who can confirm it directly.",
+    "retrieved_chunk_ids": [
+      "c0014",
+      "c0015",
+      "c0030",
+      "c0048",
+      "c0022",
+      "c0051"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "F4",
+    "prompt": "I'm switching from Canva. What should I use?",
+    "kept": [
+      {
+        "sentence": "For design projects, Adobe Express is best for fast and easy design work where you can quickly make logos, social posts, collages, resumes, and more from thousands of professionally designed templates [c0031].",
+        "chunk_ids": [
+          "c0031"
+        ],
+        "label": "Supported",
+        "reason": "Source directly states Adobe Express is best for fast, easy design with these examples.",
+        "evidence_span": "Adobe Express: Best for fast and easy design projects. Quickly make logos, social posts, collages, resumes, and more."
+      },
+      {
+        "sentence": "For video editing, Adobe Premiere offers best-in-class video-editing tools all in one place [c0014].",
+        "chunk_ids": [
+          "c0014"
+        ],
+        "label": "Supported",
+        "reason": "Source directly states Premiere offers best-in-class video-editing tools all in one place.",
+        "evidence_span": "Craft the perfect story with Premiere. Find the best-in-class video-editing tools all in one place."
+      },
+      {
+        "sentence": "Adobe Creative Cloud Pro includes 20+ apps including Photoshop, Illustrator, Premiere, and Adobe Firefly creative AI for images, video, and audio [c0028].",
+        "chunk_ids": [
+          "c0028"
+        ],
+        "label": "Partially supported",
+        "reason": "Source doesn't name 'Adobe Creative Cloud Pro' or explicitly list Photoshop/Illustrator among the 20+ apps.",
+        "evidence_span": "20+ apps, including Adobe Premiere, and Firefly creative AI for images, video, and audio, plus exclusive business features."
+      }
+    ],
+    "dropped": [],
+    "abstained": false,
+    "reason": "answer passed the gate",
+    "final_text": "For design projects, Adobe Express is best for fast and easy design work where you can quickly make logos, social posts, collages, resumes, and more from thousands of professionally designed templates [c0031]. For video editing, Adobe Premiere offers best-in-class video-editing tools all in one place [c0014]. Adobe Creative Cloud Pro includes 20+ apps including Photoshop, Illustrator, Premiere, and Adobe Firefly creative AI for images, video, and audio [c0028].",
+    "retrieved_chunk_ids": [
+      "c0014",
+      "c0022",
+      "c0051",
+      "c0037",
+      "c0031",
+      "c0028"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "F5",
+    "prompt": "Why should I choose Adobe over other options?",
+    "kept": [
+      {
+        "sentence": "Adobe offers specialized tools for different creative needs, such as Illustrator for vector graphics design, Premiere for video editing, and Acrobat for PDF collaboration and e-signatures [c0023, c0027, c0019].",
+        "chunk_ids": [
+          "c0023",
+          "c0027",
+          "c0019"
+        ],
+        "label": "Supported",
+        "reason": "Source describes Illustrator for vector graphics, Premiere for video editing, and Acrobat for PDF collaboration/e-signatures, matching claim exactly.",
+        "evidence_span": "Create high-quality vector graphics."
+      },
+      {
+        "sentence": "Adobe's products include AI-powered features like generative AI in Illustrator, automated transcripts and captions in Premiere, and AI-powered document insights in Acrobat to help users work more efficiently [c0023, c0027, c0019].",
+        "chunk_ids": [
+          "c0023",
+          "c0027",
+          "c0019"
+        ],
+        "label": "Supported",
+        "reason": "Source confirms generative AI in Illustrator, AI transcripts/captions in Premiere, and AI document insights in Acrobat.",
+        "evidence_span": "Save time with generative AI. Eliminate tedious tasks and add to your designs fast with Adobe Firefly generative AI."
+      },
+      {
+        "sentence": "Creative Cloud Pro subscribers gain access to over 20 apps plus Adobe Firefly creative AI, along with membership perks including 30,000+ Adobe fonts, one million+ Adobe Stock assets, and access to the Behance creative community [c0030].",
+        "chunk_ids": [
+          "c0030"
+        ],
+        "label": "Supported",
+        "reason": "All claim details—apps, Firefly, fonts, Stock, Behance—match the source's stated figures and perks.",
+        "evidence_span": "20+ apps plus Adobe Firefly creative AI"
+      }
+    ],
+    "dropped": [],
+    "abstained": false,
+    "reason": "answer passed the gate",
+    "final_text": "Adobe offers specialized tools for different creative needs, such as Illustrator for vector graphics design, Premiere for video editing, and Acrobat for PDF collaboration and e-signatures [c0023, c0027, c0019]. Adobe's products include AI-powered features like generative AI in Illustrator, automated transcripts and captions in Premiere, and AI-powered document insights in Acrobat to help users work more efficiently [c0023, c0027, c0019]. Creative Cloud Pro subscribers gain access to over 20 apps plus Adobe Firefly creative AI, along with membership perks including 30,000+ Adobe fonts, one million+ Adobe Stock assets, and access to the Behance creative community [c0030].",
+    "retrieved_chunk_ids": [
+      "c0023",
+      "c0019",
+      "c0030",
+      "c0014",
+      "c0027",
+      "c0051"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "G1",
+    "prompt": "Turn 1: 'I need to edit videos.'  Turn 2: 'How much does that cost?'",
+    "kept": [
+      {
+        "sentence": "For video editing, Adobe Premiere is available, which requires specific system specifications to run [c0010].",
+        "chunk_ids": [
+          "c0010"
+        ],
+        "label": "Supported",
+        "reason": "Source states Premiere requires specific minimum and recommended system specifications to run.",
+        "evidence_span": "Understand the minimum requirements needed to install and run Adobe Premiere."
+      },
+      {
+        "sentence": "Pricing is available for Creative Cloud Pro, which includes multiple apps but specific Premiere pricing is not documented in these sources.",
+        "chunk_ids": [
+          "c0030"
+        ],
+        "label": "Supported",
+        "reason": "Source gives Creative Cloud Pro pricing with multiple apps, but no specific Premiere-only pricing mentioned.",
+        "evidence_span": "Pay US$34.99/mo for the first 3 months and US$69.99/mo after that."
+      }
+    ],
+    "dropped": [
+      {
+        "sentence": "The sources provided do not include pricing information for Adobe Premiere.",
+        "chunk_ids": [],
+        "label": null,
+        "reason": "no citable source id"
+      }
+    ],
+    "abstained": true,
+    "reason": "abstained: the generator declined to answer from these sources",
+    "final_text": "I don't have that documented in the material I can cite, so I'm not going to guess. The closest page I found is “Adobe Photoshop pricing & membership plans | Adobe”, which covers related ground but doesn't answer this. If it's useful, I can put you in touch with someone who can confirm it directly.",
+    "retrieved_chunk_ids": [
+      "c0055",
+      "c0030",
+      "c0031",
+      "c0037",
+      "c0010",
+      "c0002"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "G2",
+    "prompt": "Turn 1: 'What's the Photography plan?'  Turn 2: 'Is it cheaper than the other one?'",
+    "kept": [
+      {
+        "sentence": "The Photography plan includes both Lightroom and Photoshop plus 1TB of cloud storage for US$19.99/mo Annual, billed monthly [c0037].",
+        "chunk_ids": [
+          "c0037"
+        ],
+        "label": "Supported",
+        "reason": "Source directly states this exact plan, price, and included apps/storage.",
+        "evidence_span": "Photography (1TB). Get both Lightroom and Photoshop plus 1TB of cloud storage. US$19.99/mo Annual, billed monthly."
+      },
+      {
+        "sentence": "The Photography plan is more expensive than the Lightroom plan, which costs US$11.99/mo Annual, billed monthly [c0037].",
+        "chunk_ids": [
+          "c0037"
+        ],
+        "label": "Supported",
+        "reason": "Prices given show Photography ($19.99) costs more than Lightroom ($11.99), matching claim exactly.",
+        "evidence_span": "Lightroom (1TB). Edit photos that look just the way you want, anywhere you are. US$11.99/mo Annual, billed monthly.\n\nPhotography (1TB). Get both Lightroom and Photoshop plus 1TB of cloud storage. US$19.99/mo Annual, billed monthly."
+      }
+    ],
+    "dropped": [],
+    "abstained": false,
+    "reason": "answer passed the gate",
+    "final_text": "The Photography plan includes both Lightroom and Photoshop plus 1TB of cloud storage for US$19.99/mo Annual, billed monthly [c0037]. The Photography plan is more expensive than the Lightroom plan, which costs US$11.99/mo Annual, billed monthly [c0037].",
+    "retrieved_chunk_ids": [
+      "c0037",
+      "c0051",
+      "c0043",
+      "c0030",
+      "c0048",
+      "c0046"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "H1",
+    "prompt": "What is Adobe Experience Manager?",
+    "kept": [
+      {
+        "sentence": "Adobe Experience Manager Assets is mentioned as an Adobe product integration available with Adobe Creative Cloud for enterprise [c0003].",
+        "chunk_ids": [
+          "c0003"
+        ],
+        "label": "Supported",
+        "reason": "Listed directly under Adobe product integrations for Creative Cloud for enterprise.",
+        "evidence_span": "Adobe Experience Manager Assets."
+      }
+    ],
+    "dropped": [],
+    "abstained": true,
+    "reason": "abstained: the generator declined to answer from these sources",
+    "final_text": "I don't have that documented in the material I can cite, so I'm not going to guess. The closest page I found is “Creative Cloud Enterprise Integrations | Adobe for Business”, which covers related ground but doesn't answer this. If it's useful, I can put you in touch with someone who can confirm it directly.",
+    "retrieved_chunk_ids": [
+      "c0003",
+      "c0058",
+      "c0021",
+      "c0022",
+      "c0028",
+      "c0024"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "H2",
+    "prompt": "I need Adobe for a team of 12. What do you recommend?",
+    "kept": [
+      {
+        "sentence": "Adobe Creative Cloud for teams includes 20+ apps, including Photoshop and Illustrator, plus Adobe Firefly creative AI for images, video, and audio [c0022].",
+        "chunk_ids": [
+          "c0022"
+        ],
+        "label": "Supported",
+        "reason": "Source text directly states this describes Adobe Creative Cloud for teams offering.",
+        "evidence_span": "Create professional content fast with 20+ apps, including Photoshop and Illustrator, plus Adobe Firefly creative AI for images, video, and audio."
+      },
+      {
+        "sentence": "Adobe Creative Cloud for teams is available on an annual plan billed monthly [c0022].",
+        "chunk_ids": [
+          "c0022"
+        ],
+        "label": "Supported",
+        "reason": "Source header states annual, billed monthly, directly under Creative Cloud for teams context.",
+        "evidence_span": "Annual, billed monthly"
+      },
+      {
+        "sentence": "For a larger organization, you may want to explore Creative Cloud for enterprise as an alternative [c0022].",
+        "chunk_ids": [
+          "c0022"
+        ],
+        "label": "Supported",
+        "reason": "Source directly suggests enterprise plan as alternative for larger organizations.",
+        "evidence_span": "Buying for a larger organization? See Creative Cloud for enterprise"
+      },
+      {
+        "sentence": "You can call 800-915-9428 or request a consultation to discuss the best plan for your team of 12 [c0022].",
+        "chunk_ids": [
+          "c0022"
+        ],
+        "label": "Partially supported",
+        "reason": "Source mentions calling/consultation but not team size of 12.",
+        "evidence_span": "Call 800-915-9428 or request a consultation"
+      }
+    ],
+    "dropped": [],
+    "abstained": false,
+    "reason": "answer passed the gate",
+    "final_text": "Adobe Creative Cloud for teams includes 20+ apps, including Photoshop and Illustrator, plus Adobe Firefly creative AI for images, video, and audio [c0022]. Adobe Creative Cloud for teams is available on an annual plan billed monthly [c0022]. For a larger organization, you may want to explore Creative Cloud for enterprise as an alternative [c0022]. You can call 800-915-9428 or request a consultation to discuss the best plan for your team of 12 [c0022].",
+    "retrieved_chunk_ids": [
+      "c0008",
+      "c0022",
+      "c0014",
+      "c0051",
+      "c0028",
+      "c0024"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "I2",
+    "prompt": "Is the Photography plan available in Germany?",
+    "kept": [
+      {
+        "sentence": "The sources provided document that the Photography plan is available at US$19.99/mo Annual, billed monthly, but do not specify geographic availability or whether it is offered in Germany.",
+        "chunk_ids": [
+          "c0037",
+          "c0036"
+        ],
+        "label": "Supported",
+        "reason": "Price confirmed in source; no mention of geographic availability or Germany anywhere in text.",
+        "evidence_span": "Photography. US$19.99/mo Annual, billed monthly. Lightroom for mobile, desktop, and web, plus Lightroom Classic and Photoshop."
+      }
+    ],
+    "dropped": [],
+    "abstained": true,
+    "reason": "abstained: the generator declined to answer from these sources",
+    "final_text": "I don't have that documented in the material I can cite, so I'm not going to guess. The closest page I found is “Compare pricing & plans | Adobe Creative Cloud Photography Plan”, which covers related ground but doesn't answer this. If it's useful, I can put you in touch with someone who can confirm it directly.",
+    "retrieved_chunk_ids": [
+      "c0037",
+      "c0036",
+      "c0051",
+      "c0043",
+      "c0024",
+      "c0028"
+    ],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "J1",
+    "prompt": "asdfgh",
+    "kept": [],
+    "dropped": [],
+    "abstained": true,
+    "reason": "abstained: the generator declined to answer from these sources",
+    "final_text": "I don't have anything documented that answers this, so I'm not going to guess. Nothing in the material I can cite covers it. If it's useful, I can put you in touch with someone who can confirm it directly.",
+    "retrieved_chunk_ids": [],
+    "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "J2",
+    "prompt": "photshop pricng",
+    "kept": [],
+    "dropped": [],
+    "abstained": true,
+    "reason": "abstained: the generator declined to answer from these sources",
+    "final_text": "I don't have anything documented that answers this, so I'm not going to guess. Nothing in the material I can cite covers it. If it's useful, I can put you in touch with someone who can confirm it directly.",
+    "retrieved_chunk_ids": [],
+    "judge_model": "claude-sonnet-5"
+  }
+]

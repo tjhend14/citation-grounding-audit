@@ -1,0 +1,52 @@
+https://helpx.adobe.com/premiere-rush/desktop/system-requirements/2021-1.html
+Adobe Premiere Rush system requirements | Premiere Rush
+Adobe Premiere Rush system requirements
+Last updated on Mar 27, 2026
+
+Note: As we introduce the next generation of Adobe Premiere mobile apps, we are discontinuing Adobe Premiere Rush. Effective September 30, 2025, Premiere Rush will no longer be available on Adobe.com. As an alternative, we recommend Premiere on iPhone; a version for Android is currently also in development.
+
+Applicable for: Versions 1.5.62 and 1.5.58
+
+Minimum system requirements for Premiere Rush
+
+Windows
+
+Processor: Multicore processor with 64-bit support (Recommended: Intel Core i5 or i7, or equivalent)
+
+Operating system: Microsoft Windows 10 with 64-bit support (Version 1903 or later). If you are unable to upgrade your operating system because of hardware limitations, you can still use Adobe Premiere Rush on iOS or Android. Note: Premiere Rush versions 1.5.62 or later are compatible with Windows 11 operating systems. However, you need to update your NVidia driver to version 472.12 or later to use Premiere Rush on Windows 11.
+
+Device driver: Intel Graphics Driver for Windows (version 25.20.100.6326)
+
+RAM: 8 GB of RAM
+
+Hard disk space: 8 GB of available hard-disk space for installation; extra free space required during installation (cannot install on removable flash storage devices)
+
+Monitor resolution: 1280x800 display (1920x1080 or larger recommended)
+
+Sound card: Sound card compatible with ASIO protocol or Microsoft Windows Driver Model
+
+Internet: Internet connection and registration are necessary for required software activation, validation of subscriptions, and access to online services.
+
+Optional: Premiere Rush on Windows supports the same GPUs as Premiere.
+
+macOS
+
+Processor: Multicore Intel processor with 64-bit support (Recommended: Intel Core i5 or i7, or equivalent). Apple M1 chip
+
+Operating system: macOS X v10.14 or later
+
+RAM: 8 GB of RAM
+
+Hard disk space: 8 GB of available hard-disk space for installation; extra free space required during installation
+
+Monitor resolution: 1280 x 800 display (1920 x 1080 or larger recommended)
+
+Sound card: Sound card compatible with Apple Core Audio
+
+iOS: iOS 13 or later. iPhone 7 and newer (devices with A9 ARM chip or higher). iPad (devices with A9 ARM chip or higher)
+
+Android: All the following devices running Android 9.0 and later are supported: Samsung Galaxy S21 Ultra, S21+, S21, S20, S20+, S20 Ultra, S20 FE, S10/10+, 10e, S9/9+, S8/8+, A50, A70, Note 20, Note 20 Ultra, Note 20/20+, Note 10/10+, Note9, Note8; Google Pixel 5, 4/4XL, 3/3XL, 2/2XL, 1/1XL; OnePlus 7/7 Pro, 6/6T devices, 5T; Sony Xperia 10/10+, XZ Premium, XZ3, XZ2, XZ1; Xiaomi Mi 9, Mi 8, Pocofone F1, Redmi Note 7/7 Pro
+
+Language versions available for Premiere Rush: English, French, Spanish, German, Korean, Japanese, Italian, Russian, Portuguese, Simplified Chinese, Dutch, Polish, Swedish, Turkish, Traditional Chinese
+
+Note: Adobe Creative Cloud services are currently not supported in Premiere Rush in China. As a result, Premiere Rush will not be available in this region.

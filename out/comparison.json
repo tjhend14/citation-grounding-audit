@@ -1,0 +1,25 @@
+{
+  "baseline": {
+    "claims": 93,
+    "supported": 22,
+    "partially": 35,
+    "unsupported": 34,
+    "unrelated": 2,
+    "unfetchable": 0,
+    "grounding_rate": 0.6129
+  },
+  "eboda": {
+    "claims": 57,
+    "supported": 38,
+    "partially": 18,
+    "unsupported": 1,
+    "unrelated": 0,
+    "grounding_rate": 0.9825
+  },
+  "gate": {
+    "sentences_dropped": 11,
+    "answers_abstained": 16
+  },
+  "human_agreement": 0.6667,
+  "generated_at": "2026-09-04T19:14:35Z"
+}

@@ -1,0 +1,711 @@
+/* ==========================================================================
+   Eboda Web Toolkit
+   A prototyping stylesheet for Eboda — a fictional creative-software brand
+   used for portfolio and demo work.
+
+   Contains no third-party trademarks, logos, fonts, or imagery.
+   See README.md for where the token values came from.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. TOKENS
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* --- Neutrals (Consonant gray ramp) --- */
+  --color-white: #fff;
+  --color-gray-100: #f8f8f8;
+  --color-gray-200: #e8e8e8;
+  --color-gray-300: #d4d4d4;
+  --color-gray-400: #b6b6b6;
+  --color-gray-500: #909090;
+  --color-gray-600: #686868;
+  --color-gray-700: #444;
+  --color-gray-800: #242424;
+  --color-black: #000;
+
+  /* --- Semantic color --- */
+  --background-color: #fff;
+  --text-color: #2c2c2c;
+  --text-color-secondary: var(--color-gray-600);
+  --color-brand-title: #000b1d;
+  --border-color: var(--color-gray-200);
+
+  /* Links */
+  --link-color: rgb(39, 77, 234);
+  --link-hover-color: rgb(29, 62, 207);
+  --link-color-dark: rgb(59, 99, 251);
+  --link-hover-color-dark: rgb(39, 77, 234);
+
+  /* Accent (primary CTA blue) */
+  --color-accent: var(--link-color-dark);
+  --color-accent-hover: var(--link-hover-color-dark);
+  --color-accent-down: #095aba;
+  --color-accent-focus-ring: #378ef0;
+
+  /* Informational accent (indigo — used for badges, notices) */
+  --color-info-accent: #5c5ce0;
+  --color-info-accent-hover: #4646c6;
+  --color-info-accent-down: #3d3db4;
+  --color-info-accent-light: #dedef9;
+
+  /* Overlays */
+  --overlay-background-color: #ffffff20;
+  --highlight-background-color: #ffffff40;
+
+  /* Eboda brand red — used for the wordmark and eyebrow accents only,
+     never for interactive elements. */
+  --color-brand-red: #eb1000;
+
+  /* --- Type --- */
+  /* Source Sans 3 is open-licensed (SIL OFL) and free to ship. */
+  --body-font-family: 'Source Sans 3', 'Source Sans Pro', 'Trebuchet MS', sans-serif;
+  --fixed-font-family: 'Roboto Mono', menlo, consolas, monospace;
+
+  --type-heading-all-weight: 700;
+  --type-heading-base-lh: 1.2;
+
+  /* Mobile-first heading scale */
+  --type-heading-xxxl-size: 44px;  --type-heading-xxxl-lh: 55px;
+  --type-heading-xxl-size: 36px;   --type-heading-xxl-lh: 45px;
+  --type-heading-xl-size: 28px;    --type-heading-xl-lh: 35px;
+  --type-heading-l-size: 24px;     --type-heading-l-lh: 30px;
+  --type-heading-m-size: 20px;     --type-heading-m-lh: 25px;
+  --type-heading-s-size: 18px;     --type-heading-s-lh: 22.5px;
+  --type-heading-xs-size: 16px;    --type-heading-xs-lh: 20px;
+  --type-heading-xxs-size: 14px;   --type-heading-xxs-lh: 18px;
+
+  /* Body scale */
+  --type-body-xxl-size: 28px;      --type-body-xxl-lh: 42px;
+  --type-body-xl-size: 22px;       --type-body-xl-lh: 33px;
+  --type-body-l-size: 20px;        --type-body-l-lh: 30px;
+  --type-body-m-size: 18px;        --type-body-m-lh: 27px;
+  --type-body-s-size: 16px;        --type-body-s-lh: 24px;
+  --type-body-xs-size: 14px;       --type-body-xs-lh: 21px;
+  --type-body-xxs-size: 12px;      --type-body-xxs-lh: 18px;
+
+  /* Detail — small uppercase eyebrows above headings */
+  --type-detail-all-weight: 700;
+  --type-detail-all-transform: uppercase;
+  --type-detail-xl-size: 20px;     --type-detail-xl-lh: 25px;
+  --type-detail-l-size: 16px;      --type-detail-l-lh: 20px;
+  --type-detail-m-size: 12px;      --type-detail-m-lh: 15px;
+  --type-detail-s-size: 10px;      --type-detail-s-lh: 12px;
+
+  /* --- Spacing --- */
+  --spacing-xxs: 8px;
+  --spacing-xs: 16px;
+  --spacing-s: 24px;
+  --spacing-m: 32px;
+  --spacing-l: 40px;
+  --spacing-xl: 48px;
+  --spacing-xxl: 56px;
+  --spacing-xxxl: 80px;
+
+  /* --- Grid --- */
+  --grid-container-width: 83.4%;
+  --grid-column-width: calc(var(--grid-container-width) / 12);
+  --grid-margins-width: calc((100% - var(--grid-container-width)) / 2);
+
+  /* --- Chrome --- */
+  --global-height-nav: 64px;
+
+  /* --- Aspect ratios --- */
+  --aspect-ratio-square: 1/1;
+  --aspect-ratio-standard: 4/3;
+  --aspect-ratio-wide: 16/9;
+  --aspect-ratio-tall: 9/16;
+
+  /* --- Icon sizes --- */
+  --icon-size-xxl: 80px;
+  --icon-size-xl: 64px;
+  --icon-size-l: 56px;
+  --icon-size-m: 40px;
+  --icon-size-s: 32px;
+  --icon-size-xs: 24px;
+  --icon-size-xxs: 16px;
+}
+
+/* Desktop scale-up. Type and spacing step up at 1200px; the container then
+   locks to a fixed 1200px at 1440px. */
+@media (min-width: 1200px) {
+  :root {
+    --spacing-xl: 56px;
+    --spacing-xxl: 80px;
+    --spacing-xxxl: 104px;
+
+    --type-heading-xxxl-size: 80px;  --type-heading-xxxl-lh: 88px;
+    --type-heading-xxl-size: 44px;   --type-heading-xxl-lh: 55px;
+    --type-heading-xl-size: 36px;    --type-heading-xl-lh: 45px;
+    --type-heading-l-size: 28px;     --type-heading-l-lh: 35px;
+    --type-heading-m-size: 24px;     --type-heading-m-lh: 30px;
+    --type-heading-s-size: 20px;     --type-heading-s-lh: 25px;
+    --type-heading-xs-size: 18px;    --type-heading-xs-lh: 22.5px;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root { --grid-container-width: 1200px; }
+}
+
+/* --------------------------------------------------------------------------
+   2. BASE
+   -------------------------------------------------------------------------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  font-size: var(--type-body-s-size);
+  line-height: var(--type-body-s-lh);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: var(--link-color); text-decoration: none; }
+a:hover { color: var(--link-hover-color); text-decoration: underline; }
+
+:focus-visible {
+  outline: 2px solid var(--color-accent-focus-ring);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   3. TYPOGRAPHY
+   -------------------------------------------------------------------------- */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--type-heading-all-weight);
+  line-height: var(--type-heading-base-lh);
+  margin: 0;
+}
+
+.heading-xxxl, .heading-xxl, .heading-xl, .heading-l, .heading-m,
+.heading-s, .heading-xs, .heading-xxs,
+.body-xxl, .body-xl, .body-l, .body-m, .body-s, .body-xs, .body-xxs,
+.detail-xl, .detail-l, .detail-m, .detail-s { margin: 0; }
+
+.heading-xxxl { font-size: var(--type-heading-xxxl-size); line-height: var(--type-heading-xxxl-lh); font-weight: 700; }
+.heading-xxl  { font-size: var(--type-heading-xxl-size);  line-height: var(--type-heading-xxl-lh);  font-weight: 700; }
+.heading-xl   { font-size: var(--type-heading-xl-size);   line-height: var(--type-heading-xl-lh);   font-weight: 700; }
+.heading-l    { font-size: var(--type-heading-l-size);    line-height: var(--type-heading-l-lh);    font-weight: 700; }
+.heading-m    { font-size: var(--type-heading-m-size);    line-height: var(--type-heading-m-lh);    font-weight: 700; }
+.heading-s    { font-size: var(--type-heading-s-size);    line-height: var(--type-heading-s-lh);    font-weight: 700; }
+.heading-xs   { font-size: var(--type-heading-xs-size);   line-height: var(--type-heading-xs-lh);   font-weight: 700; }
+.heading-xxs  { font-size: var(--type-heading-xxs-size);  line-height: var(--type-heading-xxs-lh);  font-weight: 700; }
+
+.body-xxl { font-size: var(--type-body-xxl-size); line-height: var(--type-body-xxl-lh); }
+.body-xl  { font-size: var(--type-body-xl-size);  line-height: var(--type-body-xl-lh); }
+.body-l   { font-size: var(--type-body-l-size);   line-height: var(--type-body-l-lh); }
+.body-m   { font-size: var(--type-body-m-size);   line-height: var(--type-body-m-lh); }
+.body-s   { font-size: var(--type-body-s-size);   line-height: var(--type-body-s-lh); }
+.body-xs  { font-size: var(--type-body-xs-size);  line-height: var(--type-body-xs-lh); }
+.body-xxs { font-size: var(--type-body-xxs-size); line-height: var(--type-body-xxs-lh); }
+
+.detail-xl, .detail-l, .detail-m, .detail-s {
+  font-weight: var(--type-detail-all-weight);
+  text-transform: var(--type-detail-all-transform);
+  letter-spacing: 0.04em;
+}
+.detail-xl { font-size: var(--type-detail-xl-size); line-height: var(--type-detail-xl-lh); }
+.detail-l  { font-size: var(--type-detail-l-size);  line-height: var(--type-detail-l-lh); }
+.detail-m  { font-size: var(--type-detail-m-size);  line-height: var(--type-detail-m-lh); }
+.detail-s  { font-size: var(--type-detail-s-size);  line-height: var(--type-detail-s-lh); }
+
+/* --------------------------------------------------------------------------
+   4. THEMES
+   Wrap any section in .dark or .light to flip text and button treatments.
+   -------------------------------------------------------------------------- */
+
+.dark  { color: var(--color-white); }
+.light { color: var(--text-color); }
+
+.dark a:not(.con-button)  { color: var(--link-color-dark); }
+.dark a:not(.con-button):hover { color: var(--link-hover-color-dark); }
+.light a:not(.con-button) { color: var(--link-color); }
+
+.bg-white { background-color: var(--color-white); }
+.bg-gray  { background-color: var(--color-gray-100); }
+.bg-dark  { background-color: var(--color-gray-800); }
+.bg-black { background-color: var(--color-black); }
+
+/* --------------------------------------------------------------------------
+   5. LAYOUT
+   -------------------------------------------------------------------------- */
+
+.section {
+  padding-top: var(--spacing-xxl);
+  padding-bottom: var(--spacing-xxl);
+}
+.section.tight  { padding-top: var(--spacing-l);   padding-bottom: var(--spacing-l); }
+.section.roomy  { padding-top: var(--spacing-xxxl); padding-bottom: var(--spacing-xxxl); }
+.section.flush  { padding-top: 0; padding-bottom: 0; }
+
+.container {
+  width: var(--grid-container-width);
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+.stack > * + * { margin-top: var(--spacing-xs); }
+.stack-s > * + * { margin-top: var(--spacing-xxs); }
+.stack-l > * + * { margin-top: var(--spacing-m); }
+
+.grid {
+  display: grid;
+  gap: var(--spacing-s);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {
+  .grid.two-up   { grid-template-columns: repeat(2, 1fr); }
+  .grid.three-up { grid-template-columns: repeat(3, 1fr); }
+  .grid.four-up  { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1200px) {
+  .grid.four-up  { grid-template-columns: repeat(4, 1fr); }
+}
+
+.text-center { text-align: center; }
+.text-center .container > * { margin-inline: auto; }
+.measure { max-width: 640px; }
+
+/* --------------------------------------------------------------------------
+   6. BUTTONS (.con-button)
+   Default = outline. Add .blue for primary CTA, .fill for solid neutral.
+   Sizes: default, .button-l, .button-xl, .button-xxl
+   -------------------------------------------------------------------------- */
+
+.con-button {
+  background-color: transparent;
+  border: 2px solid var(--text-color);
+  border-radius: 16px;
+  color: var(--text-color);
+  cursor: pointer;
+  display: inline-block;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 16px;
+  padding: 5px 14px;
+  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.con-button:hover {
+  background-color: var(--color-black);
+  border-color: var(--color-black);
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+.con-button.button-l   { border-radius: 20px; font-size: 17px; line-height: 20px; padding: 7px 18px 8px; }
+.con-button.button-xl  { border-radius: 25px; font-size: 19px; line-height: 24px; padding: 10px 24px 8px; }
+.con-button.button-xxl { border-radius: 30px; font-size: 22px; line-height: 27px; padding: 14px 30px 15px; }
+.con-button.button-justified { display: block; width: 100%; text-align: center; }
+
+.con-button.blue {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-white);
+}
+.con-button.blue:hover {
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+}
+
+.con-button.fill {
+  background: var(--text-color);
+  border-color: var(--text-color);
+  color: var(--color-white);
+}
+.con-button.fill:hover { background: var(--color-black); border-color: var(--color-black); }
+
+.dark .con-button { border-color: var(--color-white); color: var(--color-white); }
+.dark .con-button:hover { background-color: var(--color-white); color: var(--color-black); }
+.dark .con-button.blue { border-color: var(--color-accent); color: var(--color-white); }
+.dark .con-button.fill {
+  background: var(--color-white);
+  border-color: var(--color-white);
+  color: var(--text-color);
+}
+
+.con-button[aria-disabled="true"],
+.con-button:disabled {
+  border-color: var(--color-gray-300);
+  background: var(--color-gray-200);
+  color: var(--color-gray-500);
+  cursor: default;
+  pointer-events: none;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  align-items: center;
+}
+.text-center .button-group { justify-content: center; }
+
+/* --------------------------------------------------------------------------
+   7. GLOBAL NAV
+   -------------------------------------------------------------------------- */
+
+.gnav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--global-height-nav);
+  background: var(--color-white);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+}
+.gnav-inner {
+  width: var(--grid-container-width);
+  max-width: 1200px;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-s);
+  width: 100%;
+  padding-inline: 24px;
+}
+@media (min-width: 1440px) { .gnav-inner { padding-inline: 0; } }
+
+.gnav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--text-color);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.gnav-brand:hover { text-decoration: none; color: var(--text-color); }
+
+/* Eboda wordmark tile. Swap in your own SVG mark if you draw one. */
+.gnav-mark {
+  width: 26px; height: 26px;
+  border-radius: 5px;
+  background: var(--color-brand-red);
+  display: grid; place-items: center;
+  color: #fff; font-size: 13px; font-weight: 700;
+}
+
+.gnav-links {
+  display: none;
+  list-style: none;
+  margin: 0; padding: 0;
+  gap: var(--spacing-s);
+  align-items: center;
+  flex: 1;
+}
+@media (min-width: 900px) { .gnav-links { display: flex; } }
+
+.gnav-links a {
+  color: var(--text-color);
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+  padding: 4px 0;
+}
+.gnav-links a:hover { color: var(--color-black); text-decoration: none; }
+.gnav-links a[aria-current="page"] { font-weight: 700; box-shadow: inset 0 -2px 0 var(--color-brand-red); }
+
+.gnav-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+.gnav-actions .con-button { font-size: 14px; }
+
+/* --------------------------------------------------------------------------
+   8. MARQUEE (hero)
+   .marquee.large  -> 560px min height
+   .marquee.small  -> 360px min height
+   .marquee.split  -> copy left, media right
+   -------------------------------------------------------------------------- */
+
+.marquee {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 360px;
+  padding-block: var(--spacing-xxl);
+  background-size: cover;
+  background-position: center;
+}
+.marquee.large { min-height: 560px; }
+
+.marquee-inner {
+  width: var(--grid-container-width);
+  max-width: 1200px;
+  margin-inline: auto;
+  position: relative;
+  z-index: 2;
+}
+.marquee-copy { max-width: 640px; }
+.marquee-copy > * + * { margin-top: var(--spacing-xs); }
+.marquee-copy .button-group { margin-top: var(--spacing-m); }
+
+.marquee.split .marquee-inner {
+  display: grid;
+  gap: var(--spacing-xl);
+  align-items: center;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 900px) {
+  .marquee.split .marquee-inner { grid-template-columns: 1fr 1fr; }
+}
+
+.marquee.center { text-align: center; }
+.marquee.center .marquee-copy { max-width: 800px; margin-inline: auto; }
+.marquee.center .button-group { justify-content: center; }
+
+/* Media slot — replace with your own <img>. Gradient stands in for artwork. */
+.media-frame {
+  aspect-ratio: var(--aspect-ratio-wide);
+  border-radius: 8px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #4a35c9 0%, #d43e6b 55%, #ff8a3d 100%);
+}
+.media-frame.square   { aspect-ratio: var(--aspect-ratio-square); }
+.media-frame.standard { aspect-ratio: var(--aspect-ratio-standard); }
+.media-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Scrim for text over photography */
+.marquee.has-image::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgb(0 0 0 / 65%) 0%, rgb(0 0 0 / 15%) 70%);
+  z-index: 1;
+}
+
+/* --------------------------------------------------------------------------
+   9. CARDS
+   -------------------------------------------------------------------------- */
+
+.card {
+  background: var(--color-white);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.card:hover { box-shadow: 0 4px 16px rgb(0 0 0 / 12%); }
+.card .media-frame { border-radius: 0; }
+.card-body {
+  padding: var(--spacing-s);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxs);
+  flex: 1;
+}
+.card-body .button-group { margin-top: auto; padding-top: var(--spacing-xs); }
+.card-eyebrow { color: var(--color-info-accent); }
+.card-text { color: var(--text-color-secondary); }
+
+/* Icon-led card (no image) */
+.card.icon-card { border: none; background: transparent; }
+.card.icon-card:hover { box-shadow: none; }
+.card.icon-card .card-body { padding: 0; }
+.card-icon {
+  width: var(--icon-size-m);
+  height: var(--icon-size-m);
+  border-radius: 8px;
+  background: var(--color-info-accent-light);
+  margin-bottom: var(--spacing-xxs);
+}
+
+/* Pricing / plan card */
+.plan-card {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: var(--spacing-s);
+  background: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxs);
+  position: relative;
+}
+.plan-card.featured { border-color: var(--color-accent); border-width: 2px; }
+.plan-badge {
+  position: absolute;
+  top: -11px; left: var(--spacing-s);
+  background: var(--color-info-accent);
+  color: #fff;
+  border-radius: 11px;
+  padding: 3px 10px;
+}
+.plan-price { display: flex; align-items: baseline; gap: 6px; margin-block: var(--spacing-xxs); }
+.plan-features { list-style: none; margin: var(--spacing-xs) 0 0; padding: 0; display: grid; gap: 10px; }
+.plan-features li { position: relative; padding-left: 24px; font-size: var(--type-body-xs-size); }
+.plan-features li::before {
+  content: "";
+  position: absolute; left: 0; top: 6px;
+  width: 12px; height: 7px;
+  border-left: 2px solid var(--color-accent);
+  border-bottom: 2px solid var(--color-accent);
+  transform: rotate(-45deg);
+}
+.plan-card .button-group { margin-top: auto; padding-top: var(--spacing-s); }
+
+/* --------------------------------------------------------------------------
+   10. TEXT + MEDIA BLOCK
+   -------------------------------------------------------------------------- */
+
+.media-block .container {
+  display: grid;
+  gap: var(--spacing-l);
+  align-items: center;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 900px) {
+  .media-block .container { grid-template-columns: 1fr 1fr; }
+  .media-block.reverse .media-frame { order: -1; }
+}
+.media-block .copy > * + * { margin-top: var(--spacing-xs); }
+.media-block .copy .button-group { margin-top: var(--spacing-s); }
+
+/* --------------------------------------------------------------------------
+   11. ACCORDION (FAQ)
+   -------------------------------------------------------------------------- */
+
+.accordion { border-top: 1px solid var(--border-color); }
+.accordion details { border-bottom: 1px solid var(--border-color); }
+.accordion summary {
+  cursor: pointer;
+  list-style: none;
+  padding: var(--spacing-xs) 40px var(--spacing-xs) 0;
+  font-size: var(--type-heading-xs-size);
+  font-weight: 700;
+  position: relative;
+}
+.accordion summary::-webkit-details-marker { display: none; }
+.accordion summary::after {
+  content: "";
+  position: absolute; right: 8px; top: 50%;
+  width: 9px; height: 9px;
+  border-right: 2px solid var(--text-color);
+  border-bottom: 2px solid var(--text-color);
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform 0.2s ease;
+}
+.accordion details[open] summary::after { transform: translateY(-20%) rotate(-135deg); }
+.accordion .accordion-body {
+  padding-bottom: var(--spacing-xs);
+  color: var(--text-color-secondary);
+  max-width: 720px;
+}
+
+/* --------------------------------------------------------------------------
+   12. TABLE
+   -------------------------------------------------------------------------- */
+
+.data-table { width: 100%; border-collapse: collapse; font-size: var(--type-body-xs-size); }
+.data-table th, .data-table td {
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+.data-table thead th {
+  font-size: var(--type-detail-m-size);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-color-secondary);
+  border-bottom-width: 2px;
+}
+.data-table tbody tr:hover { background: var(--color-gray-100); }
+
+/* --------------------------------------------------------------------------
+   13. BADGES + NOTICES
+   -------------------------------------------------------------------------- */
+
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 11px;
+  background: var(--color-info-accent-light);
+  color: var(--color-info-accent-down);
+  font-size: var(--type-body-xxs-size);
+  font-weight: 700;
+}
+.badge.solid { background: var(--color-info-accent); color: #fff; }
+
+.notice {
+  border-left: 3px solid var(--color-info-accent);
+  background: var(--color-gray-100);
+  padding: var(--spacing-xs);
+  border-radius: 0 6px 6px 0;
+}
+
+/* --------------------------------------------------------------------------
+   14. FOOTER
+   -------------------------------------------------------------------------- */
+
+.gfooter {
+  background: var(--color-white);
+  border-top: 1px solid var(--border-color);
+  padding-top: var(--spacing-xl);
+  padding-bottom: var(--spacing-s);
+  font-size: var(--type-body-xs-size);
+}
+.gfooter .container { display: grid; gap: var(--spacing-l); }
+.footer-columns {
+  display: grid;
+  gap: var(--spacing-m);
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 900px) { .footer-columns { grid-template-columns: repeat(4, 1fr); } }
+.footer-columns h3 {
+  font-size: var(--type-body-xs-size);
+  margin-bottom: var(--spacing-xxs);
+}
+.footer-columns ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.footer-columns a { color: var(--text-color-secondary); text-decoration: none; }
+.footer-columns a:hover { color: var(--text-color); text-decoration: underline; }
+
+.footer-legal {
+  border-top: 1px solid var(--border-color);
+  padding-top: var(--spacing-xs);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  align-items: center;
+  color: var(--text-color-secondary);
+  font-size: var(--type-body-xxs-size);
+}
+.footer-legal a { color: var(--text-color-secondary); }
+
+/* --------------------------------------------------------------------------
+   15. UTILITIES
+   -------------------------------------------------------------------------- */
+
+.mt-xxs { margin-top: var(--spacing-xxs); }
+.mt-xs  { margin-top: var(--spacing-xs); }
+.mt-s   { margin-top: var(--spacing-s); }
+.mt-m   { margin-top: var(--spacing-m); }
+.mt-l   { margin-top: var(--spacing-l); }
+.muted  { color: var(--text-color-secondary); }
+.dark .muted { color: var(--color-gray-300); }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
