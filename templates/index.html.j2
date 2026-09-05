@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="eboda-web-toolkit.css">
 <style>
+
   /* ------------------------------------------------------------------
      Additions to the toolkit. Everything interactive here is CSS only —
      hidden radio inputs plus sibling selectors, and <details> for the
@@ -141,12 +142,132 @@
   .table-scroll { overflow-x:auto; }
   .table-scroll table { min-width:900px; }
 
-{% for t in threads %}
+  {% for t in threads %}
   #probe-{{ t.id }}:checked ~ .ask-grid .thread-{{ t.id }} { display:block; }
   #probe-{{ t.id }}:checked ~ .chips .chip[for="probe-{{ t.id }}"] {
     background:#EDEBFC; border-color:#C7C0F5; font-weight:700; }
-{% endfor %}
+  {% endfor %}
   .thread { display:none; }
+
+  /* ---- step rail ---- */
+  .step-rail { display:none; }
+  @media (min-width:1560px) {
+    .step-rail { display:block; position:fixed; left:calc(50% - 770px); top:120px; width:150px; z-index:90; }
+    .step-rail ol { list-style:none; margin:0; padding:0; display:grid; gap:2px; }
+    .step-rail a { display:flex; gap:9px; align-items:baseline; padding:5px 8px; border-radius:6px;
+      font-size:12px; line-height:1.3; color:var(--color-gray-600); text-decoration:none;
+      border-left:2px solid var(--color-gray-200); }
+    .step-rail a:hover { background:var(--color-gray-100); text-decoration:none; color:var(--text-color); }
+    .step-rail a .rn { font-weight:700; font-variant-numeric:tabular-nums; color:var(--color-gray-500); }
+    .step-rail a.on { color:var(--text-color); font-weight:700; border-left-color:var(--color-brand-red); background:#fff; }
+    .step-rail a.on .rn { color:var(--color-brand-red); }
+    .step-rail .rail-cap { font-size:10px; letter-spacing:.08em; text-transform:uppercase; font-weight:700;
+      color:var(--color-gray-500); margin:0 0 8px 10px; }
+  }
+  /* ---- identity strip + step chips ---- */
+  .ident { font-size:12px; letter-spacing:.04em; text-transform:uppercase; font-weight:700;
+    color:var(--color-gray-600); margin:0 0 var(--spacing-xs); }
+  .ident span { color:var(--color-gray-400); margin:0 6px; }
+  .steps-strip { display:flex; gap:8px; overflow-x:auto; padding-bottom:6px; }
+  .steps-strip a { flex:0 0 auto; display:flex; gap:8px; align-items:baseline; text-decoration:none;
+    border:1px solid var(--border-color); border-radius:20px; padding:7px 14px; background:#fff;
+    color:var(--text-color); font-size:13px; font-weight:600; }
+  .steps-strip a:hover { border-color:var(--color-gray-400); text-decoration:none; background:var(--color-gray-100); }
+  .steps-strip a .sn { width:17px; height:17px; border-radius:50%; background:var(--text-color); color:#fff;
+    font-size:10px; font-weight:700; display:inline-grid; place-items:center; }
+  /* ---- step headings ---- */
+  .step-eyebrow { display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+  .step-eyebrow .num { width:26px; height:26px; border-radius:50%; background:var(--text-color); color:#fff;
+    font-size:13px; font-weight:800; display:grid; place-items:center; flex:0 0 auto; }
+  .step-eyebrow .of { font-size:11px; letter-spacing:.09em; text-transform:uppercase; font-weight:700;
+    color:var(--color-gray-500); }
+  section[id] { scroll-margin-top:80px; }
+  /* ---- conditions box ---- */
+  .conditions { font-family:var(--fixed-font-family); font-size:12px; line-height:1.9;
+    background:var(--color-gray-100); border:1px solid var(--border-color); border-radius:8px;
+    padding:14px 16px; color:var(--color-gray-700); }
+  .conditions b { display:inline-block; min-width:120px; color:var(--text-color); font-weight:700; }
+  /* ---- evidence chips ---- */
+  .ev { display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-top:auto; padding-top:var(--spacing-xs); }
+  .ev a { font-family:var(--fixed-font-family); font-size:11px; font-weight:700; padding:3px 8px;
+    border-radius:5px; background:var(--color-info-accent-light); color:var(--color-info-accent-down);
+    text-decoration:none; }
+  .ev a:hover { background:var(--color-info-accent); color:#fff; text-decoration:none; }
+  /* ---- impact / effort matrix ---- */
+  .matrix { display:grid; grid-template-columns:64px repeat(3,1fr); gap:6px; }
+  .matrix .lab { font-size:11px; letter-spacing:.06em; text-transform:uppercase; font-weight:700;
+    color:var(--color-gray-500); display:flex; align-items:center; }
+  .matrix .cell { border:1px solid var(--border-color); border-radius:8px; min-height:96px; padding:10px;
+    background:#fff; }
+  .matrix .cell.pick { border-color:var(--color-brand-red); box-shadow:0 0 0 3px #eb100014; }
+  .matrix .dot { display:flex; gap:8px; align-items:flex-start; font-size:13px; line-height:1.35;
+    font-weight:600; color:var(--text-color); text-decoration:none; }
+  .matrix .dot:hover { text-decoration:none; color:#000; }
+  .matrix .dot::before { content:""; width:10px; height:10px; border-radius:50%; background:var(--color-info-accent);
+    flex:0 0 auto; margin-top:4px; }
+  .matrix .cell.pick .dot::before { background:var(--color-brand-red); }
+  .matrix .star { color:var(--color-brand-red); font-weight:800; }
+  .matrix-list { display:none; }
+  @media (max-width:820px) { .matrix { display:none; } .matrix-list { display:block; } }
+  /* ---- pipeline ---- */
+  .pipe { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+  .pipe .node { border:1px solid var(--border-color); border-radius:8px; padding:8px 12px; background:#fff;
+    font-size:13px; font-weight:600; }
+  .pipe .node.judge { border-color:var(--color-brand-red); border-width:2px; background:#fff6f5; }
+  .pipe .node.ship { background:var(--color-gray-100); font-weight:700; }
+  .pipe .arrow { color:var(--color-gray-400); font-weight:700; }
+  .pipe-row + .pipe-row { margin-top:var(--spacing-s); }
+  .pipe-tag { font-size:11px; letter-spacing:.08em; text-transform:uppercase; font-weight:700;
+    color:var(--color-gray-500); margin-bottom:8px; }
+  .gate-steps { counter-reset:g; display:grid; gap:var(--spacing-xs); }
+  .gate-steps > div { display:flex; gap:12px; }
+  .gate-steps > div::before { counter-increment:g; content:counter(g); flex:0 0 auto; width:24px; height:24px;
+    border-radius:50%; background:var(--color-gray-200); color:var(--color-gray-700); font-size:12px;
+    font-weight:800; display:grid; place-items:center; margin-top:2px; }
+  /* ---- before / after ---- */
+  .ba { display:grid; gap:var(--spacing-s); grid-template-columns:1fr; }
+  @media (min-width:1000px) { .ba { grid-template-columns:1fr 1fr; } }
+  .ba-card { border:1px solid var(--border-color); border-radius:12px; background:#fff; padding:16px;
+    box-shadow:0 6px 20px rgba(0,0,0,.05); }
+  .ba-card .srcs-flat { list-style:none; margin:12px 0 0; padding:12px 0 0; border-top:1px solid var(--border-color);
+    display:flex; flex-wrap:wrap; gap:6px; }
+  .ba-card .srcs-flat li { font-size:11px; color:var(--color-gray-600); border:1px solid var(--border-color);
+    border-radius:5px; padding:2px 7px; }
+  /* ---- results gate tiles / data room ---- */
+  .notice.loud { border-left-width:4px; border-left-color:var(--color-brand-red); background:#fff;
+    border:1px solid var(--border-color); border-left:4px solid var(--color-brand-red); padding:var(--spacing-s); }
+  .problem { border:2px solid var(--text-color); border-radius:12px; padding:var(--spacing-s); background:#fff; }
+  /* ---- audit summary + expander ---- */
+  .sumbar { display:flex; flex-wrap:wrap; gap:8px; }
+  .sumbar .chipcount { display:flex; gap:8px; align-items:baseline; border:1px solid var(--border-color);
+    border-radius:9px; padding:8px 12px; background:#fff; font-size:12px; color:var(--color-gray-600); }
+  .sumbar .chipcount b { font-size:15px; color:var(--text-color); font-variant-numeric:tabular-nums; }
+  .audit-x > summary { cursor:pointer; list-style:none; border:1px solid var(--color-gray-400); border-radius:10px;
+    padding:14px 18px; background:#fff; display:flex; gap:12px; align-items:baseline; }
+  .audit-x > summary::-webkit-details-marker { display:none; }
+  .audit-x > summary:hover { background:var(--color-gray-100); }
+  .audit-x > summary .chev { margin-left:auto; transition:transform .15s; color:var(--color-gray-500); font-weight:700; }
+  .audit-x[open] > summary .chev { transform:rotate(90deg); }
+  .filters { display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin:var(--spacing-s) 0 var(--spacing-xs); }
+  .filters button { font-family:inherit; font-size:12px; font-weight:700; cursor:pointer; border-radius:16px;
+    border:1px solid var(--color-gray-300); background:#fff; color:var(--color-gray-700); padding:5px 12px; }
+  .filters button:hover { border-color:var(--color-gray-500); }
+  .filters button.on { background:var(--text-color); border-color:var(--text-color); color:#fff; }
+  .filters .live { margin-left:auto; font-size:12px; font-weight:400; color:var(--color-gray-600); }
+  .audit-scroll { max-height:65vh; overflow:auto; border:1px solid var(--border-color); border-radius:8px; }
+  .audit-scroll table { min-width:900px; font-size:13px; }
+  .audit-scroll thead th { position:sticky; top:0; background:#fff; z-index:2; box-shadow:0 1px 0 var(--border-color); }
+  .audit-scroll td.clamp { max-width:300px; }
+  .audit-scroll tr:not(.open) td.clamp > span { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
+    overflow:hidden; }
+  .audit-scroll tbody tr { cursor:pointer; }
+  .audit-scroll tr.hidden { display:none; }
+  .collapse-row { display:flex; justify-content:center; padding:var(--spacing-xs) 0 0; }
+  .whatnotice p.thread { display:none; border-left:2px solid var(--color-gray-300); padding-left:12px;
+    margin:0 0 var(--spacing-s); }
+  {% for t in threads %}
+  #probe-{{ t.id }}:checked ~ .whatnotice .thread-{{ t.id }} { display:block; }
+  {% endfor %}
 </style>
 </head>
 <body>
@@ -155,105 +276,278 @@
   <div class="gnav-inner">
     <a class="gnav-brand" href="#top"><span class="gnav-mark">E</span> Eboda</a>
     <ul class="gnav-links">
-      <li><a href="#numbers">Numbers</a></li>
-      <li><a href="#ask">Ask</a></li>
-      <li><a href="#audit">Full audit</a></li>
-      <li><a href="#method">Method</a></li>
+      <li><a href="#why">1. Why hire?</a></li>
+      <li><a href="#test">2. Testing</a></li>
+      <li><a href="#findings">3. Problems</a></li>
+      <li><a href="#prioritize">4. Prioritization</a></li>
+      <li><a href="#fix">5. Solution</a></li>
+      <li><a href="#ask">6. Validation</a></li>
+      <li><a href="#method">Data &amp; method</a></li>
     </ul>
-    <div class="gnav-actions">
-      <span class="badge">Prototype</span>
-    </div>
+    <div class="gnav-actions"><span class="badge">Prototype</span></div>
   </div>
 </header>
 
+<nav class="step-rail" aria-label="Steps">
+  <p class="rail-cap">The path</p>
+  <ol>
+    <li><a href="#why" data-rail="why"><span class="rn">1</span><span>Why this role exists</span></a></li>
+    <li><a href="#test" data-rail="test"><span class="rn">2</span><span>Test the thing</span></a></li>
+    <li><a href="#findings" data-rail="findings"><span class="rn">3</span><span>Read the results</span></a></li>
+    <li><a href="#prioritize" data-rail="prioritize"><span class="rn">4</span><span>Pick one problem</span></a></li>
+    <li><a href="#fix" data-rail="fix"><span class="rn">5</span><span>Build the fix</span></a></li>
+    <li><a href="#ask" data-rail="ask"><span class="rn">6</span><span>Check it worked</span></a></li>
+  </ol>
+</nav>
+
 <main id="top">
 
-<!-- ====================== 1. HEADLINE NUMBERS ====================== -->
+<!-- ====================== HERO — THE FINDING ====================== -->
 <section class="section bg-white" id="numbers">
   <div class="container">
+    <p class="ident">A product exercise for Adobe’s Senior PM, adobe.com AI<span>·</span>Tanner Henderson<span>·</span>Measured {{ probed_on }}<span>·</span>Not affiliated with Adobe</p>
     <p class="detail-l">Citation grounding audit</p>
-    <h1 class="heading-xxl">Adobe's Brand Concierge cites {{ n_pages }} pages. {{ pct(1 - baseline.grounding_rate) }} of its claims aren't supported by any of them.</h1>
+    <h1 class="heading-xxl">Adobe’s Brand Concierge cites {{ n_pages }} pages across {{ n_probes }} prompts. {{ pct(1 - baseline.grounding_rate) }} of its claims aren’t supported by any of them.</h1>
     <p class="body-xl measure mt-m">
-      {{ n_probes }} prompts were run against Adobe.com's Brand Concierge beta and every factual
-      sentence was scored against the pages it cited. The same corpus was then wired to a
-      retrieval pipeline that cites per sentence and verifies each claim before answering.
+      I ran {{ n_probes }} prompts through the Ask beta on adobe.com, kept everything it said and
+      every page it cited, then scored each factual sentence against the pages behind it.
+      {{ pct(1 - baseline.grounding_rate) }} of what it told me wasn’t in any source it pointed at.
+      This page is the whole path from “why would Adobe hire a PM for this?” to a working fix —
+      six steps, all the data underneath.
     </p>
 
     <div class="grid four-up mt-l">
-      <div class="stat">
-        <span class="n warn">{{ pct(baseline.grounding_rate) }}</span>
-        <p class="detail-m">Adobe grounding rate</p>
-        <p class="body-xs muted">{{ baseline.supported + baseline.partially }} of {{ baseline.claims }} claims supported by a cited page</p>
-      </div>
-      <div class="stat">
-        <span class="n win">{{ pct(eboda.grounding_rate) }}</span>
-        <p class="detail-m">Eboda grounding rate</p>
-        <p class="body-xs muted">{{ eboda.supported + eboda.partially }} of {{ eboda.claims }} generated sentences</p>
-      </div>
-      <div class="stat">
-        <span class="n">{{ gate.answers_abstained }}</span>
-        <p class="detail-m">Answers withheld</p>
-        <p class="body-xs muted">of {{ n_probes_cited }} — the cost of refusing to guess</p>
-      </div>
-      <div class="stat">
-        <span class="n">{{ human_agreement_display }}</span>
-        <p class="detail-m">Human agreement</p>
-        <p class="body-xs muted">exact-match, {{ n_human_labels }} hand-labelled pairs</p>
-      </div>
+      <div class="stat"><span class="n warn">{{ pct(baseline.grounding_rate) }}</span><p class="detail-m">Adobe claims backed by a page it cited</p><p class="body-xs muted">{{ baseline.supported + baseline.partially }} of {{ baseline.claims }} judged claims</p></div>
+      <div class="stat"><span class="n win">{{ pct(eboda.grounding_rate) }}</span><p class="detail-m">My version, same corpus</p><p class="body-xs muted">{{ eboda.supported + eboda.partially }} of {{ eboda.claims }} judged sentences</p></div>
+      <div class="stat"><span class="n">{{ gate.answers_abstained }} of {{ gate.answers_measured }}</span><p class="detail-m">Answers mine refused to give rather than guess</p><p class="body-xs muted">of the {{ gate.answers_measured }} probes with a corpus to query</p></div>
+      <div class="stat"><span class="n">{{ human_agreement_display }}</span><p class="detail-m">Agreement between the AI judge and me</p><p class="body-xs muted">blind sample of {{ n_human_labels }} pairs — <a href="#trust">below my own bar, explained</a></p></div>
     </div>
 
-    <div class="grid two-up mt-l">
-      <div>
-        <h2 class="heading-xs">Where Adobe's claims land</h2>
-        <table class="data-table mt-xs">
-          <thead><tr><th>Verdict</th><th>Claims</th><th>Share</th></tr></thead>
-          <tbody>
-            <tr><td><span class="verdict supported">Supported</span></td><td>{{ baseline.supported }}</td><td>{{ pct(baseline.supported / baseline.claims) }}</td></tr>
-            <tr><td><span class="verdict partially">Partially supported</span></td><td>{{ baseline.partially }}</td><td>{{ pct(baseline.partially / baseline.claims) }}</td></tr>
-            <tr><td><span class="verdict unsupported">Unsupported</span></td><td>{{ baseline.unsupported }}</td><td>{{ pct(baseline.unsupported / baseline.claims) }}</td></tr>
-            <tr><td><span class="verdict unrelated">Source unrelated</span></td><td>{{ baseline.unrelated }}</td><td>{{ pct(baseline.unrelated / baseline.claims) }}</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div>
-        <h2 class="heading-xs">Where Eboda's sentences land</h2>
-        <table class="data-table mt-xs">
-          <thead><tr><th>Verdict</th><th>Sentences</th><th>Share</th></tr></thead>
-          <tbody>
-            <tr><td><span class="verdict supported">Supported</span></td><td>{{ eboda.supported }}</td><td>{{ pct(eboda.supported / eboda.claims) }}</td></tr>
-            <tr><td><span class="verdict partially">Partially supported</span></td><td>{{ eboda.partially }}</td><td>{{ pct(eboda.partially / eboda.claims) }}</td></tr>
-            <tr><td><span class="verdict unsupported">Unsupported</span></td><td>{{ eboda.unsupported }}</td><td>{{ pct(eboda.unsupported / eboda.claims) }}</td></tr>
-            <tr><td><span class="verdict unrelated">Source unrelated</span></td><td>{{ eboda.unrelated }}</td><td>{{ pct(eboda.unrelated / eboda.claims) }}</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="notice mt-l measure">
-      <p class="body-s"><strong>Read the second number carefully.</strong> Eboda writes its sentences
-      from the passages it cites, so a high rate is partly structural. The honest comparison is the
-      pair: it grounds {{ pct(eboda.grounding_rate) }} of what it writes and declines
-      {{ gate.answers_abstained }} of {{ n_probes_cited }} questions outright, where Adobe answers
-      nearly all of them at {{ pct(baseline.grounding_rate) }}.</p>
+    <div class="steps-strip mt-l">
+      <a href="#why"><span class="sn">1</span>Why this role</a>
+      <a href="#test"><span class="sn">2</span>{{ n_probes }} probes</a>
+      <a href="#findings"><span class="sn">3</span>Three problems</a>
+      <a href="#prioritize"><span class="sn">4</span>Impact vs effort</a>
+      <a href="#fix"><span class="sn">5</span>Verification gate</a>
+      <a href="#ask"><span class="sn">6</span>Both bots, same questions</a>
     </div>
   </div>
 </section>
 
-<!-- ====================== 2. THE ASK MODAL ====================== -->
-<section class="section bg-gray" id="ask">
+<!-- ====================== STEP 1 — WHY I LOOKED HERE ====================== -->
+<section class="section bg-gray" id="why">
   <div class="container">
-    <p class="detail-l">The interface</p>
-    <h2 class="heading-l">Same question, both assistants</h2>
-    <p class="body-l measure mt-xs">
-      Adobe's shipped concierge on the left, the verified pipeline on the right.
-      <strong>Click any underlined sentence</strong> to see the exact source text behind it and how
-      the judge scored it. Pick a different question from the suggestions below.
-    </p>
+    <div class="step-eyebrow"><span class="num">1</span><span class="of">Step 1 of 6 · Why this role exists</span></div>
+    <h2 class="heading-l">Why would Adobe hire a PM for this?</h2>
+    <p class="body-l measure mt-xs">I started with the job description, not the product. If Adobe is opening a PM role pointed at adobe.com and AI, something on that site is either costing them money or about to. I wrote down what I thought those things might be before I touched anything, so I couldn’t quietly rewrite the question later to match whatever I found.</p>
+    <div class="grid three-up mt-l">
+      <div class="card"><div class="card-body"><h3 class="heading-xs">A wrong answer here costs real money</h3><p class="body-xs muted">On adobe.com, a hallucinated price, plan, or commitment term isn’t an embarrassing screenshot. It’s refunds, support volume, and potential regulatory exposure. The blast radius is different than it is on a marketing site.</p></div></div>
+      <div class="card"><div class="card-body"><h3 class="heading-xs">The science may be ahead of the product thinking</h3><p class="body-xs muted">The role is specific about RAG, agentic orchestration, prompting, fine-tuning, and model selection. That specificity suggests the capability already exists. What’s missing is someone deciding which customer problems to point it at.</p></div></div>
+      <div class="card"><div class="card-body"><h3 class="heading-xs">adobe.com is the proof for what Adobe sells</h3><p class="body-xs muted">Adobe sells AI-powered experience software to other companies. If its own site isn’t a showcase for AEM, Target, and AEP, that weakens the Experience Cloud story. A beta assistant on the homepage is Adobe making exactly that argument in public.</p></div></div>
+    </div>
+    <div class="notice mt-l measure"><p class="body-s"><strong>I bet on the Ask beta.</strong> It’s the newest AI surface on adobe.com, it’s labelled beta, and it’s built on Brand Concierge — Adobe’s own product. If a PM is being hired for this area, it’s most likely for this. Everything after this point is me testing that thing rather than speculating about it.</p></div>
+  </div>
+</section>
+
+<!-- ====================== STEP 2 — HOW I GOT DATA ====================== -->
+<section class="section bg-white" id="test">
+  <div class="container">
+    <div class="step-eyebrow"><span class="num">2</span><span class="of">Step 2 of 6 · Test the thing</span></div>
+    <h2 class="heading-l">I tested it for two hours and wrote down everything</h2>
+    <p class="body-l measure mt-xs">I couldn’t reason my way to the problems from outside, so I built a probe set: {{ n_probes }} prompts across {{ probe_stats.categories | length }} categories, each written to test a specific way an assistant like this fails, each tagged with the persona it would hurt. I wrote a hypothesis for every prompt before running it. Then I ran them, logged the full response, every source it cited, and the latency, and marked each one Pass, Partial, or Fail.</p>
+
+    <div class="grid two-up mt-l">
+      <div>
+        <h3 class="heading-xs">The probe set</h3>
+        <table class="data-table mt-xs">
+          <thead><tr><th>Category</th><th>Prompts</th><th>What it’s checking</th></tr></thead>
+          <tbody>
+            {% for c in probe_stats.categories %}
+            <tr><td><strong>{{ c.name }}</strong></td><td>{{ c.count }}</td><td class="muted">{{ c.checks }}</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="stack">
+        <div>
+          <h3 class="heading-xs">Conditions</h3>
+          <div class="conditions mt-xs">
+            <div><b>Date</b>{{ probed_on_long }}</div>
+            <div><b>Browser</b>Chrome 152.0.7977.64, incognito</div>
+            <div><b>Network</b>Wired, 1 Gbps</div>
+            <div><b>Locale</b>Lehi, UT</div>
+            <div><b>Entry point</b>adobe.com</div>
+            <div><b>Timing</b>DevTools — TTFT = waiting for server response; Full = content download</div>
+            <div><b>Latency</b>{{ probe_stats.n_timed_subset }}-prompt timed subset run 3× each; remainder single-run</div>
+          </div>
+        </div>
+        <div>
+          <h3 class="heading-xs">Failure modes across {{ n_probes }} prompts</h3>
+          <table class="data-table mt-xs">
+            <thead><tr><th>Mode</th><th>Count</th></tr></thead>
+            <tbody>
+              {% for mode, n in probe_stats.failure_modes %}
+              <tr><td>{{ mode }}</td><td>{{ n }}</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid four-up mt-l">
+      {% for verdict, n in probe_stats.verdicts %}
+      <div class="stat"><span class="n">{{ n }}</span><p class="detail-m">{{ verdict }}</p></div>
+      {% endfor %}
+      <div class="stat"><span class="n">{{ "%.2f"|format(probe_stats.ttft_median) }}s</span><p class="detail-m">Median TTFT</p><p class="body-xs muted">{{ "%.2f"|format(probe_stats.full_median) }}s median full response · across all {{ n_probes }} prompts</p></div>
+    </div>
+
+    <p class="body-l measure mt-l"><strong>{{ probe_stats.pass_n }} of {{ n_probes }} passed.</strong> That’s the part worth saying out loud — this thing mostly works, and the interesting problems are in the other {{ n_probes - probe_stats.pass_n }} and in what the passes were quietly doing wrong underneath.</p>
+    <div class="button-group mt-s"><a class="con-button" href="https://docs.google.com/spreadsheets/d/1cU51sa0B0CruG032d20rDwjcXpleIgU9zfFougnz0wM">Full probe log — {{ n_probes }} prompts, responses, sources, latency</a></div>
+  </div>
+</section>
+
+<!-- ====================== STEP 3 — WHAT THE DATA SAID ====================== -->
+<section class="section bg-gray" id="findings">
+  <div class="container">
+    <div class="step-eyebrow"><span class="num">3</span><span class="of">Step 3 of 6 · Read the results</span></div>
+    <h2 class="heading-l">Three problems, in the order I noticed them</h2>
+    <p class="body-l measure mt-xs">A verdict of Pass only means the visitor got what they came for. It doesn’t mean the answer was safe. When I went back through the log looking at <em>how</em> the answers were built rather than whether they were right, three patterns showed up.</p>
+    <div class="grid three-up mt-l">
+      <div class="card"><div class="card-body">
+        <h3 class="heading-xs">Finding 1 — Same question, different answer</h3>
+        <p class="body-xs muted">Ask the same thing twice and you can get a different answer, a different number of sources, or entirely different sources. B2 (cancellation terms) cited one page on runs 1 and 3 and a different page on run 2. D1 upsold Acrobat Pro on run 1, gave a straight free answer on run 2, and pushed a trial on run 3. A2 returned six sources, then five, then two.</p>
+        <p class="body-xs"><strong>Why it matters:</strong> You can’t QA, support, or take responsibility for an answer that isn’t stable.</p>
+        <div class="ev"><span class="body-xxs muted">Evidence</span><a href="#audit" data-probe-link="A2">A2</a><a href="#audit" data-probe-link="B2">B2</a><a href="#audit" data-probe-link="D1">D1</a><a href="#audit" data-probe-link="D3">D3</a><a href="#audit" data-probe-link="F5">F5</a></div>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <h3 class="heading-xs">Finding 2 — The sources don’t support the answer</h3>
+        <p class="body-xs muted">Sources are attached at the bottom of the whole response, not to the sentence they came from, and a lot of them are only loosely related. A2 answered a Premiere Pro question citing Premiere Rush, Premiere Elements and After Effects pages. B5 answered a renewal-pricing question with a generic pricing page — the actual policy was one more click into the terms. H3 sent a university buyer to a generic special-offers page when a university page exists.</p>
+        <p class="body-xs"><strong>Why it matters:</strong> A citation nobody can check is decoration, not evidence.</p>
+        <div class="ev"><span class="body-xxs muted">Evidence</span><a href="#audit" data-probe-link="A2">A2</a><a href="#audit" data-probe-link="B5">B5</a><a href="#audit" data-probe-link="H3">H3</a><a href="#audit" data-probe-link="E3">E3</a><a href="#audit" data-probe-link="I2">I2</a></div>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <h3 class="heading-xs">Finding 3 — The guardrail can’t tell a competitor question from a purchase question</h3>
+        <p class="body-xs muted">“What else is out there besides Adobe?” and “Why should I choose Adobe over other options?” both hit the same refusal. The second one is Adobe being asked for its own pitch. Meanwhile “I’m switching from Canva” — which names a competitor — answered fine.</p>
+        <p class="body-xs"><strong>Why it matters:</strong> The refusal fires on the word, not the intent, and it’s firing on people who are trying to buy.</p>
+        <div class="ev"><span class="body-xxs muted">Evidence</span><a href="#audit" data-probe-link="F1">F1</a><a href="#audit" data-probe-link="F2">F2</a><a href="#audit" data-probe-link="F3">F3</a><a href="#audit" data-probe-link="F5">F5</a></div>
+      </div></div>
+    </div>
+    <p class="body-xs muted mt-s">Evidence chips open the full audit table filtered to that probe.</p>
+  </div>
+</section>
+
+<!-- ====================== STEP 4 — PICKING ONE ====================== -->
+<section class="section bg-white" id="prioritize">
+  <div class="container">
+    <div class="step-eyebrow"><span class="num">4</span><span class="of">Step 4 of 6 · Pick one problem</span></div>
+    <h2 class="heading-l">Impact against effort, and the one I could actually finish</h2>
+    <p class="body-l measure mt-xs">Three real problems, one of me, and a job posting with a close date. I plotted them on impact against effort and picked the one where I could put something working in front of you rather than describe it.</p>
+    <div class="matrix mt-l">
+      <div class="lab"></div><div class="lab">Low effort</div><div class="lab">Med effort</div><div class="lab">High effort</div>
+      <div class="lab">High impact</div>
+      <div class="cell pick"><a class="dot" href="#findings">Sources don’t support the answer <span class="star">★ chosen</span></a></div>
+      <div class="cell"></div>
+      <div class="cell"><a class="dot" href="#findings">Same question, different answer</a></div>
+      <div class="lab">Med impact</div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+      <div class="lab">Low impact</div>
+      <div class="cell"><a class="dot" href="#findings">Guardrail too blunt</a></div>
+      <div class="cell"></div><div class="cell"></div>
+    </div>
+    <ol class="matrix-list body-s mt-s">
+      <li><strong>High impact, low effort — sources don’t support the answer.</strong> Chosen.</li>
+      <li><strong>High impact, high effort — same question, different answer.</strong> Needs someone inside retrieval.</li>
+      <li><strong>Low impact, low effort — guardrail too blunt.</strong> Worth fixing, not worth leading with.</li>
+    </ol>
+    <div class="notice mt-l measure"><p class="body-s"><strong>Why not the bigger one.</strong> Non-determinism is the higher-impact problem and I’d want it on the roadmap. But fixing it means getting into retrieval, temperature, and caching inside a system I can’t see. Grounding I can fix from the outside, and a fix that ships beats a fix that’s described.</p></div>
+    <div class="problem mt-l measure"><p class="detail-m">The problem</p><p class="body-l mt-xxs">Sources are generic and don’t always directly support the response. Best case, this costs users confidence in the answers. Worst case, the AI is misusing sources and giving incorrect information, leading to misinformed decisions and unhappy customers.</p></div>
+  </div>
+</section>
+
+<!-- ====================== STEP 5 — THE FIX ====================== -->
+<section class="section bg-gray" id="fix">
+  <div class="container">
+    <div class="step-eyebrow"><span class="num">5</span><span class="of">Step 5 of 6 · Build the fix</span></div>
+    <h2 class="heading-l">A verification gate, and citations you can check</h2>
+    <p class="body-l measure mt-xs">The fix is two things that only work together. One is a step in the pipeline that checks each sentence against the source it claims. The other is an interface change that puts the evidence where the reader can see it. Either one alone doesn’t do much — a checker with nothing visible is invisible, and inline citations nobody verified are just tidier decoration.</p>
+
+    <h3 class="heading-s mt-l">5a · The workflow</h3>
+    <div class="mt-s">
+      <div class="pipe-row">
+        <p class="pipe-tag">Adobe, as shipped</p>
+        <div class="pipe">
+          <span class="node">Question</span><span class="arrow">→</span>
+          <span class="node">Retrieve</span><span class="arrow">→</span>
+          <span class="node">Generate</span><span class="arrow">→</span>
+          <span class="node">Attach sources to the whole answer</span><span class="arrow">→</span>
+          <span class="node ship">Ship</span>
+        </div>
+      </div>
+      <div class="pipe-row">
+        <p class="pipe-tag">Mine</p>
+        <div class="pipe">
+          <span class="node">Question</span><span class="arrow">→</span>
+          <span class="node">Retrieve</span><span class="arrow">→</span>
+          <span class="node">Generate, one citation per sentence</span><span class="arrow">→</span>
+          <span class="node judge">Judge — each sentence vs its own source</span><span class="arrow">→</span>
+          <span class="node">Keep / drop / abstain</span><span class="arrow">→</span>
+          <span class="node ship">Ship</span>
+        </div>
+      </div>
+    </div>
+    <div class="gate-steps mt-l">
+      <div><p class="body-s"><strong>Generate with sentence-level citations.</strong> Every factual sentence has to name the chunk it came from. If it can’t, it doesn’t get written.</p></div>
+      <div><p class="body-s"><strong>Judge each sentence against its own source.</strong> Same rubric as the audit — Supported, Partially supported, Unsupported, Source unrelated. The judge never sees the question, the URL, or the brand. Only the sentence and the source text. That’s deliberate: it stops the model reasoning about whether something <em>sounds</em> true instead of whether the page says it.</p></div>
+      <div><p class="body-s"><strong>Drop what fails.</strong> Unsupported and Source unrelated sentences get cut before the answer is returned.</p></div>
+      <div><p class="body-s"><strong>The rule that is actually the product.</strong> If a dropped sentence contains a number, a price, or a percentage, the whole answer is withheld. A half-correct pricing answer is worse than no pricing answer.</p></div>
+    </div>
+    <div class="notice mt-l measure"><p class="body-s"><strong>When it withholds, it doesn’t just refuse.</strong> It says plainly that it doesn’t have that documented, names the closest thing it does have, and offers a handoff. Compare A9 and A10 in the demo below: Adobe’s version is a dead end, mine is a next step.</p></div>
+
+    <h3 class="heading-s mt-l">5b · The interface</h3>
+    <div class="ba mt-s">
+      <div class="ba-card">
+        <div class="col-tag"><strong class="detail-m">Before</strong><span class="badge">response-level citation</span></div>
+        <p class="line plain body-s">Premiere Pro on Windows requires Windows 10 (22H2) or later, 16 GB of RAM, and a GPU with 2 GB of VRAM. Storage requirements depend on the media you work with. You can install it from the Creative Cloud desktop app.</p>
+        <ul class="srcs-flat"><li>1. Premiere Rush</li><li>2. Premiere Elements</li><li>3. After Effects</li><li>4. Creative Cloud</li><li>5. Pricing</li><li>6. Support</li></ul>
+        <p class="body-xxs muted mt-xs">One list for the whole answer. Nothing ties a sentence to a page — and nothing lets a reader check.</p>
+      </div>
+      <div class="ba-card">
+        <div class="col-tag"><strong class="detail-m">After</strong><span class="badge solid">sentence-level citation</span></div>
+        <div class="body-s">
+          <p class="line"><span class="claim s-supported">Premiere Pro on Windows requires Windows 10 (22H2) or later.<span class="mk">1</span></span></p>
+          <p class="line"><span class="claim s-partially">16 GB of RAM is recommended for HD media.<span class="mk">2</span></span></p>
+          <p class="line"><span class="claim s-none dropped-note">A GPU with 2 GB of VRAM is required.<span class="mk">–</span></span></p>
+        </div>
+        <div class="why static mt-xs">
+          <div class="why-head"><span class="verdict supported">Supported</span><span class="body-xxs muted">marker 1</span></div>
+          <q>Windows 10 (64-bit) V22H2 or later</q>
+          <p class="src-line">The page states the minimum Windows build verbatim.</p>
+          <p class="src-line">premiere-pro tech specs · chunk 14</p>
+        </div>
+        <p class="body-xxs muted mt-xs">Every marker points at one passage, and the third sentence never reaches the reader.</p>
+      </div>
+    </div>
+    <p class="body-l measure mt-s">Adobe cites at the response level — one list of links for the whole answer, so you can’t tell which link backs which sentence, and neither can they. I cite at the sentence level and let you open the exact text I’m relying on. It’s a smaller change than the gate, but it’s the part a customer feels: the confidence comes from being able to check, not from being told to trust.</p>
+  </div>
+</section>
+
+<!-- ====================== STEP 6 — PROOF ====================== -->
+<section class="section bg-white" id="ask">
+  <div class="container">
+    <div class="step-eyebrow"><span class="num">6</span><span class="of">Step 6 of 6 · Check it worked</span></div>
+    <h2 class="heading-l">Same six questions, both assistants</h2>
+    <p class="body-l measure mt-xs">Same six questions, both assistants, same set of pages underneath. Adobe’s answers are exactly what it gave me on {{ probed_on }}. Mine were generated from the pages Adobe’s own retriever surfaced — I didn’t get to pick a friendlier corpus. <strong>Click any underlined sentence</strong> to see the source text behind it and the judge’s verdict.</p>
 
     <div class="ask-wrap mt-l">
       {% for t in threads %}
       <input type="radio" name="probe" id="probe-{{ t.id }}" class="probe-radio"{% if loop.first %} checked{% endif %}>
       {% endfor %}
+
+      <div class="whatnotice">
+        {% for t in threads %}
+        <p class="thread thread-{{ t.id }} body-xs muted"><strong class="detail-s">What to notice</strong> · {{ t.notice }}</p>
+        {% endfor %}
+      </div>
 
       <div class="ask-grid">
 
@@ -450,98 +744,212 @@
       couldn't confirm never reaches the user.</p>
     </div>
   </div>
+  </div>
 </section>
 
-<!-- ====================== 3. FULL AUDIT TABLE ====================== -->
-<section class="section bg-white" id="audit">
+<!-- ====================== RESULTS ====================== -->
+<section class="section bg-gray" id="results">
   <div class="container">
-    <p class="detail-l">Every judgement</p>
-    <h2 class="heading-l">Full audit table</h2>
-    <p class="body-l measure mt-xs">One row per claim–source pair, {{ table | length }} in total.
-    Each row is a single call to the judge with only the claim and the source text.</p>
+    <p class="detail-l">Results</p>
+    <h2 class="heading-l">What the two systems produced</h2>
+    <div class="grid two-up mt-l">
+      <div>
+        <h3 class="heading-xs">Where Adobe’s claims land</h3>
+        <table class="data-table mt-xs">
+          <thead><tr><th>Verdict</th><th>Claims</th><th>Share</th></tr></thead>
+          <tbody>
+            <tr><td><span class="verdict supported">Supported</span></td><td>{{ baseline.supported }}</td><td>{{ pct(baseline.supported / baseline.claims) }}</td></tr>
+            <tr><td><span class="verdict partially">Partially supported</span></td><td>{{ baseline.partially }}</td><td>{{ pct(baseline.partially / baseline.claims) }}</td></tr>
+            <tr><td><span class="verdict unsupported">Unsupported</span></td><td>{{ baseline.unsupported }}</td><td>{{ pct(baseline.unsupported / baseline.claims) }}</td></tr>
+            <tr><td><span class="verdict unrelated">Source unrelated</span></td><td>{{ baseline.unrelated }}</td><td>{{ pct(baseline.unrelated / baseline.claims) }}</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3 class="heading-xs">Where Eboda’s sentences land</h3>
+        <table class="data-table mt-xs">
+          <thead><tr><th>Verdict</th><th>Sentences</th><th>Share</th></tr></thead>
+          <tbody>
+            <tr><td><span class="verdict supported">Supported</span></td><td>{{ eboda.supported }}</td><td>{{ pct(eboda.supported / eboda.claims) }}</td></tr>
+            <tr><td><span class="verdict partially">Partially supported</span></td><td>{{ eboda.partially }}</td><td>{{ pct(eboda.partially / eboda.claims) }}</td></tr>
+            <tr><td><span class="verdict unsupported">Unsupported</span></td><td>{{ eboda.unsupported }}</td><td>{{ pct(eboda.unsupported / eboda.claims) }}</td></tr>
+            <tr><td><span class="verdict unrelated">Source unrelated</span></td><td>{{ eboda.unrelated }}</td><td>{{ pct(eboda.unrelated / eboda.claims) }}</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-    <div class="table-scroll mt-s">
-      <table class="data-table">
-        <thead>
-          <tr><th>Claim ID</th><th>System</th><th>Claim</th><th>Source</th><th>Verdict</th><th>Reason</th></tr>
-        </thead>
-        <tbody>
-          {% for row in table %}
-          <tr>
-            <td>{{ row.claim_id }}</td>
-            <td>{{ row.system }}</td>
-            <td>{{ row.claim }}</td>
-            <td>{% if row.source_url %}<a href="{{ row.source_url }}">{{ row.source }}</a>{% else %}{{ row.source }}{% endif %}</td>
-            <td><span class="verdict {{ row.slug }}">{{ row.label }}</span></td>
-            <td>{{ row.reason }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+    <div class="grid three-up mt-l">
+      <div class="stat"><span class="n">{{ gate.answers_abstained }} of {{ gate.answers_measured }}</span><p class="detail-m">Answers withheld by the gate</p></div>
+      <div class="stat"><span class="n">{{ gate.sentences_generated }}</span><p class="detail-m">Sentences generated</p><p class="body-xs muted">{{ gate.sentences_kept }} reached a reader</p></div>
+      <div class="stat"><span class="n">{{ gate.sentences_dropped }}</span><p class="detail-m">Sentences dropped before shipping</p></div>
+    </div>
+
+    <div class="notice loud mt-l"><p class="body-s"><strong>Read the second number carefully.</strong> {{ pct(baseline.grounding_rate) }} and {{ pct(eboda.grounding_rate) }} aren’t measuring identical things. Adobe cites at the response level, so every claim inherits every source and I score it against the best match — the most charitable reading available. Mine cites at the sentence level, so each sentence is judged against the one chunk it named, and anything that failed was removed before it counted. The honest framing isn’t “mine is {{ ((eboda.grounding_rate - baseline.grounding_rate) * 100) | round | int }} points better.” It’s that a verification gate converts wrong answers into withheld answers, and that trade is the whole design.</p></div>
+    <p class="body-l measure mt-l">Withholding half the answers is not a bug in this build. It’s what the corpus can actually support. The number to watch in production isn’t the grounding rate, it’s how often we withhold — because that’s a content gap telling you which page to go write.</p>
+  </div>
+</section>
+
+<!-- ====================== HOW I CHECKED MYSELF ====================== -->
+<section class="section bg-white" id="trust">
+  <div class="container">
+    <p class="detail-l">Checking myself</p>
+    <h2 class="heading-l">How I checked the judge</h2>
+    <div class="grid two-up mt-s">
+      <div class="stack">
+        <p class="body-l">An AI grading an AI is only worth something if somebody checked the grader. So the pipeline pulled {{ n_human_labels }} random claim–source pairs (fixed seed, so it’s reproducible), stripped the model’s labels out of the file so I wouldn’t be anchored, and I labelled all {{ n_human_labels }} by hand against the source text. Then I compared.</p>
+        <p class="body-l"><strong>We agreed on {{ human_agreement_display }} of them.</strong> I’d set {{ "%.2f"|format(agreement_threshold) }} as the bar before I ran it, and I want to be straight about missing it rather than quietly dropping the number.</p>
+        <p class="body-s">Where we disagreed was almost entirely the line between <em>Partially supported</em> and <em>Unsupported</em> — cases like A2 on the After Effects page, where a Windows 11 requirement is on the page but for a different product. The model read subject-area overlap as partial support; I read a different product as no support. Supported and Source unrelated we agreed on. So the disagreement is on the middle of the scale, not the ends, which means the headline direction holds and the precise {{ pct(baseline.grounding_rate) }} has a real error bar on it.</p>
+        <p class="body-s">If I ran this again: tighten that rubric line with worked examples, take the sample to 50, and get a second human on it. That’s a rubric fix, not a code fix — and it’s the kind of thing I’d rather show you than paper over.</p>
+        <div class="button-group"><a class="con-button" href="https://docs.google.com/spreadsheets/d/1S0R1PODBiwF-w-tLkrq25PPjftTrkXDLQJYq15UQMHA">The {{ n_human_labels }} hand-labelled pairs</a></div>
+      </div>
+      <div class="stack">
+        <div class="stat"><span class="n">{{ human_agreement_display }}</span><p class="detail-m">Exact-match agreement</p><p class="body-xs muted">{{ n_human_labels }} pairs · bar set at {{ "%.2f"|format(agreement_threshold) }}{% if binary_agreement_display %} · {{ binary_agreement_display }} on the binary grounded / not-grounded call the headline depends on{% endif %}</p></div>
+        <div class="notice"><p class="body-xs">The judge sees only the claim text and the source text — never the URL, the question, or the brand.</p></div>
+        <div class="notice"><p class="body-xs">Sources that couldn’t be fetched are their own bucket and excluded from the headline rate.</p></div>
+        <div class="notice"><p class="body-xs"><code>grounding_rate = (Supported + Partially supported) / judged claims</code>, defined once, in code.</p></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ====================== 4. METHOD NOTE ====================== -->
-<section class="section bg-gray" id="method">
+<!-- ====================== FULL AUDIT — COLLAPSED BY DEFAULT ====================== -->
+<section class="section bg-gray" id="audit">
+  <div class="container">
+    <p class="detail-l">Every judgement</p>
+    <h2 class="heading-l">The full audit</h2>
+    <p class="body-l measure mt-xs">Every claim–source pair both systems produced, with the judge’s verdict and its reason. Nothing is filtered, nothing is cherry-picked. If a number on this page is wrong, it’s wrong here first.</p>
+
+    <div class="sumbar mt-s">
+      <div class="chipcount"><b>{{ audit_summary.adobe }}</b> Adobe pairs</div>
+      <div class="chipcount"><b>{{ audit_summary.eboda }}</b> Eboda pairs</div>
+      {% for v in audit_summary.verdicts %}
+      <div class="chipcount"><span class="verdict {{ v.slug }}">{{ v.label }}</span><b>{{ v.n }}</b> {{ pct(v.share) }}</div>
+      {% endfor %}
+    </div>
+
+    <details class="audit-x mt-s">
+      <summary>
+        <span>
+          <strong class="heading-xs">Open the full audit — {{ audit_summary.total }} claim–source pairs</strong>
+          <span class="body-xs muted" style="display:block">Claim, source, verdict, and the judge’s reason for each. Long — most people should read the summary above and spot-check a few rows.</span>
+        </span>
+        <span class="chev">›</span>
+      </summary>
+
+      <div class="filters">
+        <button type="button" data-filter="all" class="on">All</button>
+        <button type="button" data-filter="sys:adobe">Adobe</button>
+        <button type="button" data-filter="sys:eboda">Eboda</button>
+        {% for v in audit_summary.verdicts %}
+        <button type="button" data-filter="v:{{ v.slug }}">{{ v.label }}</button>
+        {% endfor %}
+        <span class="live" data-live>{{ audit_summary.total }} of {{ audit_summary.total }} rows</span>
+      </div>
+
+      <div class="audit-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>Claim ID</th><th>System</th><th>Claim</th><th>Source</th><th>Verdict</th><th>Reason</th></tr>
+          </thead>
+          <tbody data-audit-body>
+            {% for row in table %}
+            <tr data-sys="{{ row.system | lower }}" data-verdict="{{ row.slug }}" data-probe="{{ row.probe_id }}">
+              <td>{{ row.claim_id }}</td>
+              <td>{{ row.system }}</td>
+              <td class="clamp"><span>{{ row.claim }}</span></td>
+              <td>{% if row.source_url %}<a href="{{ row.source_url }}">{{ row.source }}</a>{% else %}{{ row.source }}{% endif %}</td>
+              <td><span class="verdict {{ row.slug }}">{{ row.label }}</span></td>
+              <td class="clamp"><span>{{ row.reason }}</span></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="collapse-row">
+        <button type="button" class="con-button" data-collapse-audit>Collapse table ▴</button>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ====================== METHOD, LIMITS, WHAT'S NEXT ====================== -->
+<section class="section bg-white" id="method">
   <div class="container">
     <p class="detail-l">Method</p>
     <h2 class="heading-l">How these numbers were produced</h2>
 
-    <div class="grid two-up mt-s">
+    <div class="grid three-up mt-l">
       <div class="stack">
+        <h3 class="heading-xs">Method</h3>
+        <p class="body-xs muted">{{ n_probes }} prompts run {{ probed_on }}, judged {{ measured_at }}. Responses and cited URLs taken verbatim from the log. Pages fetched and extracted, then chunked. Retrieval is BM25 — no embeddings, no vector store, on purpose: I wanted the measurement to be the interesting part, not the stack. Temperature 0 everywhere, every call cached, so the run is reproducible.</p>
         <table class="data-table">
           <tbody>
             <tr><th>Probes run</th><td>{{ n_probes }} ({{ n_probes_cited }} returned citations)</td></tr>
             <tr><th>Claims extracted</th><td>{{ n_claims_total }} factual sentences</td></tr>
-            <tr><th>Claim–source pairs judged</th><td>{{ baseline.claims }} baseline claims, {{ eboda.claims }} Eboda sentences</td></tr>
+            <tr><th>Claim–source pairs judged</th><td>{{ audit_summary.total }}</td></tr>
             <tr><th>Pages fetched</th><td>{{ n_pages }}, chunked into {{ n_chunks }} passages</td></tr>
-            <tr><th>Date measured</th><td>{{ measured_at }}</td></tr>
             <tr><th>Judge model</th><td>{{ judge_model }}</td></tr>
             <tr><th>Generation model</th><td>{{ generation_model }}</td></tr>
-            <tr><th>Retrieval</th><td>BM25 over lowercase alphanumeric tokens — no embeddings, no vector store</td></tr>
-            <tr><th>Human agreement</th><td>{{ human_agreement_display }} exact-match on {{ n_human_labels }} independently labelled pairs</td></tr>
           </tbody>
         </table>
       </div>
 
       <div class="stack">
-        <div class="notice">
-          <p class="body-s"><strong>The limitation that matters.</strong> The corpus is the subset of
-          adobe.com that Adobe's own retriever surfaced — the {{ n_pages }} pages its answers cited.
-          This is therefore not a test of site-wide search. It measures whether the pages a system
-          points at support what it says, not whether better pages exist elsewhere on the domain.</p>
-        </div>
-        <div class="notice">
-          <p class="body-s"><strong>How a claim is scored.</strong> Adobe cites at the response level,
-          so every claim inherits all of that response's URLs and is judged against each one
-          separately. A claim's verdict is the <em>best</em> result across its sources — the
-          charitable reading. The judge never sees the URL, the question, or the brand; only the
-          claim text and the source text.</p>
-        </div>
-        <div class="notice">
-          <p class="body-s"><strong>What is excluded.</strong> {{ n_claims_uncited }} extracted claims
-          cited no source at all and so could not be judged against anything; they are outside both
-          rates. Sources that could not be retrieved are counted separately
-          ({{ baseline.unfetchable }} here) and excluded from the headline rate. Two probes in the
-          interface above drew no citations from Adobe; the Eboda answers shown for them are
-          generated for display and are excluded from every number on this page.</p>
-        </div>
+        <h3 class="heading-xs">What this doesn’t show</h3>
+        <ul class="body-xs muted stack-s">
+          <li>The corpus is only the pages Adobe’s own retriever surfaced. This is not a test of site-wide search.</li>
+          <li>Most probes ran once. Only the {{ probe_stats.n_timed_subset }}-prompt timed subset ran three times, which is where the non-determinism finding comes from — a fuller test would run all {{ n_probes }}.</li>
+          <li>Human agreement is {{ human_agreement_display }} on {{ n_human_labels }} pairs. See <a href="#trust">how I checked the judge</a>.</li>
+          <li>{{ n_claims_uncited }} extracted claims carried no citation at all, so there was nothing to judge them against.</li>
+          <li>I’m outside the company. I can see the output, not the system, the roadmap, or the constraints behind either.</li>
+        </ul>
+      </div>
+
+      <div class="stack">
+        <h3 class="heading-xs">What I’d do with a team</h3>
+        <ul class="body-xs muted stack-s">
+          <li>Ship the gate behind a flag on pricing and terms questions only — the highest-risk, smallest surface.</li>
+          <li>Instrument withholding rate by category. Every withheld answer is a content gap with an owner.</li>
+          <li>Take the non-determinism finding to whoever owns retrieval; it needs someone inside.</li>
+          <li>Success metric isn’t grounding rate. It’s support contacts and refunds tied to assistant sessions.</li>
+        </ul>
       </div>
     </div>
+
+    <p class="body-xxs muted mt-l">The Eboda styling is a visual shell for a portfolio prototype. The content and product names underneath are real Adobe pages. Not affiliated with, endorsed by, or connected to Adobe.</p>
   </div>
 </section>
 
-<!-- ====================== 5. DISCLAIMER ====================== -->
-<section class="section tight bg-white">
+<!-- ====================== DATA ROOM ====================== -->
+<section class="section bg-gray" id="data">
   <div class="container">
-    <div class="notice measure">
-      <p class="body-s"><strong>About this prototype.</strong> The Eboda styling is a visual shell for
-      a portfolio prototype. Eboda is a fictional brand. The content and product names underneath are
-      real Adobe pages, captured on {{ measured_at }}. The interface above is a static reconstruction
-      of recorded transcripts — it does not accept live input. This project is not affiliated with,
-      endorsed by, or connected to Adobe Inc.</p>
+    <p class="detail-l">Data room</p>
+    <h2 class="heading-l">Everything this page is built on</h2>
+    <div class="grid four-up mt-l">
+      <div class="card"><div class="card-body">
+        <h3 class="heading-xs">Probe log</h3>
+        <p class="body-xs muted">{{ n_probes }} prompts, hypothesis per prompt, full responses, sources cited, TTFT and full latency, verdict, failure mode, persona. The raw input to everything above.</p>
+        <div class="button-group"><a class="con-button" href="https://docs.google.com/spreadsheets/d/1cU51sa0B0CruG032d20rDwjcXpleIgU9zfFougnz0wM">Open</a></div>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <h3 class="heading-xs">Human check</h3>
+        <p class="body-xs muted">{{ n_human_labels }} randomly sampled claim–source pairs I labelled by hand, blind to the model’s answer.</p>
+        <div class="button-group"><a class="con-button" href="https://docs.google.com/spreadsheets/d/1S0R1PODBiwF-w-tLkrq25PPjftTrkXDLQJYq15UQMHA">Open</a></div>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <h3 class="heading-xs">Full audit</h3>
+        <p class="body-xs muted">Every one of the {{ audit_summary.total }} claim–source pairs with the AI judge’s verdict and reason. On this page, collapsed — open it there.</p>
+        <div class="button-group"><a class="con-button" href="#audit">Open</a></div>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <h3 class="heading-xs">Source</h3>
+        <p class="body-xs muted">Pipeline, prompts verbatim, and instructions to reproduce.</p>
+        <div class="button-group"><a class="con-button" href="https://github.com/tjhend14/citation-grounding-audit">Open</a></div>
+      </div></div>
     </div>
+    <p class="body-l measure mt-l">Everything on this page traces to one of these four. If something doesn’t add up, the receipts are here.</p>
   </div>
 </section>
 
@@ -550,11 +958,107 @@
 <footer class="gfooter">
   <div class="container">
     <div class="footer-legal">
-      <span>Citation grounding audit · generated {{ generated_at }}</span>
-      <span style="margin-left:auto">Eboda is a fictional brand created for a portfolio prototype. Not affiliated with Adobe.</span>
+      <span>Eboda — a fictional brand used for portfolio work.</span>
+      <span>Rendered {{ generated_at }}.</span>
+      <span>Judge {{ judge_model }} · generation {{ generation_model }}.</span>
     </div>
   </div>
 </footer>
+
+<script>
+/* Two small enhancements, both optional. With JS off the audit table still
+   opens and closes and every row is present and unfiltered; only the filter
+   chips and the rail highlight degrade. Nothing here touches the network. */
+(function () {
+  "use strict";
+
+  // ---- audit table filter chips ----------------------------------------
+  var details = document.querySelector(".audit-x");
+  var body = document.querySelector("[data-audit-body]");
+  var live = document.querySelector("[data-live]");
+  var chips = document.querySelectorAll(".filters button[data-filter]");
+
+  if (body && live) {
+    var rows = Array.prototype.slice.call(body.rows);
+    var total = rows.length;
+
+    function apply(filter, probe) {
+      var shown = 0;
+      rows.forEach(function (tr) {
+        var ok = true;
+        if (probe) {
+          ok = tr.getAttribute("data-probe") === probe;
+        } else if (filter && filter !== "all") {
+          var parts = filter.split(":");
+          var attr = parts[0] === "sys" ? "data-sys" : "data-verdict";
+          ok = tr.getAttribute(attr) === parts[1];
+        }
+        tr.classList.toggle("hidden", !ok);
+        if (ok) shown++;
+      });
+      live.textContent = probe
+        ? shown + " of " + total + " rows · probe " + probe
+        : shown + " of " + total + " rows";
+    }
+
+    Array.prototype.forEach.call(chips, function (btn) {
+      btn.addEventListener("click", function () {
+        Array.prototype.forEach.call(chips, function (b) { b.classList.remove("on"); });
+        btn.classList.add("on");
+        apply(btn.getAttribute("data-filter"), null);
+      });
+    });
+
+    // Evidence chips in Step 3 are the one case where auto-opening is right:
+    // the reader asked for specific rows.
+    Array.prototype.forEach.call(
+      document.querySelectorAll("[data-probe-link]"),
+      function (link) {
+        link.addEventListener("click", function () {
+          var probe = link.getAttribute("data-probe-link");
+          if (details) details.open = true;
+          Array.prototype.forEach.call(chips, function (b) { b.classList.remove("on"); });
+          apply(null, probe);
+        });
+      }
+    );
+
+    if (details) {
+      var collapse = details.querySelector("[data-collapse-audit]");
+      if (collapse) {
+        collapse.addEventListener("click", function () {
+          details.open = false;
+          details.scrollIntoView({ block: "start" });
+        });
+      }
+    }
+  }
+
+  // ---- step rail highlight ---------------------------------------------
+  var links = document.querySelectorAll(".step-rail a[data-rail]");
+  if (links.length && "IntersectionObserver" in window) {
+    var byId = {};
+    Array.prototype.forEach.call(links, function (a) {
+      byId[a.getAttribute("data-rail")] = a;
+    });
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          Array.prototype.forEach.call(links, function (a) { a.classList.remove("on"); });
+          var current = byId[entry.target.id];
+          if (current) current.classList.add("on");
+        });
+      },
+      { rootMargin: "-45% 0px -45% 0px" }
+    );
+    Object.keys(byId).forEach(function (id) {
+      var section = document.getElementById(id);
+      if (section) observer.observe(section);
+    });
+  }
+})();
+</script>
 
 </body>
 </html>

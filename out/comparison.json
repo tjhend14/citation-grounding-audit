@@ -17,9 +17,12 @@
     "grounding_rate": 0.9825
   },
   "gate": {
+    "sentences_generated": 67,
+    "sentences_kept": 56,
     "sentences_dropped": 11,
-    "answers_abstained": 16
+    "answers_abstained": 16,
+    "answers_measured": 31
   },
   "human_agreement": 0.6667,
-  "generated_at": "2026-09-05T15:36:05Z"
+  "generated_at": "2026-09-05T22:35:49Z"
 }

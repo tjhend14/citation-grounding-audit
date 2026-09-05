@@ -46,6 +46,14 @@ COMPARISON_JSON = OUT_DIR / "comparison.json"           # step 7
 SITE_DIR = OUT_DIR / "site"                             # step 8
 SITE_INDEX_HTML = SITE_DIR / "index.html"
 SITE_CSS = SITE_DIR / "eboda-web-toolkit.css"
+DOCS_DIR = ROOT / "docs"                                # published by step 8
+
+# When the probes were run against the live Ask beta. This is the one fact on
+# the page that no artefact carries — the log records latency and verdicts but
+# not the sitting — so it is declared once here and rendered everywhere. It is
+# NOT the judging date; that is derived and shown separately as `measured_at`.
+PROBED_ON = "8/29/2026"
+PROBED_ON_LONG = "8/29/2026, ~2PM MDT"
 
 # --- templates/ --------------------------------------------------------------
 TEMPLATES_DIR = ROOT / "templates"

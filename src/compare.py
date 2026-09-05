@@ -145,9 +145,16 @@ def main() -> int:
 
     answers = json.loads(ANSWERS_EBODA_JSON.read_text(encoding="utf-8"))
     measured = [a for a in answers if not a.get("display_only")]
+    # "Generated" is everything the model wrote, before the gate saw it; "kept"
+    # is what a reader actually receives. The judged set (eboda.claims) is a
+    # different cut again — it is the kept sentences plus any dropped one that
+    # still carried a source to judge — so the two must not be conflated.
     gate = {
+        "sentences_generated": sum(len(a["kept"]) + len(a["dropped"]) for a in measured),
+        "sentences_kept": sum(len(a["kept"]) for a in measured),
         "sentences_dropped": sum(len(a["dropped"]) for a in measured),
         "answers_abstained": sum(1 for a in measured if a["abstained"]),
+        "answers_measured": len(measured),
     }
 
     human_agreement = 0.0

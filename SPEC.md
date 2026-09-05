@@ -416,17 +416,33 @@ a comment. Do not compute it two different ways in two places.
 ### Step 8 — `src/render.py` + `templates/index.html.j2` (target 75 min)
 
 One static `out/site/index.html`, no JS framework, no fetch calls, no server. All data inlined at
-render time by Jinja. Copy `eboda-web-toolkit.css` into `out/site/`.
+render time by Jinja. Copy `eboda-web-toolkit.css` into `out/site/`, then publish both to `docs/`,
+which is what GitHub Pages serves.
 
-Page structure:
+Two small inline scripts are allowed and no more: the audit-table filter chips and the step-rail
+highlight. Both are progressive enhancement — with JavaScript off the table still opens and closes
+and every row is present and unfiltered. Nothing may load an external script or touch the network;
+the step 8 acceptance check enforces that by banning `<script src`, `fetch(`, `XMLHttpRequest` and
+CDN hosts in the output.
+
+Page structure — the numbered step spine is the primary navigation object:
+hero → why → test → findings → prioritize → fix → ask → results → trust → audit → method → data.
 1. Headline numbers from `comparison.json`, including `human_agreement`.
-2. Six side-by-side probes — `A2`, `A7`, `B5`, `H3`, `A9`, `B2` — Adobe's response left, ours right.
-   Citations are inline; clicking one expands to show the `evidence_span` and the source title.
-   Use `<details>`/`<summary>`, not JavaScript.
+2. Six side-by-side probes — `A2`, `B5`, `H3`, `A9`, `B2`, `A7`. Adobe's response left, ours right.
+   The order is the argument: a wrong citation, then a wrong citation on something expensive, then
+   what refusing well looks like. Citations are inline; clicking one expands to show the
+   `evidence_span` and the source title. Use `<details>`/`<summary>`, not JavaScript.
 3. Full audit table: claim, source, label, reason. Plain `<table>`. Wrap in `overflow-x: auto`.
-4. A method note: N, date measured, judge model, and the limitation — the corpus is the subset of
+   It ships **closed** behind a `<details>`, under an always-visible summary bar of verdict counts;
+   the default page height must not include all 233 rows. Only the Step 3 evidence chips auto-open
+   it, filtered to the probe the reader asked for.
+4. No figure is written into the template. Every count, rate and share renders from
+   `comparison.json`, `agreement.json`, `audit_*.json` or `data/probe_log.csv`. The one fact no
+   artefact carries — the date the probes were run — is declared once as `PROBED_ON` in
+   `src/config.py`, and is distinct from the derived judging date.
+5. A method note: N, date measured, judge model, and the limitation — the corpus is the subset of
    adobe.com that Adobe's own retriever surfaced, so this is not a test of site-wide search.
-5. A line stating that the Eboda styling is a visual shell for a portfolio prototype, that the
+6. A line stating that the Eboda styling is a visual shell for a portfolio prototype, that the
    content and product names underneath are real Adobe pages, and that this is not affiliated with Adobe.
 
 **✅ Acceptance:** `out/site/index.html` opens correctly with `file://` and no console errors.

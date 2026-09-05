@@ -15,7 +15,8 @@ from __future__ import annotations
 import json
 import shutil
 import sys
-from collections import defaultdict
+import statistics
+from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -23,6 +24,9 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
 from src.config import (
     AGREEMENT_JSON,
+    DOCS_DIR,
+    PROBED_ON,
+    PROBED_ON_LONG,
     ANSWERS_EBODA_JSON,
     AUDIT_BASELINE_JSON,
     AUDIT_EBODA_JSON,
@@ -41,11 +45,13 @@ from src.config import (
 import re
 
 from src.judge import LABEL_ORDER, best_label
-from src.parse_log import split_response
+from src.parse_log import read_rows, split_response
 from src.llm import MODEL_GENERATION, MODEL_JUDGE
 
-# SPEC.md section 6 step 8: these six probes, side by side.
-SIDE_BY_SIDE = ["A2", "A7", "B5", "H3", "A9", "B2"]
+# SPEC.md section 6 step 8: these six probes, side by side. The order is the
+# argument: a wrong citation, then a wrong citation on something expensive,
+# then what refusing well looks like (site-layout-spec section 8.3).
+SIDE_BY_SIDE = ["A2", "B5", "H3", "A9", "B2", "A7"]
 
 # Where the toolkit CSS is looked for, in order.
 CSS_SOURCES = [
@@ -56,6 +62,50 @@ CSS_SOURCES = [
 
 # A bare numeral on its own line: an inline marker in the raw transcript.
 _MARKER_LINE = re.compile(r"^[ 	]*\d{1,2}[ 	]*$")
+
+# What each probe category is testing. Prose only — every count on the page is
+# derived from data/probe_log.csv, never written down here.
+CATEGORY_CHECKS = {
+    "Grounding": "Verifiable specs, invented plan names, discontinued products, roadmap speculation",
+    "Pricing & terms": "The highest-risk answers on the site — renewal, cancellation, termination fees",
+    "Task to product": "Vague intent with no product named; does it right-size the recommendation",
+    "Honesty vs selling": "Questions where the correct answer is cheaper or free",
+    "Existing customer": "Account-aware questions the assistant can’t actually see",
+    "Guardrails": "Competitor questions where the intent is clearly to buy Adobe",
+    "Context": "Does “that” resolve across turns",
+    "Scope boundary": "Institutional buyers, teams too big for self-serve, enterprise handoff",
+    "Locale": "Regional pricing and availability",
+    "Robustness": "Typos, nonsense, action requests",
+}
+
+# One line per demo probe, telling a cold reader what they are looking at.
+# Keyed by probe id so it travels with the thread rather than the markup.
+WHAT_TO_NOTICE = {
+    "A2": "Adobe answers a Premiere Pro question citing Premiere Rush, Premiere Elements "
+          "and After Effects pages. The specs are close enough to look right.",
+    "B5": "Adobe’s source is a generic pricing page; the actual renewal policy is a "
+          "click deeper into the terms.",
+    "H3": "Adobe deflects to a general offers page. A university page exists and "
+          "isn’t cited.",
+    "A9": "Adobe: “that’s outside my scope.” Mine withholds too — but names what "
+          "it does have and where to go.",
+    "B2": "The highest-risk answer on the site. Adobe cited a different page on the "
+          "second run.",
+    "A7": "A discontinued product. Both handle it — watch which sources each one "
+          "leans on.",
+}
+
+# Failure modes are reported against a fixed list so the two that never fired
+# still show as zero — an absence the reader should be able to see.
+FAILURE_MODES = [
+    "Refusal / dead end",
+    "Lost context",
+    "Deflected to page",
+    "No clarifying question",
+    "Wrong locale",
+    "Hallucination",
+    "Stale info",
+]
 
 LABEL_SLUG = {
     "Supported": "supported",
@@ -113,6 +163,98 @@ def eboda_sentences_for(probe_id, entry, eboda_by_claim, chunks) -> list[dict]:
             }
         )
     return out
+
+
+def probe_stats() -> dict:
+    """Verdicts, categories, failure modes and latency, straight off the log.
+
+    Every figure in Step 2 of the page comes from here, so the page cannot
+    drift from data/probe_log.csv (site-layout-spec section 14).
+    """
+    rows = read_rows()
+    probes = load_jsonl(PROBES_JSONL)
+
+    verdicts = Counter(p["verdict"] for p in probes)
+    modes = Counter(p["failure_mode"] for p in probes if p["failure_mode"])
+
+    categories = []
+    for name in dict.fromkeys(p["category"] for p in probes):
+        categories.append(
+            {
+                "name": name,
+                "count": sum(1 for p in probes if p["category"] == name),
+                "checks": CATEGORY_CHECKS.get(name, ""),
+            }
+        )
+
+    def median_of(column: str) -> float | None:
+        values = []
+        for row in rows:
+            raw = (row.get(column) or "").strip()
+            try:
+                values.append(float(raw))
+            except ValueError:
+                continue
+        return statistics.median(values) if values else None
+
+    # The headline medians are across all 40 prompts: the timed subset ran three
+    # times each and the remainder once, and every row carries a median column.
+    ttft = median_of("TTFT median (s)")
+    full = median_of("Full median (s)")
+
+    timed = [r for r in rows if (r.get("Latency subset") or "").strip().upper() == "Y"]
+
+    return {
+        "n": len(probes),
+        "verdicts": [(v, verdicts.get(v, 0)) for v in ("Pass", "Partial", "Fail")],
+        "pass_n": verdicts.get("Pass", 0),
+        "categories": categories,
+        "failure_modes": [(m, modes.get(m, 0)) for m in FAILURE_MODES],
+        "ttft_median": ttft,
+        "full_median": full,
+        "n_timed_subset": len(timed),
+    }
+
+
+def binary_agreement(agreement: dict) -> float | None:
+    """Judge-vs-human agreement on the grounded / not-grounded call alone.
+
+    The headline rate only depends on which side of that line a claim falls, so
+    this is the number the 61% actually rests on — reported next to the stricter
+    four-way exact match rather than instead of it.
+    """
+    confusion = agreement.get("confusion") or {}
+    grounded = {"Supported", "Partially supported"}
+    agreed = total = 0
+    for pair, n in confusion.items():
+        human, _, model = pair.partition(" -> ")
+        if not model:
+            continue
+        total += n
+        if (human in grounded) == (model in grounded):
+            agreed += n
+    return agreed / total if total else None
+
+
+def audit_summary(table: list[dict]) -> dict:
+    """Counts behind the always-visible summary bar over the full audit table."""
+    by_system = Counter(r["system"] for r in table)
+    by_label = Counter(r["label"] for r in table)
+    total = len(table)
+    return {
+        "total": total,
+        "adobe": by_system.get("Adobe", 0),
+        "eboda": by_system.get("Eboda", 0),
+        "verdicts": [
+            {
+                "label": label,
+                "slug": LABEL_SLUG.get(label, "none"),
+                "n": by_label.get(label, 0),
+                "share": by_label.get(label, 0) / total if total else 0,
+            }
+            for label in LABEL_ORDER
+        ],
+    }
 
 
 def build_context() -> dict:
@@ -273,6 +415,7 @@ def build_context() -> dict:
         threads.append(
             {
                 "id": pid,
+                "notice": WHAT_TO_NOTICE.get(pid),
                 "category": probe["category"],
                 "prompt": probe["prompt"],
                 "verdict": probe["verdict"],
@@ -386,6 +529,8 @@ def build_context() -> dict:
         "generation_model": MODEL_GENERATION,
         "measured_at": (min(dates)[:10] if dates else comparison["generated_at"][:10]),
         "generated_at": comparison["generated_at"],
+        "probed_on": PROBED_ON,
+        "probed_on_long": PROBED_ON_LONG,
         "marker_derived_pct": round(
             100 * sum(1 for c in claims.values() if c["marker_derived"]) / max(1, len(claims)), 1
         ),
@@ -394,6 +539,13 @@ def build_context() -> dict:
         "threads": threads,
         "n_human_labels": n_human_labels,
         "human_agreement_display": f"{comparison['human_agreement']:.2f}",
+        "agreement": agreement,
+        "agreement_threshold": agreement.get("threshold"),
+        "binary_agreement_display": (
+            f"{binary_agreement(agreement):.2f}" if binary_agreement(agreement) else None
+        ),
+        "probe_stats": probe_stats(),
+        "audit_summary": audit_summary(table),
     }
 
 
@@ -428,6 +580,15 @@ def main() -> int:
 
     css_from = copy_css()
     print(f"wrote {SITE_INDEX_HTML}  ({len(html):,} bytes)")
+
+    # docs/ is what GitHub Pages serves. Publish the same bytes so the live
+    # site can never lag out/site/ (README step 8).
+    DOCS_DIR.mkdir(parents=True, exist_ok=True)
+    (DOCS_DIR / ".nojekyll").touch()
+    shutil.copyfile(SITE_INDEX_HTML, DOCS_DIR / "index.html")
+    if SITE_CSS.exists():
+        shutil.copyfile(SITE_CSS, DOCS_DIR / "eboda-web-toolkit.css")
+    print(f"published -> {DOCS_DIR / 'index.html'}")
     if css_from:
         print(f"copied CSS from {css_from} -> {SITE_CSS}")
     else:
@@ -437,7 +598,10 @@ def main() -> int:
     failures = []
     if not SITE_CSS.exists():
         failures.append("eboda-web-toolkit.css missing from out/site/")
-    for banned in ("<script", "fetch(", "XMLHttpRequest", "cdn.", "https://unpkg"):
+    # The page ships two small inline scripts (audit filter chips, step-rail
+    # highlight); both degrade to a working page with JS off. What stays banned
+    # is anything that reaches the network or pulls in a framework at runtime.
+    for banned in ("<script src", "fetch(", "XMLHttpRequest", "cdn.", "https://unpkg"):
         if banned in html:
             failures.append(f"page contains {banned!r} — must be static")
     if "index.html.j2" in html:
@@ -456,7 +620,7 @@ def main() -> int:
         for f in failures:
             print(f"  - {f}")
         return 1
-    print("ACCEPTANCE: PASS — static, no script tags, no network calls, CSS copied.")
+    print("ACCEPTANCE: PASS — static, no external scripts, no network calls, CSS copied.")
     print(f"Open: file:///{SITE_INDEX_HTML.as_posix()}")
     return 0
 
