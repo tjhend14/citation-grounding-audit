@@ -53,7 +53,7 @@
 
   .answer { margin-top:var(--spacing-s); font-size:var(--type-body-s-size); }
   .line { margin:0 0 6px; }
-  .line.plain { color:var(--text-color); white-space:pre-wrap; }
+  .line.plain { color:var(--text-color); white-space:pre-wrap; line-height:1.55; }
 
   /* a citable sentence: click to highlight and reveal its source */
   .claim { display:block; cursor:pointer; border-radius:6px; padding:3px 6px; margin:0 -6px;
@@ -127,6 +127,16 @@
                color:var(--color-gray-600); margin-top:10px; }
 
   .col-tag { display:flex; align-items:baseline; gap:10px; margin-bottom:8px; }
+
+  .audit-strip { margin-top:var(--spacing-s); border:1px dashed var(--color-gray-400);
+                 border-radius:10px; padding:14px 16px; background:#FCFCFD; }
+  .audit-head { display:flex; align-items:center; gap:10px; margin-bottom:4px; flex-wrap:wrap; }
+  .cite details { border-bottom:1px dotted var(--border-color); }
+  .cite summary { cursor:pointer; list-style:none; padding:7px 0; display:flex; gap:8px;
+                  align-items:flex-start; }
+  .cite summary::-webkit-details-marker { display:none; }
+  .cite summary:hover { background:var(--color-gray-100); }
+  .why.static { display:block; margin-top:0; }
 
   .table-scroll { overflow-x:auto; }
   .table-scroll table { min-width:900px; }
@@ -281,152 +291,14 @@
               <div class="thread thread-A2">
                 <div class="bubble-user">What are the minimum system requirements to run Premiere Pro on Windows?</div>
                 <div class="answer">
-                  <div class="line">
-                    <input type="radio" name="A2-a" id="A2-a-1" class="sr">
-                    <label for="A2-a-1" class="claim s-supported">Here are the minimum system requirements for Adobe Premiere Pro on Windows, based on the latest technical requirements:<span class="mk">1 2 3 4 5 6</span></label>
-                    <div class="why">
-                      <div class="why-head">
-                        <span class="verdict supported">Supported</span>
-                        <span class="body-xxs muted">best of 6 cited sources</span>
-                        <label for="A2-a-clear" class="close" title="close">✕</label>
-                      </div>
-                      <q>Minimum and recommended system requirements for Windows</q>
-                      <p class="src-line">Source lists Windows minimum requirements for Adobe Premiere from latest technical requirements document.</p>
-                      <p class="src-line"><a href="https://helpx.adobe.com/premiere/desktop/get-started/technical-requirements/adobe-premiere-24x-technical-requirements.html">Adobe Premiere technical requirements | Premiere</a></p>
-                      <p class="src-line mt-xxs"><strong>Cited at response level.</strong>
-                        This sentence inherits all 6 of the answer's
-                        sources — nothing ties it to one page.</p>
-                    </div>
-                  </div>
-                  <div class="line">
-                    <input type="radio" name="A2-a" id="A2-a-3" class="sr">
-                    <label for="A2-a-3" class="claim s-supported">Processor: Intel 6th Generation or newer, or AMD Ryzen 1000 Series or newer, with AVX2 support.<span class="mk">1 2 3 4 5 6</span></label>
-                    <div class="why">
-                      <div class="why-head">
-                        <span class="verdict supported">Supported</span>
-                        <span class="body-xxs muted">best of 6 cited sources</span>
-                        <label for="A2-a-clear" class="close" title="close">✕</label>
-                      </div>
-                      <q>Minimum: Intel 6th Generation or newer CPU - or AMD Ryzen 1000 Series or newer CPU. Advanced Vector Extensions 2 (AVX2) Support required.</q>
-                      <p class="src-line">Source directly states the minimum processor requirement matching all details in the claim.</p>
-                      <p class="src-line"><a href="https://helpx.adobe.com/premiere/desktop/get-started/technical-requirements/adobe-premiere-pro-technical-requirements.html">Adobe Premiere system requirements | Premiere</a></p>
-                      <p class="src-line mt-xxs"><strong>Cited at response level.</strong>
-                        This sentence inherits all 6 of the answer's
-                        sources — nothing ties it to one page.</p>
-                    </div>
-                  </div>
-                  <div class="line">
-                    <input type="radio" name="A2-a" id="A2-a-5" class="sr">
-                    <label for="A2-a-5" class="claim s-supported">Operating system: Windows 11 v24H2.<span class="mk">1 2 3 4 5 6</span></label>
-                    <div class="why">
-                      <div class="why-head">
-                        <span class="verdict supported">Supported</span>
-                        <span class="body-xxs muted">best of 6 cited sources</span>
-                        <label for="A2-a-clear" class="close" title="close">✕</label>
-                      </div>
-                      <q>Minimum: Windows 11 v24H2. Windows on Arm: Windows 11 v24H2 (OS Build 26100.2033)</q>
-                      <p class="src-line">Source explicitly lists Windows 11 v24H2 as the minimum operating system requirement.</p>
-                      <p class="src-line"><a href="https://helpx.adobe.com/premiere/desktop/get-started/technical-requirements/adobe-premiere-pro-technical-requirements.html">Adobe Premiere system requirements | Premiere</a></p>
-                      <p class="src-line mt-xxs"><strong>Cited at response level.</strong>
-                        This sentence inherits all 6 of the answer's
-                        sources — nothing ties it to one page.</p>
-                    </div>
-                  </div>
-                  <div class="line">
-                    <input type="radio" name="A2-a" id="A2-a-7" class="sr">
-                    <label for="A2-a-7" class="claim s-supported">For Windows on Arm, the document also lists Windows 11 v24H2 (OS Build 26100.2033).<span class="mk">1 2 3 4 5 6</span></label>
-                    <div class="why">
-                      <div class="why-head">
-                        <span class="verdict supported">Supported</span>
-                        <span class="body-xxs muted">best of 6 cited sources</span>
-                        <label for="A2-a-clear" class="close" title="close">✕</label>
-                      </div>
-                      <q>Windows on Arm: Windows 11 v24H2 (OS Build 26100.2033)</q>
-                      <p class="src-line">Source explicitly lists this exact OS build under Windows on Arm operating system requirement.</p>
-                      <p class="src-line"><a href="https://helpx.adobe.com/premiere/desktop/get-started/technical-requirements/adobe-premiere-pro-technical-requirements.html">Adobe Premiere system requirements | Premiere</a></p>
-                      <p class="src-line mt-xxs"><strong>Cited at response level.</strong>
-                        This sentence inherits all 6 of the answer's
-                        sources — nothing ties it to one page.</p>
-                    </div>
-                  </div>
-                  <div class="line">
-                    <input type="radio" name="A2-a" id="A2-a-9" class="sr">
-                    <label for="A2-a-9" class="claim s-supported">Memory: 8 GB RAM for the minimum setup.<span class="mk">1 2 3 4 5 6</span></label>
-                    <div class="why">
-                      <div class="why-head">
-                        <span class="verdict supported">Supported</span>
-                        <span class="body-xxs muted">best of 6 cited sources</span>
-                        <label for="A2-a-clear" class="close" title="close">✕</label>
-                      </div>
-                      <q>RAM: 8 GB of RAM</q>
-                      <p class="src-line">Source explicitly lists 8 GB of RAM as minimum requirement for both Windows and macOS.</p>
-                      <p class="src-line"><a href="https://helpx.adobe.com/premiere-rush/desktop/system-requirements/2021-1.html">Adobe Premiere Rush system requirements | Premiere Rush</a></p>
-                      <p class="src-line mt-xxs"><strong>Cited at response level.</strong>
-                        This sentence inherits all 6 of the answer's
-                        sources — nothing ties it to one page.</p>
-                    </div>
-                  </div>
-                  <div class="line">
-                    <input type="radio" name="A2-a" id="A2-a-11" class="sr">
-                    <label for="A2-a-11" class="claim s-supported">GPU: 4 GB of GPU memory; on Windows with NVIDIA GPUs, Maxwell generation or newer is required.<span class="mk">1 2 3 4 5 6</span></label>
-                    <div class="why">
-                      <div class="why-head">
-                        <span class="verdict supported">Supported</span>
-                        <span class="body-xxs muted">best of 6 cited sources</span>
-                        <label for="A2-a-clear" class="close" title="close">✕</label>
-                      </div>
-                      <q>Windows with NVIDIA GPU: GPU must be of the Maxwell generation (2014) or newer and have at least 4GB of GPU memory.</q>
-                      <p class="src-line">Source states minimum 4GB GPU memory and Maxwell generation or newer for NVIDIA GPUs on Windows.</p>
-                      <p class="src-line"><a href="https://helpx.adobe.com/premiere/desktop/get-started/technical-requirements/adobe-premiere-pro-technical-requirements.html">Adobe Premiere system requirements | Premiere</a></p>
-                      <p class="src-line mt-xxs"><strong>Cited at response level.</strong>
-                        This sentence inherits all 6 of the answer's
-                        sources — nothing ties it to one page.</p>
-                    </div>
-                  </div>
-                  <div class="line">
-                    <input type="radio" name="A2-a" id="A2-a-13" class="sr">
-                    <label for="A2-a-13" class="claim s-supported">Storage and display: 8 GB of free hard-disk space, plus extra space during installation, and a 1920x1080 display.<span class="mk">1 2 3 4 5 6</span></label>
-                    <div class="why">
-                      <div class="why-head">
-                        <span class="verdict supported">Supported</span>
-                        <span class="body-xxs muted">best of 6 cited sources</span>
-                        <label for="A2-a-clear" class="close" title="close">✕</label>
-                      </div>
-                      <q>8 GB of available hard disk space, plus additional free space during installation.</q>
-                      <p class="src-line">Storage and display minimum specs both match: 8GB free space plus extra, and 1920x1080 display.</p>
-                      <p class="src-line"><a href="https://helpx.adobe.com/premiere/desktop/get-started/technical-requirements/adobe-premiere-pro-technical-requirements.html">Adobe Premiere system requirements | Premiere</a></p>
-                      <p class="src-line mt-xxs"><strong>Cited at response level.</strong>
-                        This sentence inherits all 6 of the answer's
-                        sources — nothing ties it to one page.</p>
-                    </div>
-                  </div>
-                  <div class="line">
-                    <input type="radio" name="A2-a" id="A2-a-15" class="sr">
-                    <label for="A2-a-15" class="claim s-supported">Note: The product needs an internet connection, an Adobe ID, and acceptance of the license agreement to activate and use it.<span class="mk">1 2 3 4 5 6</span></label>
-                    <div class="why">
-                      <div class="why-head">
-                        <span class="verdict supported">Supported</span>
-                        <span class="body-xxs muted">best of 6 cited sources</span>
-                        <label for="A2-a-clear" class="close" title="close">✕</label>
-                      </div>
-                      <q>To activate and use this product, you need an Internet connection, Adobe ID, and acceptance of the license agreement.</q>
-                      <p class="src-line">Source directly states this requirement, matching the claim exactly.</p>
-                      <p class="src-line"><a href="https://helpx.adobe.com/premiere/desktop/get-started/technical-requirements/adobe-premiere-pro-technical-requirements.html">Adobe Premiere system requirements | Premiere</a></p>
-                      <p class="src-line mt-xxs"><strong>Cited at response level.</strong>
-                        This sentence inherits all 6 of the answer's
-                        sources — nothing ties it to one page.</p>
-                    </div>
-                  </div>
-                  <p class="line plain">Hope this helps!
+                  <p class="line plain">Here are the minimum system requirements for Adobe Premiere Pro on Windows, based on the latest technical requirements:
 
-Sources:
-1. https://helpx.adobe.com/premiere-rush/desktop/system-requirements/2021-1.html?adobe_brand_concierge_source=bc-adobe-source 
-2. https://helpx.adobe.com/premiere/desktop/get-started/technical-requirements/adobe-premiere-pro-technical-requirements.html?adobe_brand_concierge_source=bc-adobe-source 
-3. https://helpx.adobe.com/premiere/desktop/get-started/tour-the-workspace/adobe-premiere-faq.html?adobe_brand_concierge_source=bc-adobe-source
-4. https://helpx.adobe.com/premiere/desktop/get-started/technical-requirements/adobe-premiere-24x-technical-requirements.html?adobe_brand_concierge_source=bc-adobe-source 
-5. https://helpx.adobe.com/after-effects/desktop/get-started/technical-requirements/2025.html?adobe_brand_concierge_source=bc-adobe-source 
-6. https://helpx.adobe.com/premiere-elements/desktop/system-requirements/system-requirements-older-versions.html?adobe_brand_concierge_source=bc-adobe-source</p>
-                  <input type="radio" name="A2-a" id="A2-a-clear" class="sr" checked>
+Processor: Intel 6th Generation or newer, or AMD Ryzen 1000 Series or newer, with AVX2 support.
+Operating system: Windows 11 v24H2. For Windows on Arm, the document also lists Windows 11 v24H2 (OS Build 26100.2033).
+Memory: 8 GB RAM for the minimum setup.
+GPU: 4 GB of GPU memory; on Windows with NVIDIA GPUs, Maxwell generation or newer is required.
+Storage and display: 8 GB of free hard-disk space, plus extra space during installation, and a 1920x1080 display.
+Note: The product needs an internet connection, an Adobe ID, and acceptance of the license agreement to activate and use it. Hope this helps!</p>
                 </div>
 
                 <details class="srcs">
@@ -445,57 +317,10 @@ Sources:
               <div class="thread thread-A7">
                 <div class="bubble-user">How do I subscribe to Adobe XD?</div>
                 <div class="answer">
-                  <div class="line">
-                    <input type="radio" name="A7-a" id="A7-a-1" class="sr">
-                    <label for="A7-a-1" class="claim s-unsupported">Adobe XD is currently in legacy maintenance mode and is no longer receiving ongoing feature development.<span class="mk">1 2</span></label>
-                    <div class="why">
-                      <div class="why-head">
-                        <span class="verdict unsupported">Unsupported</span>
-                        <span class="body-xxs muted">best of 2 cited sources</span>
-                        <label for="A7-a-clear" class="close" title="close">✕</label>
-                      </div>
-                      <p class="src-line">Source lists Adobe apps and pricing but doesn&#39;t mention Adobe XD or its development status at all.</p>
-                      <p class="src-line"><a href="https://www.adobe.com/creativecloud/design/explore/amexbenefit.html">Exclusive Adobe Offer for AMEX Business Platinum Cardholders | Save $250</a></p>
-                      <p class="src-line mt-xxs"><strong>Cited at response level.</strong>
-                        This sentence inherits all 2 of the answer's
-                        sources — nothing ties it to one page.</p>
-                    </div>
-                  </div>
-                  <div class="line">
-                    <input type="radio" name="A7-a" id="A7-a-3" class="sr">
-                    <label for="A7-a-3" class="claim s-unsupported">It is supported only for existing customers.<span class="mk">1</span></label>
-                    <div class="why">
-                      <div class="why-head">
-                        <span class="verdict unsupported">Unsupported</span>
-                        <span class="body-xxs muted">best of 1 cited source</span>
-                        <label for="A7-a-clear" class="close" title="close">✕</label>
-                      </div>
-                      <p class="src-line">Source never mentions new vs existing customer eligibility restrictions for this offer.</p>
-                      <p class="src-line"><a href="https://www.adobe.com/creativecloud/design/explore/amexbenefit.html">Exclusive Adobe Offer for AMEX Business Platinum Cardholders | Save $250</a></p>
-                    </div>
-                  </div>
-                  <p class="line plain">1</p>
-                  <div class="line">
-                    <input type="radio" name="A7-a" id="A7-a-5" class="sr">
-                    <label for="A7-a-5" class="claim s-unsupported">For active user experience design and prototyping, Adobe recommends exploring other current Adobe tools and solutions.<span class="mk">2</span></label>
-                    <div class="why">
-                      <div class="why-head">
-                        <span class="verdict unsupported">Unsupported</span>
-                        <span class="body-xxs muted">best of 1 cited source</span>
-                        <label for="A7-a-clear" class="close" title="close">✕</label>
-                      </div>
-                      <p class="src-line">Source lists Creative Cloud apps and plans but says nothing about UX design/prototyping tool recommendations.</p>
-                      <p class="src-line"><a href="https://www.adobe.com/creativecloud/campaign/pricing.html">Adobe Creative Cloud | Details and products | Adobe</a></p>
-                    </div>
-                  </div>
-                  <p class="line plain">2
+                  <p class="line plain">Adobe XD is currently in legacy maintenance mode and is no longer receiving ongoing feature development. It is supported only for existing customers.
+ For active user experience design and prototyping, Adobe recommends exploring other current Adobe tools and solutions.
 
-Would you like information on Adobe&#39;s current creative design products or alternatives?
-
-Sources:
-1. https://www.adobe.com/creativecloud/design/explore/amexbenefit.html?instant=2026-08-03T14%3A00%3A00.000Z&amp;adobe_brand_concierge_source=bc-adobe-source
-2. https://www.adobe.com/creativecloud/campaign/pricing.html?instant=2026-08-03T14%3A00%3A00.000Z&amp;adobe_brand_concierge_source=bc-adobe-source</p>
-                  <input type="radio" name="A7-a" id="A7-a-clear" class="sr" checked>
+Would you like information on Adobe&#39;s current creative design products or alternatives?</p>
                 </div>
 
                 <details class="srcs">
@@ -510,60 +335,10 @@ Sources:
               <div class="thread thread-B5">
                 <div class="bubble-user">Will my price go up when I renew?</div>
                 <div class="answer">
-                  <div class="line">
-                    <input type="radio" name="B5-a" id="B5-a-1" class="sr">
-                    <label for="B5-a-1" class="claim s-supported">Yes, Adobe Creative Cloud subscription prices can increase upon renewal.<span class="mk">1 2</span></label>
-                    <div class="why">
-                      <div class="why-head">
-                        <span class="verdict supported">Supported</span>
-                        <span class="body-xxs muted">best of 2 cited sources</span>
-                        <label for="B5-a-clear" class="close" title="close">✕</label>
-                      </div>
-                      <q>Alternatively at US$34.99/mo for the first 3 months and US$69.99/mo after that.</q>
-                      <p class="src-line">Price rises from $34.99 to $69.99/mo after first 3 months, showing renewal price increase.</p>
-                      <p class="src-line"><a href="https://www.adobe.com/creativecloud/campaign/pricing.html">Adobe Creative Cloud | Details and products | Adobe</a></p>
-                      <p class="src-line mt-xxs"><strong>Cited at response level.</strong>
-                        This sentence inherits all 2 of the answer's
-                        sources — nothing ties it to one page.</p>
-                    </div>
-                  </div>
-                  <div class="line">
-                    <input type="radio" name="B5-a" id="B5-a-3" class="sr">
-                    <label for="B5-a-3" class="claim s-supported">For example, the Adobe Creative Cloud Pro plan offers a discounted rate for the first three months, after which the price increases to the standard rate.<span class="mk">1</span></label>
-                    <div class="why">
-                      <div class="why-head">
-                        <span class="verdict supported">Supported</span>
-                        <span class="body-xxs muted">best of 1 cited source</span>
-                        <label for="B5-a-clear" class="close" title="close">✕</label>
-                      </div>
-                      <q>Pay US$34.99/mo for the first 3 months and US$69.99/mo after that. New subscribers only.</q>
-                      <p class="src-line">Source confirms discounted rate for first 3 months, then price rises to standard $69.99/mo.</p>
-                      <p class="src-line"><a href="https://www.adobe.com/creativecloud/campaign/pricing.html">Adobe Creative Cloud | Details and products | Adobe</a></p>
-                    </div>
-                  </div>
-                  <p class="line plain">1</p>
-                  <div class="line">
-                    <input type="radio" name="B5-a" id="B5-a-5" class="sr">
-                    <label for="B5-a-5" class="claim s-supported">Renewal prices are subject to change, and Adobe will notify you beforehand.<span class="mk">2</span></label>
-                    <div class="why">
-                      <div class="why-head">
-                        <span class="verdict supported">Supported</span>
-                        <span class="body-xxs muted">best of 1 cited source</span>
-                        <label for="B5-a-clear" class="close" title="close">✕</label>
-                      </div>
-                      <q>Renewal rates are subject to change, but we&#39;ll always notify you beforehand.</q>
-                      <p class="src-line">Source directly states renewal rates may change and Adobe will notify beforehand.</p>
-                      <p class="src-line"><a href="https://www.adobe.com/products/illustrator/pricing-info.html">Adobe Illustrator pricing and membership plans | Adobe</a></p>
-                    </div>
-                  </div>
-                  <p class="line plain">2
+                  <p class="line plain">Yes, Adobe Creative Cloud subscription prices can increase upon renewal. For example, the Adobe Creative Cloud Pro plan offers a discounted rate for the first three months, after which the price increases to the standard rate.
+ Renewal prices are subject to change, and Adobe will notify you beforehand.
 
-Would you like information about specific Creative Cloud plans or pricing details?
-
-Sources:
-1. https://www.adobe.com/creativecloud/campaign/pricing.html?instant=2026-08-03T14%3A00%3A00.000Z&amp;adobe_brand_concierge_source=bc-adobe-source
-2. https://www.adobe.com/products/illustrator/pricing-info.html?instant=2026-08-03T14%3A00%3A00.000Z&amp;adobe_brand_concierge_source=bc-adobe-source</p>
-                  <input type="radio" name="B5-a" id="B5-a-clear" class="sr" checked>
+Would you like information about specific Creative Cloud plans or pricing details?</p>
                 </div>
 
                 <details class="srcs">
@@ -579,7 +354,6 @@ Sources:
                 <div class="bubble-user">Do you offer education pricing for a university?</div>
                 <div class="answer">
                   <p class="line plain">For the latest deals and promotions on Adobe creativity and design products, you can visit Adobe&#39;s official offers page: Special Offers</p>
-                  <input type="radio" name="H3-a" id="H3-a-clear" class="sr" checked>
                 </div>
 
                 <div class="srcs"><p class="body-xxs muted">No sources cited in this response.</p></div>
@@ -589,7 +363,6 @@ Sources:
                 <div class="bubble-user">What&#39;s the refund policy if I bought Creative Cloud through a reseller?</div>
                 <div class="answer">
                   <p class="line plain">That&#39;s outside my scope, but I&#39;d be happy to help with questions or information you need about Adobe products.</p>
-                  <input type="radio" name="A9-a" id="A9-a-clear" class="sr" checked>
                 </div>
 
                 <div class="srcs"><p class="body-xxs muted">No sources cited in this response.</p></div>
@@ -598,41 +371,10 @@ Sources:
               <div class="thread thread-B2">
                 <div class="bubble-user">What happens if I cancel after three months?</div>
                 <div class="answer">
-                  <div class="line">
-                    <input type="radio" name="B2-a" id="B2-a-1" class="sr">
-                    <label for="B2-a-1" class="claim s-partially">If you cancel your Adobe Creative Cloud subscription after three months, your payment will be nonrefundable, and your service will continue until the end of your contracted term.<span class="mk">1</span></label>
-                    <div class="why">
-                      <div class="why-head">
-                        <span class="verdict partially">Partially supported</span>
-                        <span class="body-xxs muted">best of 1 cited source</span>
-                        <label for="B2-a-clear" class="close" title="close">✕</label>
-                      </div>
-                      <q>If you cancel within 14 days of your order, you&#39;ll be fully refunded. If you cancel after 14 days, your payment will be nonrefundable, and your service will continue until the end of your contracted term.</q>
-                      <p class="src-line">Source says &#39;after 14 days,&#39; not &#39;after three months&#39; as claim states.</p>
-                      <p class="src-line"><a href="https://www.adobe.com/products/photoshop-lightroom/pricing-info.html">Lightroom pricing and subscription plans | Adobe Lightroom</a></p>
-                    </div>
-                  </div>
-                  <div class="line">
-                    <input type="radio" name="B2-a" id="B2-a-3" class="sr">
-                    <label for="B2-a-3" class="claim s-partially">Cancellation can be done anytime via your Adobe Account page or by contacting Customer Support.<span class="mk">1</span></label>
-                    <div class="why">
-                      <div class="why-head">
-                        <span class="verdict partially">Partially supported</span>
-                        <span class="body-xxs muted">best of 1 cited source</span>
-                        <label for="B2-a-clear" class="close" title="close">✕</label>
-                      </div>
-                      <q>Cancellations can be made anytime by visiting your Manage Account page or by contacting Customer Support.</q>
-                      <p class="src-line">Source says &#39;Manage Account page&#39;, not &#39;Adobe Account page&#39; as claim states.</p>
-                      <p class="src-line"><a href="https://www.adobe.com/products/photoshop-lightroom/pricing-info.html">Lightroom pricing and subscription plans | Adobe Lightroom</a></p>
-                    </div>
-                  </div>
-                  <p class="line plain">1
+                  <p class="line plain">If you cancel your Adobe Creative Cloud subscription after three months, your payment will be nonrefundable, and your service will continue until the end of your contracted term. Cancellation can be done anytime via your Adobe Account page or by contacting Customer Support.
+1
 
-Would you like information on how to manage your subscription or details about the Creative Cloud plans?
-
-Sources:
-1. https://www.adobe.com/products/photoshop-lightroom/pricing-info.html?instant=2026-08-03T14%3A00%3A00.000Z&amp;adobe_brand_concierge_source=bc-adobe-source</p>
-                  <input type="radio" name="B2-a" id="B2-a-clear" class="sr" checked>
+Would you like information on how to manage your subscription or details about the Creative Cloud plans?</p>
                 </div>
 
                 <details class="srcs">
@@ -648,6 +390,284 @@ Sources:
             <div class="ask-foot">
               <div class="ask-input"><span>Ask a question</span><span class="send">➤</span></div>
               <p class="ask-legal">AI responses may be inaccurate and any offers provided are non-binding.</p>
+            </div>
+          </div>
+
+          <!-- Not part of Adobe's interface. This is our audit of the answer
+               above, which the shipped product gives the user no way to do. -->
+          <div class="thread thread-A2 audit-strip">
+            <div class="audit-head">
+              <span class="detail-m">Our audit of this answer</span>
+              <span class="badge">8 of 8 claims grounded</span>
+            </div>
+            <p class="body-xxs muted">Adobe's UI offers no way to check any of this. Expand a claim
+              to see what the judge found.</p>
+            <div class="cite mt-xs">
+              <details>
+                <summary><span class="verdict supported">Supported</span>
+                  <span class="body-xs">Here are the minimum system requirements for Adobe Premiere Pro on Windows, based on the latest technical requirements:</span></summary>
+                <div class="why static">
+                  <div class="why-head">
+                    <span class="body-xxs muted">best of 6 cited sources</span>
+                  </div>
+                  <q>Minimum and recommended system requirements for Windows</q>
+                  <p class="src-line">Source lists Windows minimum requirements for Adobe Premiere from latest technical requirements document.</p>
+                  <p class="src-line"><a href="https://helpx.adobe.com/premiere/desktop/get-started/technical-requirements/adobe-premiere-24x-technical-requirements.html">Adobe Premiere technical requirements | Premiere</a></p>
+                  <p class="src-line mt-xxs"><strong>Cited at response level.</strong> This sentence
+                    inherits all 6 of the answer's sources — nothing in the
+                    product ties it to one page.</p>
+                </div>
+              </details>
+              <details>
+                <summary><span class="verdict supported">Supported</span>
+                  <span class="body-xs">Processor: Intel 6th Generation or newer, or AMD Ryzen 1000 Series or newer, with AVX2 support.</span></summary>
+                <div class="why static">
+                  <div class="why-head">
+                    <span class="body-xxs muted">best of 6 cited sources</span>
+                  </div>
+                  <q>Minimum: Intel 6th Generation or newer CPU - or AMD Ryzen 1000 Series or newer CPU. Advanced Vector Extensions 2 (AVX2) Support required.</q>
+                  <p class="src-line">Source directly states the minimum processor requirement matching all details in the claim.</p>
+                  <p class="src-line"><a href="https://helpx.adobe.com/premiere/desktop/get-started/technical-requirements/adobe-premiere-pro-technical-requirements.html">Adobe Premiere system requirements | Premiere</a></p>
+                  <p class="src-line mt-xxs"><strong>Cited at response level.</strong> This sentence
+                    inherits all 6 of the answer's sources — nothing in the
+                    product ties it to one page.</p>
+                </div>
+              </details>
+              <details>
+                <summary><span class="verdict supported">Supported</span>
+                  <span class="body-xs">Operating system: Windows 11 v24H2.</span></summary>
+                <div class="why static">
+                  <div class="why-head">
+                    <span class="body-xxs muted">best of 6 cited sources</span>
+                  </div>
+                  <q>Minimum: Windows 11 v24H2. Windows on Arm: Windows 11 v24H2 (OS Build 26100.2033)</q>
+                  <p class="src-line">Source explicitly lists Windows 11 v24H2 as the minimum operating system requirement.</p>
+                  <p class="src-line"><a href="https://helpx.adobe.com/premiere/desktop/get-started/technical-requirements/adobe-premiere-pro-technical-requirements.html">Adobe Premiere system requirements | Premiere</a></p>
+                  <p class="src-line mt-xxs"><strong>Cited at response level.</strong> This sentence
+                    inherits all 6 of the answer's sources — nothing in the
+                    product ties it to one page.</p>
+                </div>
+              </details>
+              <details>
+                <summary><span class="verdict supported">Supported</span>
+                  <span class="body-xs">For Windows on Arm, the document also lists Windows 11 v24H2 (OS Build 26100.2033).</span></summary>
+                <div class="why static">
+                  <div class="why-head">
+                    <span class="body-xxs muted">best of 6 cited sources</span>
+                  </div>
+                  <q>Windows on Arm: Windows 11 v24H2 (OS Build 26100.2033)</q>
+                  <p class="src-line">Source explicitly lists this exact OS build under Windows on Arm operating system requirement.</p>
+                  <p class="src-line"><a href="https://helpx.adobe.com/premiere/desktop/get-started/technical-requirements/adobe-premiere-pro-technical-requirements.html">Adobe Premiere system requirements | Premiere</a></p>
+                  <p class="src-line mt-xxs"><strong>Cited at response level.</strong> This sentence
+                    inherits all 6 of the answer's sources — nothing in the
+                    product ties it to one page.</p>
+                </div>
+              </details>
+              <details>
+                <summary><span class="verdict supported">Supported</span>
+                  <span class="body-xs">Memory: 8 GB RAM for the minimum setup.</span></summary>
+                <div class="why static">
+                  <div class="why-head">
+                    <span class="body-xxs muted">best of 6 cited sources</span>
+                  </div>
+                  <q>RAM: 8 GB of RAM</q>
+                  <p class="src-line">Source explicitly lists 8 GB of RAM as minimum requirement for both Windows and macOS.</p>
+                  <p class="src-line"><a href="https://helpx.adobe.com/premiere-rush/desktop/system-requirements/2021-1.html">Adobe Premiere Rush system requirements | Premiere Rush</a></p>
+                  <p class="src-line mt-xxs"><strong>Cited at response level.</strong> This sentence
+                    inherits all 6 of the answer's sources — nothing in the
+                    product ties it to one page.</p>
+                </div>
+              </details>
+              <details>
+                <summary><span class="verdict supported">Supported</span>
+                  <span class="body-xs">GPU: 4 GB of GPU memory; on Windows with NVIDIA GPUs, Maxwell generation or newer is required.</span></summary>
+                <div class="why static">
+                  <div class="why-head">
+                    <span class="body-xxs muted">best of 6 cited sources</span>
+                  </div>
+                  <q>Windows with NVIDIA GPU: GPU must be of the Maxwell generation (2014) or newer and have at least 4GB of GPU memory.</q>
+                  <p class="src-line">Source states minimum 4GB GPU memory and Maxwell generation or newer for NVIDIA GPUs on Windows.</p>
+                  <p class="src-line"><a href="https://helpx.adobe.com/premiere/desktop/get-started/technical-requirements/adobe-premiere-pro-technical-requirements.html">Adobe Premiere system requirements | Premiere</a></p>
+                  <p class="src-line mt-xxs"><strong>Cited at response level.</strong> This sentence
+                    inherits all 6 of the answer's sources — nothing in the
+                    product ties it to one page.</p>
+                </div>
+              </details>
+              <details>
+                <summary><span class="verdict supported">Supported</span>
+                  <span class="body-xs">Storage and display: 8 GB of free hard-disk space, plus extra space during installation, and a 1920x1080 display.</span></summary>
+                <div class="why static">
+                  <div class="why-head">
+                    <span class="body-xxs muted">best of 6 cited sources</span>
+                  </div>
+                  <q>8 GB of available hard disk space, plus additional free space during installation.</q>
+                  <p class="src-line">Storage and display minimum specs both match: 8GB free space plus extra, and 1920x1080 display.</p>
+                  <p class="src-line"><a href="https://helpx.adobe.com/premiere/desktop/get-started/technical-requirements/adobe-premiere-pro-technical-requirements.html">Adobe Premiere system requirements | Premiere</a></p>
+                  <p class="src-line mt-xxs"><strong>Cited at response level.</strong> This sentence
+                    inherits all 6 of the answer's sources — nothing in the
+                    product ties it to one page.</p>
+                </div>
+              </details>
+              <details>
+                <summary><span class="verdict supported">Supported</span>
+                  <span class="body-xs">Note: The product needs an internet connection, an Adobe ID, and acceptance of the license agreement to activate and use it.</span></summary>
+                <div class="why static">
+                  <div class="why-head">
+                    <span class="body-xxs muted">best of 6 cited sources</span>
+                  </div>
+                  <q>To activate and use this product, you need an Internet connection, Adobe ID, and acceptance of the license agreement.</q>
+                  <p class="src-line">Source directly states this requirement, matching the claim exactly.</p>
+                  <p class="src-line"><a href="https://helpx.adobe.com/premiere/desktop/get-started/technical-requirements/adobe-premiere-pro-technical-requirements.html">Adobe Premiere system requirements | Premiere</a></p>
+                  <p class="src-line mt-xxs"><strong>Cited at response level.</strong> This sentence
+                    inherits all 6 of the answer's sources — nothing in the
+                    product ties it to one page.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+          <div class="thread thread-A7 audit-strip">
+            <div class="audit-head">
+              <span class="detail-m">Our audit of this answer</span>
+              <span class="badge">0 of 3 claims grounded</span>
+            </div>
+            <p class="body-xxs muted">Adobe's UI offers no way to check any of this. Expand a claim
+              to see what the judge found.</p>
+            <div class="cite mt-xs">
+              <details>
+                <summary><span class="verdict unsupported">Unsupported</span>
+                  <span class="body-xs">Adobe XD is currently in legacy maintenance mode and is no longer receiving ongoing feature development.</span></summary>
+                <div class="why static">
+                  <div class="why-head">
+                    <span class="body-xxs muted">best of 2 cited sources</span>
+                  </div>
+                  <p class="src-line">Source lists Adobe apps and pricing but doesn&#39;t mention Adobe XD or its development status at all.</p>
+                  <p class="src-line"><a href="https://www.adobe.com/creativecloud/design/explore/amexbenefit.html">Exclusive Adobe Offer for AMEX Business Platinum Cardholders | Save $250</a></p>
+                  <p class="src-line mt-xxs"><strong>Cited at response level.</strong> This sentence
+                    inherits all 2 of the answer's sources — nothing in the
+                    product ties it to one page.</p>
+                </div>
+              </details>
+              <details>
+                <summary><span class="verdict unsupported">Unsupported</span>
+                  <span class="body-xs">It is supported only for existing customers.</span></summary>
+                <div class="why static">
+                  <div class="why-head">
+                    <span class="body-xxs muted">best of 1 cited source</span>
+                  </div>
+                  <p class="src-line">Source never mentions new vs existing customer eligibility restrictions for this offer.</p>
+                  <p class="src-line"><a href="https://www.adobe.com/creativecloud/design/explore/amexbenefit.html">Exclusive Adobe Offer for AMEX Business Platinum Cardholders | Save $250</a></p>
+                </div>
+              </details>
+              <details>
+                <summary><span class="verdict unsupported">Unsupported</span>
+                  <span class="body-xs">For active user experience design and prototyping, Adobe recommends exploring other current Adobe tools and solutions.</span></summary>
+                <div class="why static">
+                  <div class="why-head">
+                    <span class="body-xxs muted">best of 1 cited source</span>
+                  </div>
+                  <p class="src-line">Source lists Creative Cloud apps and plans but says nothing about UX design/prototyping tool recommendations.</p>
+                  <p class="src-line"><a href="https://www.adobe.com/creativecloud/campaign/pricing.html">Adobe Creative Cloud | Details and products | Adobe</a></p>
+                </div>
+              </details>
+            </div>
+          </div>
+          <div class="thread thread-B5 audit-strip">
+            <div class="audit-head">
+              <span class="detail-m">Our audit of this answer</span>
+              <span class="badge">3 of 3 claims grounded</span>
+            </div>
+            <p class="body-xxs muted">Adobe's UI offers no way to check any of this. Expand a claim
+              to see what the judge found.</p>
+            <div class="cite mt-xs">
+              <details>
+                <summary><span class="verdict supported">Supported</span>
+                  <span class="body-xs">Yes, Adobe Creative Cloud subscription prices can increase upon renewal.</span></summary>
+                <div class="why static">
+                  <div class="why-head">
+                    <span class="body-xxs muted">best of 2 cited sources</span>
+                  </div>
+                  <q>Alternatively at US$34.99/mo for the first 3 months and US$69.99/mo after that.</q>
+                  <p class="src-line">Price rises from $34.99 to $69.99/mo after first 3 months, showing renewal price increase.</p>
+                  <p class="src-line"><a href="https://www.adobe.com/creativecloud/campaign/pricing.html">Adobe Creative Cloud | Details and products | Adobe</a></p>
+                  <p class="src-line mt-xxs"><strong>Cited at response level.</strong> This sentence
+                    inherits all 2 of the answer's sources — nothing in the
+                    product ties it to one page.</p>
+                </div>
+              </details>
+              <details>
+                <summary><span class="verdict supported">Supported</span>
+                  <span class="body-xs">For example, the Adobe Creative Cloud Pro plan offers a discounted rate for the first three months, after which the price increases to the standard rate.</span></summary>
+                <div class="why static">
+                  <div class="why-head">
+                    <span class="body-xxs muted">best of 1 cited source</span>
+                  </div>
+                  <q>Pay US$34.99/mo for the first 3 months and US$69.99/mo after that. New subscribers only.</q>
+                  <p class="src-line">Source confirms discounted rate for first 3 months, then price rises to standard $69.99/mo.</p>
+                  <p class="src-line"><a href="https://www.adobe.com/creativecloud/campaign/pricing.html">Adobe Creative Cloud | Details and products | Adobe</a></p>
+                </div>
+              </details>
+              <details>
+                <summary><span class="verdict supported">Supported</span>
+                  <span class="body-xs">Renewal prices are subject to change, and Adobe will notify you beforehand.</span></summary>
+                <div class="why static">
+                  <div class="why-head">
+                    <span class="body-xxs muted">best of 1 cited source</span>
+                  </div>
+                  <q>Renewal rates are subject to change, but we&#39;ll always notify you beforehand.</q>
+                  <p class="src-line">Source directly states renewal rates may change and Adobe will notify beforehand.</p>
+                  <p class="src-line"><a href="https://www.adobe.com/products/illustrator/pricing-info.html">Adobe Illustrator pricing and membership plans | Adobe</a></p>
+                </div>
+              </details>
+            </div>
+          </div>
+          <div class="thread thread-H3 audit-strip">
+            <div class="audit-head">
+              <span class="detail-m">Our audit of this answer</span>
+              <span class="badge">no factual claims</span>
+            </div>
+            <p class="body-xxs muted">This answer asserted nothing verifiable, so there was nothing
+              to score.</p>
+          </div>
+          <div class="thread thread-A9 audit-strip">
+            <div class="audit-head">
+              <span class="detail-m">Our audit of this answer</span>
+              <span class="badge">no factual claims</span>
+            </div>
+            <p class="body-xxs muted">This answer asserted nothing verifiable, so there was nothing
+              to score.</p>
+          </div>
+          <div class="thread thread-B2 audit-strip">
+            <div class="audit-head">
+              <span class="detail-m">Our audit of this answer</span>
+              <span class="badge">2 of 2 claims grounded</span>
+            </div>
+            <p class="body-xxs muted">Adobe's UI offers no way to check any of this. Expand a claim
+              to see what the judge found.</p>
+            <div class="cite mt-xs">
+              <details>
+                <summary><span class="verdict partially">Partially supported</span>
+                  <span class="body-xs">If you cancel your Adobe Creative Cloud subscription after three months, your payment will be nonrefundable, and your service will continue until the end of your contracted term.</span></summary>
+                <div class="why static">
+                  <div class="why-head">
+                    <span class="body-xxs muted">best of 1 cited source</span>
+                  </div>
+                  <q>If you cancel within 14 days of your order, you&#39;ll be fully refunded. If you cancel after 14 days, your payment will be nonrefundable, and your service will continue until the end of your contracted term.</q>
+                  <p class="src-line">Source says &#39;after 14 days,&#39; not &#39;after three months&#39; as claim states.</p>
+                  <p class="src-line"><a href="https://www.adobe.com/products/photoshop-lightroom/pricing-info.html">Lightroom pricing and subscription plans | Adobe Lightroom</a></p>
+                </div>
+              </details>
+              <details>
+                <summary><span class="verdict partially">Partially supported</span>
+                  <span class="body-xs">Cancellation can be done anytime via your Adobe Account page or by contacting Customer Support.</span></summary>
+                <div class="why static">
+                  <div class="why-head">
+                    <span class="body-xxs muted">best of 1 cited source</span>
+                  </div>
+                  <q>Cancellations can be made anytime by visiting your Manage Account page or by contacting Customer Support.</q>
+                  <p class="src-line">Source says &#39;Manage Account page&#39;, not &#39;Adobe Account page&#39; as claim states.</p>
+                  <p class="src-line"><a href="https://www.adobe.com/products/photoshop-lightroom/pricing-info.html">Lightroom pricing and subscription plans | Adobe Lightroom</a></p>
+                </div>
+              </details>
             </div>
           </div>
         </div>
@@ -1019,12 +1039,12 @@ Sources:
     </div>
 
     <div class="notice mt-l measure">
-      <p class="body-s"><strong>What the markers mean.</strong> The small number after each sentence
-      is the source it maps to. Adobe cites at the response level, so most of its sentences carry
-      <em>every</em> source in the answer — the marker can't narrow it down.
-      45.0% of its claims had an inline marker tying them to one page. Eboda
-      cites per sentence, so each marker points at one passage, and the underline colour is the
-      judge's verdict on that exact pairing.</p>
+      <p class="body-s"><strong>The difference in one line.</strong> Adobe answers, then lists its
+      sources at the bottom of the response. Nothing connects a given sentence to a given page, and
+      the interface gives you no way to check one — so the audit strip under its answer is ours, not
+      a feature of the product. Eboda cites per sentence: every marker points at one passage, the
+      underline colour is the judge's verdict on that exact pairing, and anything the verifier
+      couldn't confirm never reaches the user.</p>
     </div>
   </div>
 </section>

@@ -53,7 +53,7 @@
 
   .answer { margin-top:var(--spacing-s); font-size:var(--type-body-s-size); }
   .line { margin:0 0 6px; }
-  .line.plain { color:var(--text-color); white-space:pre-wrap; }
+  .line.plain { color:var(--text-color); white-space:pre-wrap; line-height:1.55; }
 
   /* a citable sentence: click to highlight and reveal its source */
   .claim { display:block; cursor:pointer; border-radius:6px; padding:3px 6px; margin:0 -6px;
@@ -127,6 +127,16 @@
                color:var(--color-gray-600); margin-top:10px; }
 
   .col-tag { display:flex; align-items:baseline; gap:10px; margin-bottom:8px; }
+
+  .audit-strip { margin-top:var(--spacing-s); border:1px dashed var(--color-gray-400);
+                 border-radius:10px; padding:14px 16px; background:#FCFCFD; }
+  .audit-head { display:flex; align-items:center; gap:10px; margin-bottom:4px; flex-wrap:wrap; }
+  .cite details { border-bottom:1px dotted var(--border-color); }
+  .cite summary { cursor:pointer; list-style:none; padding:7px 0; display:flex; gap:8px;
+                  align-items:flex-start; }
+  .cite summary::-webkit-details-marker { display:none; }
+  .cite summary:hover { background:var(--color-gray-100); }
+  .why.static { display:block; margin-top:0; }
 
   .table-scroll { overflow-x:auto; }
   .table-scroll table { min-width:900px; }
@@ -266,38 +276,7 @@
               <div class="thread thread-{{ t.id }}">
                 <div class="bubble-user">{{ t.prompt }}</div>
                 <div class="answer">
-                  {% for seg in t.adobe_segments %}
-                    {% if seg.claim %}
-                  <div class="line">
-                    <input type="radio" name="{{ t.id }}-a" id="{{ t.id }}-a-{{ loop.index }}" class="sr">
-                    <label for="{{ t.id }}-a-{{ loop.index }}" class="claim s-{{ seg.claim.best_slug }}">{{ seg.claim.text }}<span class="mk">{{ seg.claim.marks | join(' ') if seg.claim.marks else '–' }}</span></label>
-                    <div class="why">
-                      <div class="why-head">
-                        <span class="verdict {{ seg.claim.best_slug }}">{{ seg.claim.best or 'no source' }}</span>
-                        <span class="body-xxs muted">best of {{ seg.claim.sources | length }} cited source{{ 's' if seg.claim.sources | length != 1 }}</span>
-                        <label for="{{ t.id }}-a-clear" class="close" title="close">✕</label>
-                      </div>
-                      {% if seg.claim.best_source %}
-                        {% if seg.claim.best_source.evidence_span %}
-                      <q>{{ seg.claim.best_source.evidence_span }}</q>
-                        {% endif %}
-                      <p class="src-line">{{ seg.claim.best_source.reason }}</p>
-                      <p class="src-line"><a href="{{ seg.claim.best_source.url }}">{{ seg.claim.best_source.title }}</a></p>
-                      {% else %}
-                      <p class="src-line">This response cited no source that could be scored.</p>
-                      {% endif %}
-                      {% if not seg.claim.marker_derived and seg.claim.sources | length > 1 %}
-                      <p class="src-line mt-xxs"><strong>Cited at response level.</strong>
-                        This sentence inherits all {{ seg.claim.sources | length }} of the answer's
-                        sources — nothing ties it to one page.</p>
-                      {% endif %}
-                    </div>
-                  </div>
-                    {% elif seg.text.strip() %}
-                  <p class="line plain">{{ seg.text.strip() }}</p>
-                    {% endif %}
-                  {% endfor %}
-                  <input type="radio" name="{{ t.id }}-a" id="{{ t.id }}-a-clear" class="sr" checked>
+                  <p class="line plain">{{ t.adobe_plain }}</p>
                 </div>
 
                 {% if t.adobe_sources %}
@@ -322,6 +301,53 @@
               <p class="ask-legal">AI responses may be inaccurate and any offers provided are non-binding.</p>
             </div>
           </div>
+
+          <!-- Not part of Adobe's interface. This is our audit of the answer
+               above, which the shipped product gives the user no way to do. -->
+          {% for t in threads %}
+          <div class="thread thread-{{ t.id }} audit-strip">
+            <div class="audit-head">
+              <span class="detail-m">Our audit of this answer</span>
+              {% if t.adobe_counts.total %}
+              <span class="badge">{{ t.adobe_counts.grounded }} of {{ t.adobe_counts.total }} claims grounded</span>
+              {% else %}
+              <span class="badge">no factual claims</span>
+              {% endif %}
+            </div>
+            {% if t.adobe_counts.total %}
+            <p class="body-xxs muted">Adobe's UI offers no way to check any of this. Expand a claim
+              to see what the judge found.</p>
+            <div class="cite mt-xs">
+              {% for c in t.adobe_claims %}
+              <details>
+                <summary><span class="verdict {{ c.best_slug }}">{{ c.best or 'no source' }}</span>
+                  <span class="body-xs">{{ c.text }}</span></summary>
+                <div class="why static">
+                  <div class="why-head">
+                    <span class="body-xxs muted">best of {{ c.sources | length }} cited source{{ 's' if c.sources | length != 1 }}</span>
+                  </div>
+                  {% if c.best_source %}
+                    {% if c.best_source.evidence_span %}
+                  <q>{{ c.best_source.evidence_span }}</q>
+                    {% endif %}
+                  <p class="src-line">{{ c.best_source.reason }}</p>
+                  <p class="src-line"><a href="{{ c.best_source.url }}">{{ c.best_source.title }}</a></p>
+                  {% endif %}
+                  {% if not c.marker_derived and c.sources | length > 1 %}
+                  <p class="src-line mt-xxs"><strong>Cited at response level.</strong> This sentence
+                    inherits all {{ c.sources | length }} of the answer's sources — nothing in the
+                    product ties it to one page.</p>
+                  {% endif %}
+                </div>
+              </details>
+              {% endfor %}
+            </div>
+            {% else %}
+            <p class="body-xxs muted">This answer asserted nothing verifiable, so there was nothing
+              to score.</p>
+            {% endif %}
+          </div>
+          {% endfor %}
         </div>
 
         <!-- ============ EBODA COLUMN ============ -->
@@ -416,12 +442,12 @@
     </div>
 
     <div class="notice mt-l measure">
-      <p class="body-s"><strong>What the markers mean.</strong> The small number after each sentence
-      is the source it maps to. Adobe cites at the response level, so most of its sentences carry
-      <em>every</em> source in the answer — the marker can't narrow it down.
-      {{ marker_derived_pct }}% of its claims had an inline marker tying them to one page. Eboda
-      cites per sentence, so each marker points at one passage, and the underline colour is the
-      judge's verdict on that exact pairing.</p>
+      <p class="body-s"><strong>The difference in one line.</strong> Adobe answers, then lists its
+      sources at the bottom of the response. Nothing connects a given sentence to a given page, and
+      the interface gives you no way to check one — so the audit strip under its answer is ours, not
+      a feature of the product. Eboda cites per sentence: every marker points at one passage, the
+      underline colour is the judge's verdict on that exact pairing, and anything the verifier
+      couldn't confirm never reaches the user.</p>
     </div>
   </div>
 </section>

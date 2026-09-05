@@ -38,7 +38,10 @@ from src.config import (
     TEMPLATES_DIR,
     ensure_dirs,
 )
+import re
+
 from src.judge import LABEL_ORDER, best_label
+from src.parse_log import split_response
 from src.llm import MODEL_GENERATION, MODEL_JUDGE
 
 # SPEC.md section 6 step 8: these six probes, side by side.
@@ -50,6 +53,9 @@ CSS_SOURCES = [
     Path(".mockups/toolkit/eboda-web-toolkit.css"),
     Path.home() / "Downloads" / "files" / "eboda-web-toolkit.css",
 ]
+
+# A bare numeral on its own line: an inline marker in the raw transcript.
+_MARKER_LINE = re.compile(r"^[ 	]*\d{1,2}[ 	]*$")
 
 LABEL_SLUG = {
     "Supported": "supported",
@@ -230,6 +236,16 @@ def build_context() -> dict:
             )
         adobe_segments = segment_response(probe["response_text"] or "", probe_claims)
 
+        # Adobe's shipped UI renders the answer as prose with a Sources list at
+        # the bottom — no per-sentence citation affordance. Render it that way:
+        # body only (the trailing "Sources:" block moves into the drawer), with
+        # the bare numerals its transcript carries stripped, since they are not
+        # clickable citations in the product.
+        body, _ = split_response(probe["response_text"] or "")
+        adobe_plain = "\n".join(
+            line for line in body.split("\n") if not _MARKER_LINE.match(line)
+        ).strip()
+
         # --- Eboda side: numbered chunks, one entry per generated sentence ----
         entry = answers.get(pid)
         thread_sentences, eboda_sources = [], []
@@ -262,6 +278,12 @@ def build_context() -> dict:
                 "verdict": probe["verdict"],
                 "failure_mode": probe["failure_mode"],
                 "adobe_segments": adobe_segments,
+                "adobe_plain": adobe_plain,
+                "adobe_counts": {
+                    "total": len(probe_claims),
+                    "grounded": sum(1 for c in probe_claims if c["best"] in ("Supported", "Partially supported")),
+                    "ungrounded": sum(1 for c in probe_claims if c["best"] not in ("Supported", "Partially supported")),
+                },
                 "adobe_sources": adobe_sources,
                 "adobe_claims": probe_claims,
                 "eboda_present": entry is not None,
