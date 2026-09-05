@@ -1163,5 +1163,70 @@
     "final_text": "I don't have anything documented that answers this, so I'm not going to guess. Nothing in the material I can cite covers it. If it's useful, I can put you in touch with someone who can confirm it directly.",
     "retrieved_chunk_ids": [],
     "judge_model": "claude-sonnet-5"
+  },
+  {
+    "probe_id": "H3",
+    "prompt": "Do you offer education pricing for a university?",
+    "kept": [
+      {
+        "sentence": "The sources mention that Adobe offers plans for students and teachers [c0015], but specific details about university education pricing are not documented in the provided sources.",
+        "chunk_ids": [
+          "c0015"
+        ],
+        "label": "Supported",
+        "reason": "Source mentions student/teacher plans but gives no university pricing details, matching the claim exactly.",
+        "evidence_span": "Browse plans for businesses or students and teachers."
+      }
+    ],
+    "dropped": [],
+    "abstained": true,
+    "reason": "abstained: the generator declined to answer from these sources",
+    "final_text": "I don't have that documented in the material I can cite, so I'm not going to guess. The closest page I found is “Adobe Creative Cloud | Details and products | Adobe”, which covers related ground but doesn't answer this. If it's useful, I can put you in touch with someone who can confirm it directly.",
+    "retrieved_chunk_ids": [
+      "c0015",
+      "c0037",
+      "c0026",
+      "c0039",
+      "c0052",
+      "c0043"
+    ],
+    "judge_model": "claude-sonnet-5",
+    "display_only": true
+  },
+  {
+    "probe_id": "A9",
+    "prompt": "What's the refund policy if I bought Creative Cloud through a reseller?",
+    "kept": [
+      {
+        "sentence": "The sources only document the refund policy for direct Adobe purchases, which offers a 14-day money-back guarantee after the free trial ends [c0034].",
+        "chunk_ids": [
+          "c0034"
+        ],
+        "label": "Partially supported",
+        "reason": "Source confirms 14-day refund policy but doesn't specify it's only for 'direct Adobe purchases' as opposed to other channels.",
+        "evidence_span": "You will have 14 days after your free trial ends to cancel and get a full refund."
+      }
+    ],
+    "dropped": [
+      {
+        "sentence": "The provided sources do not contain information about refund policies for Creative Cloud purchases made through resellers.",
+        "chunk_ids": [],
+        "label": null,
+        "reason": "no citable source id"
+      }
+    ],
+    "abstained": true,
+    "reason": "abstained: the generator declined to answer from these sources",
+    "final_text": "I don't have that documented in the material I can cite, so I'm not going to guess. The closest page I found is “Adobe Creative Cloud Free Download & Free Trial | Adobe Creative Cloud”, which covers related ground but doesn't answer this. If it's useful, I can put you in touch with someone who can confirm it directly.",
+    "retrieved_chunk_ids": [
+      "c0034",
+      "c0051",
+      "c0024",
+      "c0028",
+      "c0029",
+      "c0014"
+    ],
+    "judge_model": "claude-sonnet-5",
+    "display_only": true
   }
 ]

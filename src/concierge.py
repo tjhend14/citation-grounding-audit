@@ -314,7 +314,55 @@ def prove_gate() -> int:
     return 0
 
 
+# Probes shown in the report's side-by-side. Two of them (A9, H3) drew no
+# citations from Adobe, so step 7 never ran them. SPEC.md section 6 step 6 wants
+# A9 on the final page to demonstrate the abstain copy, so they are generated
+# here and flagged display_only: they are excluded from every published number.
+DISPLAY_PROBES = ["A2", "A7", "B5", "H3", "A9", "B2"]
+
+
+def fill_display_probes() -> int:
+    """Generate answers for side-by-side probes step 7 skipped."""
+    ensure_dirs()
+    probes = {p["id"]: p for p in
+              (json.loads(l) for l in PROBES_JSONL.read_text(encoding="utf-8").splitlines() if l.strip())}
+    records = json.loads(ANSWERS_EBODA_JSON.read_text(encoding="utf-8"))
+    have = {r["probe_id"] for r in records}
+
+    missing = [pid for pid in DISPLAY_PROBES if pid not in have]
+    if not missing:
+        print("nothing missing — every side-by-side probe already has an answer")
+        return 0
+
+    print(f"generating display-only answers for: {', '.join(missing)}")
+    for pid in missing:
+        probe = probes[pid]
+        result = answer_verified(probe["prompt"])
+        print(f"  {pid} abstained={result['abstained']} kept={len(result['kept'])} "
+              f"dropped={len(result['dropped'])}  {result['reason']}")
+        records.append({
+            "probe_id": pid,
+            "prompt": probe["prompt"],
+            "kept": result["kept"],
+            "dropped": result["dropped"],
+            "abstained": result["abstained"],
+            "reason": result["reason"],
+            "final_text": result["final_text"],
+            "retrieved_chunk_ids": [c.chunk_id for c in result["chunks"]],
+            "judge_model": result["judge_model"],
+            # Excluded from comparison.json and audit_eboda.json.
+            "display_only": True,
+        })
+
+    ANSWERS_EBODA_JSON.write_text(
+        json.dumps(records, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(f"wrote {ANSWERS_EBODA_JSON} ({len(records)} records, {len(missing)} display-only)")
+    return 0
+
+
 def main(argv: list[str]) -> int:
+    if argv and argv[0] == "--fill-display":
+        return fill_display_probes()
     if argv and argv[0] == "--prove-gate":
         return prove_gate()
     if argv and argv[0] == "--acceptance":

@@ -75,6 +75,40 @@ def page_titles() -> dict[str, str]:
     return titles
 
 
+def eboda_sentences_for(probe_id, entry, eboda_by_claim, chunks) -> list[dict]:
+    """One record per generated sentence, kept or dropped, with its judgement."""
+    out = []
+    for i, item in enumerate(entry["kept"] + entry["dropped"], start=1):
+        claim_id = f"{probe_id}-e{i:02d}"
+        kept = item in entry["kept"]
+        judgements = eboda_by_claim.get(claim_id, [])
+        out.append(
+            {
+                "n": i,
+                "text": item["sentence"],
+                "kept": kept,
+                "label": item.get("label"),
+                "slug": LABEL_SLUG.get(item.get("label"), "none"),
+                "reason": item.get("reason"),
+                "evidence_span": item.get("evidence_span"),
+                "chunk_ids": [c for c in (item.get("chunk_ids") or []) if c in chunks],
+                "sources": [
+                    {
+                        "chunk_id": j["source_ref"],
+                        "title": chunks.get(j["source_ref"], {}).get("page_title") or j["source_ref"],
+                        "url": chunks.get(j["source_ref"], {}).get("url", ""),
+                        "label": j["label"],
+                        "slug": LABEL_SLUG.get(j["label"], "none"),
+                        "reason": j["reason"],
+                        "evidence_span": j["evidence_span"],
+                    }
+                    for j in judgements
+                ],
+            }
+        )
+    return out
+
+
 def build_context() -> dict:
     comparison = load_json(COMPARISON_JSON)
     probes = {p["id"]: p for p in load_jsonl(PROBES_JSONL)}
@@ -154,6 +188,91 @@ def build_context() -> dict:
                 }
             )
         return out
+
+    # --- chat threads for the Ask modal -------------------------------------
+    def segment_response(text: str, probe_claims: list[dict]) -> list[dict]:
+        """Split Adobe's transcript into claim / non-claim spans.
+
+        Claims were extracted verbatim from this text in step 1, so each one can
+        be found and wrapped. Anything between them (greetings, questions back to
+        the user, the Sources block) renders as plain, unhighlightable text.
+        """
+        segments: list[dict] = []
+        cursor = 0
+        for claim in probe_claims:
+            idx = text.find(claim["text"], cursor)
+            if idx == -1:
+                continue
+            if idx > cursor:
+                segments.append({"text": text[cursor:idx], "claim": None})
+            segments.append({"text": claim["text"], "claim": claim})
+            cursor = idx + len(claim["text"])
+        if cursor < len(text):
+            segments.append({"text": text[cursor:], "claim": None})
+        return segments
+
+    threads = []
+    for pid in SIDE_BY_SIDE:
+        probe = probes.get(pid)
+        if not probe:
+            continue
+
+        # --- Adobe side: numbered sources, claims tagged with their numbers ---
+        src_no = {u: i + 1 for i, u in enumerate(probe["cited_urls"])}
+        adobe_sources = [
+            {"n": n, "url": u, "title": titles.get(u, u)} for u, n in src_no.items()
+        ]
+        probe_claims = baseline_by_probe.get(pid, [])
+        for c in probe_claims:
+            c["marks"] = sorted(src_no[s["url"]] for s in c["sources"] if s["url"] in src_no)
+            c["best_source"] = next(
+                (s for s in c["sources"] if s["label"] == c["best"]), None
+            )
+        adobe_segments = segment_response(probe["response_text"] or "", probe_claims)
+
+        # --- Eboda side: numbered chunks, one entry per generated sentence ----
+        entry = answers.get(pid)
+        thread_sentences, eboda_sources = [], []
+        if entry:
+            cited_ids: list[str] = []
+            for item in entry["kept"] + entry["dropped"]:
+                for cid in item.get("chunk_ids") or []:
+                    if cid in chunks and cid not in cited_ids:
+                        cited_ids.append(cid)
+            chunk_no = {cid: i + 1 for i, cid in enumerate(cited_ids)}
+            eboda_sources = [
+                {
+                    "n": n,
+                    "chunk_id": cid,
+                    "title": chunks[cid].get("page_title") or cid,
+                    "url": chunks[cid].get("url", ""),
+                    "heading": chunks[cid].get("heading"),
+                }
+                for cid, n in chunk_no.items()
+            ]
+            for s in eboda_sentences_for(pid, entry, eboda_by_claim, chunks):
+                s["marks"] = sorted(chunk_no[c] for c in s["chunk_ids"] if c in chunk_no)
+                thread_sentences.append(s)
+
+        threads.append(
+            {
+                "id": pid,
+                "category": probe["category"],
+                "prompt": probe["prompt"],
+                "verdict": probe["verdict"],
+                "failure_mode": probe["failure_mode"],
+                "adobe_segments": adobe_segments,
+                "adobe_sources": adobe_sources,
+                "adobe_claims": probe_claims,
+                "eboda_present": entry is not None,
+                "eboda_display_only": bool(entry and entry.get("display_only")),
+                "eboda_abstained": entry["abstained"] if entry else None,
+                "eboda_final": entry["final_text"] if entry else None,
+                "eboda_reason": entry["reason"] if entry else None,
+                "eboda_sentences": thread_sentences,
+                "eboda_sources": eboda_sources,
+            }
+        )
 
     # --- the six side-by-side probes ----------------------------------------
     pairs = []
@@ -250,6 +369,7 @@ def build_context() -> dict:
         ),
         "n_claims_uncited": sum(1 for c in claims.values() if not c["cited_urls"]),
         "n_claims_total": len(claims),
+        "threads": threads,
         "n_human_labels": n_human_labels,
         "human_agreement_display": f"{comparison['human_agreement']:.2f}",
     }

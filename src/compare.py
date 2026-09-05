@@ -67,6 +67,8 @@ def audit_eboda(chunks: dict[str, dict]) -> list[dict]:
     records: list[dict] = []
 
     for entry in answers:
+        if entry.get("display_only"):
+            continue  # rendered on the page, never counted in a published number
         probe_id = entry["probe_id"]
         sentences = entry["kept"] + entry["dropped"]
         for i, item in enumerate(sentences, start=1):
@@ -142,9 +144,10 @@ def main() -> int:
     print(f"wrote {AUDIT_EBODA_JSON} ({len(eboda)} records)")
 
     answers = json.loads(ANSWERS_EBODA_JSON.read_text(encoding="utf-8"))
+    measured = [a for a in answers if not a.get("display_only")]
     gate = {
-        "sentences_dropped": sum(len(a["dropped"]) for a in answers),
-        "answers_abstained": sum(1 for a in answers if a["abstained"]),
+        "sentences_dropped": sum(len(a["dropped"]) for a in measured),
+        "answers_abstained": sum(1 for a in measured if a["abstained"]),
     }
 
     human_agreement = 0.0
@@ -171,7 +174,7 @@ def main() -> int:
     print(f"  eboda grounding_rate over ALL generated sentences : {comparison['eboda']['grounding_rate']:.2f}")
     print(f"  eboda grounding_rate over only what it SERVED     : {grounding_rate(served_labels):.2f}"
           f"  ({len(served_labels)} sentences — near 1.00 by construction, the gate keeps what the judge passes)")
-    print(f"  answers abstained                                 : {gate['answers_abstained']}/{len(answers)}")
+    print(f"  answers abstained                                 : {gate['answers_abstained']}/{len(measured)}")
 
     # --- acceptance check (SPEC.md section 6, step 7) -----------------------
     vocab_baseline = {r["label"] for r in baseline if r["label"]}

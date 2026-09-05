@@ -7,8 +7,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="eboda-web-toolkit.css">
 <style>
-  /* The only additions to the toolkit: verdict colour-coding and the
-     side-by-side/citation affordances the toolkit has no component for. */
+  /* ------------------------------------------------------------------
+     Additions to the toolkit. Everything interactive here is CSS only —
+     hidden radio inputs plus sibling selectors, and <details> for the
+     source drawers. No JavaScript anywhere on this page (SPEC.md §8).
+     ------------------------------------------------------------------ */
+
+  /* verdict pills */
   .verdict { display:inline-block; padding:2px 9px; border-radius:11px;
              font-size:var(--type-body-xxs-size); font-weight:700; white-space:nowrap; }
   .verdict.supported   { background:#E3F3E6; color:#1B6B2E; }
@@ -22,25 +27,116 @@
   .stat .n.win  { color:#1B6B2E; }
   .stat .n.warn { color:#A31B1B; }
 
-  .compare { border:1px solid var(--border-color); border-radius:10px; overflow:hidden; }
-  .compare > header { padding:12px 16px; border-bottom:1px solid var(--border-color);
-                      background:var(--color-gray-100); display:flex; gap:10px; align-items:baseline; }
-  .compare > .body { padding:var(--spacing-s); }
-  .transcript { white-space:pre-wrap; }
+  /* ---------------- the Ask modal ---------------- */
+  .ask-wrap { position:relative; }
+  .probe-radio, .sr { position:absolute; opacity:0; pointer-events:none; }
 
-  .cite { border:none; background:none; }
-  .cite details { border-bottom:1px dotted var(--border-color); }
-  .cite summary { cursor:pointer; list-style:none; padding:6px 0; }
-  .cite summary::-webkit-details-marker { display:none; }
-  .cite .ev { border-left:3px solid var(--color-info-accent); background:var(--color-gray-100);
-              padding:10px 14px; margin:6px 0 12px; border-radius:0 6px 6px 0; }
-  .cite .ev q { font-style:italic; }
+  .ask-grid { display:grid; gap:var(--spacing-s); grid-template-columns:1fr; }
+  @media (min-width:1000px) { .ask-grid { grid-template-columns:1fr 1fr; } }
 
-  .dropped { opacity:.62; text-decoration:line-through var(--color-gray-500); }
+  .ask-shell { background:#fff; border:1px solid var(--border-color); border-radius:14px;
+               box-shadow:0 12px 40px rgba(0,0,0,.10); display:flex; flex-direction:column;
+               overflow:hidden; min-height:520px; }
+  .ask-bar { display:flex; align-items:center; gap:8px; padding:14px 18px;
+             border-bottom:1px solid var(--border-color); }
+  .ask-logo { font-weight:900; letter-spacing:-.02em; font-size:15px; }
+  .ask-beta { font-size:10px; font-weight:700; letter-spacing:.08em; color:var(--color-gray-600); }
+  .ask-bar .spacer { margin-left:auto; }
+  .ask-chev { color:var(--color-gray-500); font-size:13px; }
+
+  .ask-body { padding:18px; flex:1; overflow-y:auto; max-height:560px; }
+  .ask-hello { color:var(--color-gray-600); font-size:var(--type-body-s-size);
+               margin-bottom:var(--spacing-s); }
+
+  .bubble-user { background:#EDEBFC; border-radius:14px; padding:10px 16px; max-width:82%;
+                 margin-left:auto; font-size:var(--type-body-s-size); }
+
+  .answer { margin-top:var(--spacing-s); font-size:var(--type-body-s-size); }
+  .line { margin:0 0 6px; }
+  .line.plain { color:var(--text-color); white-space:pre-wrap; }
+
+  /* a citable sentence: click to highlight and reveal its source */
+  .claim { display:block; cursor:pointer; border-radius:6px; padding:3px 6px; margin:0 -6px;
+           border-bottom:2px solid transparent; transition:background .12s, border-color .12s; }
+  .claim:hover { background:var(--color-gray-100); }
+  .claim .mk { display:inline-block; min-width:16px; text-align:center; margin-left:6px;
+               padding:0 4px; border-radius:4px; background:var(--color-gray-200);
+               color:var(--color-gray-700); font-size:10px; font-weight:700;
+               vertical-align:super; }
+  .claim.s-supported   { border-bottom-color:#8FCF9E; }
+  .claim.s-partially   { border-bottom-color:#E8C168; }
+  .claim.s-unsupported { border-bottom-color:#E79393; }
+  .claim.s-unrelated   { border-bottom-color:#B695E8; }
+  .claim.s-none        { border-bottom-color:var(--color-gray-300); }
+
+  /* checked state — one generic rule, no per-sentence CSS */
+  .sr:checked + .claim { background:#F3F7FF; border-bottom-width:2px; }
+  .sr:checked + .claim.s-supported   { background:#EDF8F0; }
+  .sr:checked + .claim.s-partially   { background:#FFF8E8; }
+  .sr:checked + .claim.s-unsupported { background:#FDEFEF; }
+  .sr:checked + .claim.s-unrelated   { background:#F6EFFD; }
+  .sr:checked + .claim .mk { background:var(--color-info-accent); color:#fff; }
+  .why { display:none; }
+  .sr:checked ~ .why { display:block; }
+
+  .why { margin:8px 0 14px; border-left:3px solid var(--color-info-accent);
+         background:var(--color-gray-100); border-radius:0 8px 8px 0; padding:12px 14px; }
+  .why-head { display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap; }
+  .why q { font-style:italic; display:block; margin:6px 0; color:var(--text-color); }
+  .why .src-line { font-size:var(--type-body-xxs-size); color:var(--color-gray-700); }
+  .why .close { margin-left:auto; cursor:pointer; font-weight:700; color:var(--color-gray-600);
+                font-size:13px; padding:0 4px; }
+  .why .close:hover { color:var(--text-color); }
+
+  .dropped-note { text-decoration:line-through var(--color-gray-500); opacity:.6; }
+
+  /* product card, mirroring the shipped concierge */
+  .prod-card { border:1px solid var(--border-color); border-radius:10px; padding:14px;
+               margin-top:var(--spacing-s); max-width:360px; }
+  .prod-mark { width:34px; height:34px; border-radius:7px; background:var(--color-brand-red);
+               color:#fff; font-weight:900; display:flex; align-items:center;
+               justify-content:center; font-size:15px; }
+  .prod-actions { display:flex; gap:8px; margin-top:10px; }
+
+  .react { display:flex; gap:14px; margin-top:12px; color:var(--color-gray-500); font-size:14px; }
+
+  .srcs { margin-top:var(--spacing-s); border-top:1px solid var(--border-color); padding-top:10px; }
+  .srcs summary { cursor:pointer; list-style:none; font-weight:700;
+                  font-size:var(--type-body-xs-size); }
+  .srcs summary::-webkit-details-marker { display:none; }
+  .srcs summary::before { content:"›"; display:inline-block; margin-right:7px;
+                          transition:transform .15s; }
+  .srcs[open] summary::before { transform:rotate(90deg); }
+  .srcs ol { margin:10px 0 0; padding-left:22px; }
+  .srcs li { margin-bottom:6px; font-size:var(--type-body-xxs-size); }
+
+  /* follow-up chips double as the probe switcher */
+  .chips { padding:0 18px 14px; display:flex; flex-direction:column; gap:8px; }
+  .chip { display:block; cursor:pointer; background:var(--color-gray-100);
+          border:1px solid transparent; border-radius:10px; padding:9px 14px;
+          font-size:var(--type-body-xs-size); transition:background .12s, border-color .12s; }
+  .chip:hover { background:var(--color-gray-200); }
+  .chip .arr { color:var(--color-gray-500); margin-right:8px; }
+
+  .ask-foot { border-top:1px solid var(--border-color); padding:14px 18px; }
+  .ask-input { display:flex; align-items:center; gap:10px; border:1px solid var(--color-gray-400);
+               border-radius:22px; padding:12px 18px; color:var(--color-gray-500);
+               font-size:var(--type-body-s-size); }
+  .ask-input .send { margin-left:auto; }
+  .ask-legal { text-align:center; font-size:var(--type-body-xxs-size);
+               color:var(--color-gray-600); margin-top:10px; }
+
+  .col-tag { display:flex; align-items:baseline; gap:10px; margin-bottom:8px; }
+
   .table-scroll { overflow-x:auto; }
   .table-scroll table { min-width:900px; }
-  .src-list { list-style:none; padding:0; margin:0; }
-  .src-list li { padding:4px 0; }
+
+{% for t in threads %}
+  #probe-{{ t.id }}:checked ~ .ask-grid .thread-{{ t.id }} { display:block; }
+  #probe-{{ t.id }}:checked ~ .chips .chip[for="probe-{{ t.id }}"] {
+    background:#EDEBFC; border-color:#C7C0F5; font-weight:700; }
+{% endfor %}
+  .thread { display:none; }
 </style>
 </head>
 <body>
@@ -50,7 +146,7 @@
     <a class="gnav-brand" href="#top"><span class="gnav-mark">E</span> Eboda</a>
     <ul class="gnav-links">
       <li><a href="#numbers">Numbers</a></li>
-      <li><a href="#probes">Side by side</a></li>
+      <li><a href="#ask">Ask</a></li>
       <li><a href="#audit">Full audit</a></li>
       <li><a href="#method">Method</a></li>
     </ul>
@@ -63,7 +159,7 @@
 <main id="top">
 
 <!-- ====================== 1. HEADLINE NUMBERS ====================== -->
-<section class="section bg-white">
+<section class="section bg-white" id="numbers">
   <div class="container">
     <p class="detail-l">Citation grounding audit</p>
     <h1 class="heading-xxl">Adobe's Brand Concierge cites {{ n_pages }} pages. {{ pct(1 - baseline.grounding_rate) }} of its claims aren't supported by any of them.</h1>
@@ -133,127 +229,200 @@
   </div>
 </section>
 
-<!-- ====================== 2. SIX PROBES, SIDE BY SIDE ====================== -->
-<section class="section bg-gray" id="probes">
+<!-- ====================== 2. THE ASK MODAL ====================== -->
+<section class="section bg-gray" id="ask">
   <div class="container">
-    <p class="detail-l">Side by side</p>
-    <h2 class="heading-l">Six probes, both systems</h2>
-    <p class="body-l measure mt-xs">Adobe's answer on the left, Eboda's on the right.
-    Click any claim to see the exact source text the judge scored it against.</p>
+    <p class="detail-l">The interface</p>
+    <h2 class="heading-l">Same question, both assistants</h2>
+    <p class="body-l measure mt-xs">
+      Adobe's shipped concierge on the left, the verified pipeline on the right.
+      <strong>Click any underlined sentence</strong> to see the exact source text behind it and how
+      the judge scored it. Pick a different question from the suggestions below.
+    </p>
 
-    {% for p in pairs %}
-    <article class="mt-l">
-      <h3 class="heading-s">{{ p.id }} · {{ p.category }}</h3>
-      <p class="body-l"><strong>{{ p.prompt }}</strong></p>
-      <p class="body-xs muted">Human verdict on the Adobe run: {{ p.verdict }}{% if p.failure_mode and p.failure_mode != 'None' %} · failure mode: {{ p.failure_mode }}{% endif %}{% if p.persona %} · persona: {{ p.persona }}{% endif %}</p>
+    <div class="ask-wrap mt-l">
+      {% for t in threads %}
+      <input type="radio" name="probe" id="probe-{{ t.id }}" class="probe-radio"{% if loop.first %} checked{% endif %}>
+      {% endfor %}
 
-      <div class="grid two-up mt-s">
+      <div class="ask-grid">
 
-        <!-- Adobe -->
-        <div class="compare">
-          <header>
+        <!-- ============ ADOBE COLUMN ============ -->
+        <div>
+          <div class="col-tag">
             <strong class="detail-m">Adobe Brand Concierge</strong>
-            <span class="badge">{{ p.baseline_claims | length }} claims · {{ p.baseline_cited | length }} sources</span>
-          </header>
-          <div class="body">
-            {% if p.baseline_text %}
-            <p class="body-s transcript">{{ p.baseline_text }}</p>
-            {% endif %}
+            <span class="badge">as shipped</span>
+          </div>
+          <div class="ask-shell">
+            <div class="ask-bar">
+              <span class="ask-logo">Ask</span><span class="ask-beta">BETA</span>
+              <span class="spacer"></span><span class="ask-chev">⌄</span>
+            </div>
+            <div class="ask-body">
+              <p class="ask-hello">Welcome! Thank you for trying out this initial release.
+                The experience is still evolving and will continue to improve over time.</p>
 
-            {% if p.baseline_claims %}
-            <h4 class="detail-m mt-s">Claims scored</h4>
-            <div class="cite">
-              {% for c in p.baseline_claims %}
-              <details>
-                <summary>
-                  <span class="verdict {{ c.best_slug }}">{{ c.best or 'no source' }}</span>
-                  <span class="body-s">{{ c.text }}</span>
-                </summary>
-                <ul class="src-list">
-                  {% for s in c.sources %}
-                  <li>
-                    <span class="verdict {{ s.slug }}">{{ s.label or 'unfetchable' }}</span>
-                    <span class="body-xs">{{ s.title }}</span>
-                    <div class="ev">
-                      {% if s.evidence_span %}<q class="body-xs">{{ s.evidence_span }}</q><br>{% endif %}
-                      <span class="body-xs muted">{{ s.reason }}</span><br>
-                      <a class="body-xxs" href="{{ s.url }}">{{ s.url }}</a>
+              {% for t in threads %}
+              <div class="thread thread-{{ t.id }}">
+                <div class="bubble-user">{{ t.prompt }}</div>
+                <div class="answer">
+                  {% for seg in t.adobe_segments %}
+                    {% if seg.claim %}
+                  <div class="line">
+                    <input type="radio" name="{{ t.id }}-a" id="{{ t.id }}-a-{{ loop.index }}" class="sr">
+                    <label for="{{ t.id }}-a-{{ loop.index }}" class="claim s-{{ seg.claim.best_slug }}">{{ seg.claim.text }}<span class="mk">{{ seg.claim.marks | join(' ') if seg.claim.marks else '–' }}</span></label>
+                    <div class="why">
+                      <div class="why-head">
+                        <span class="verdict {{ seg.claim.best_slug }}">{{ seg.claim.best or 'no source' }}</span>
+                        <span class="body-xxs muted">best of {{ seg.claim.sources | length }} cited source{{ 's' if seg.claim.sources | length != 1 }}</span>
+                        <label for="{{ t.id }}-a-clear" class="close" title="close">✕</label>
+                      </div>
+                      {% if seg.claim.best_source %}
+                        {% if seg.claim.best_source.evidence_span %}
+                      <q>{{ seg.claim.best_source.evidence_span }}</q>
+                        {% endif %}
+                      <p class="src-line">{{ seg.claim.best_source.reason }}</p>
+                      <p class="src-line"><a href="{{ seg.claim.best_source.url }}">{{ seg.claim.best_source.title }}</a></p>
+                      {% else %}
+                      <p class="src-line">This response cited no source that could be scored.</p>
+                      {% endif %}
+                      {% if not seg.claim.marker_derived and seg.claim.sources | length > 1 %}
+                      <p class="src-line mt-xxs"><strong>Cited at response level.</strong>
+                        This sentence inherits all {{ seg.claim.sources | length }} of the answer's
+                        sources — nothing ties it to one page.</p>
+                      {% endif %}
                     </div>
-                  </li>
+                  </div>
+                    {% elif seg.text.strip() %}
+                  <p class="line plain">{{ seg.text.strip() }}</p>
+                    {% endif %}
                   {% endfor %}
-                </ul>
-              </details>
+                  <input type="radio" name="{{ t.id }}-a" id="{{ t.id }}-a-clear" class="sr" checked>
+                </div>
+
+                {% if t.adobe_sources %}
+                <details class="srcs">
+                  <summary>Sources ({{ t.adobe_sources | length }})</summary>
+                  <ol>
+                    {% for s in t.adobe_sources %}
+                    <li><a href="{{ s.url }}">{{ s.title }}</a></li>
+                    {% endfor %}
+                  </ol>
+                </details>
+                {% else %}
+                <div class="srcs"><p class="body-xxs muted">No sources cited in this response.</p></div>
+                {% endif %}
+                <div class="react"><span>👍</span><span>👎</span></div>
+              </div>
               {% endfor %}
             </div>
-            {% else %}
-            <p class="body-s muted mt-s">No factual claims were extracted from this answer.</p>
-            {% endif %}
+
+            <div class="ask-foot">
+              <div class="ask-input"><span>Ask a question</span><span class="send">➤</span></div>
+              <p class="ask-legal">AI responses may be inaccurate and any offers provided are non-binding.</p>
+            </div>
           </div>
         </div>
 
-        <!-- Eboda -->
-        <div class="compare">
-          <header>
+        <!-- ============ EBODA COLUMN ============ -->
+        <div>
+          <div class="col-tag">
             <strong class="detail-m">Eboda Ask</strong>
-            {% if p.eboda_present %}
-              {% if p.eboda_abstained %}
-              <span class="badge solid">Withheld</span>
-              {% else %}
-              <span class="badge">{{ p.eboda_sentences | selectattr('kept') | list | length }} verified sentences</span>
-              {% endif %}
-            {% else %}
-              <span class="badge">Not run — Adobe cited nothing</span>
-            {% endif %}
-          </header>
-          <div class="body">
-            {% if not p.eboda_present %}
-            <p class="body-s muted">This probe produced no citations from Adobe, so there was nothing
-            to build a comparable corpus query from. It is shown here for the Adobe side only.</p>
-            {% else %}
-              {% if p.eboda_abstained %}
-              <p class="body-s transcript">{{ p.eboda_final }}</p>
-              <p class="body-xs muted mt-xs">Gate: {{ p.eboda_reason }}</p>
-              {% else %}
-              <p class="body-s transcript">{{ p.eboda_final }}</p>
-              {% endif %}
+            <span class="badge solid">sentence-verified</span>
+          </div>
+          <div class="ask-shell">
+            <div class="ask-bar">
+              <span class="ask-logo">Eboda Ask</span><span class="ask-beta">v2</span>
+              <span class="spacer"></span><span class="ask-chev">⌄</span>
+            </div>
+            <div class="ask-body">
+              <p class="ask-hello">Every sentence carries its own source. Anything the verifier
+                can't confirm is dropped before you see it.</p>
 
-              {% if p.eboda_sentences %}
-              <h4 class="detail-m mt-s">Sentences the gate saw</h4>
-              <div class="cite">
-                {% for s in p.eboda_sentences %}
-                <details>
-                  <summary>
-                    <span class="verdict {{ s.slug }}">{{ s.label or 'no citation' }}</span>
-                    <span class="body-s {% if not s.kept %}dropped{% endif %}">{{ s.text }}</span>
-                  </summary>
-                  {% if s.sources %}
-                  <ul class="src-list">
-                    {% for src in s.sources %}
-                    <li>
-                      <span class="verdict {{ src.slug }}">{{ src.label }}</span>
-                      <span class="body-xs">{{ src.title }} · {{ src.chunk_id }}</span>
-                      <div class="ev">
-                        {% if src.evidence_span %}<q class="body-xs">{{ src.evidence_span }}</q><br>{% endif %}
-                        <span class="body-xs muted">{{ src.reason }}</span><br>
-                        <a class="body-xxs" href="{{ src.url }}">{{ src.url }}</a>
-                      </div>
-                    </li>
-                    {% endfor %}
-                  </ul>
-                  {% else %}
-                  <div class="ev"><span class="body-xs muted">{{ s.reason or 'cited no retrievable source, so it could not be verified' }}</span></div>
+              {% for t in threads %}
+              <div class="thread thread-{{ t.id }}">
+                <div class="bubble-user">{{ t.prompt }}</div>
+
+                {% if not t.eboda_present %}
+                <div class="answer"><p class="line plain body-s muted">Not run — this probe returned
+                  no citations from Adobe, so there was no corpus query to build.</p></div>
+                {% else %}
+                <div class="answer">
+                  {% if t.eboda_abstained %}
+                  <p class="line plain">{{ t.eboda_final }}</p>
+                  <p class="body-xxs muted mt-xs"><span class="verdict none">withheld</span>
+                    {{ t.eboda_reason }}</p>
                   {% endif %}
+
+                  {% for s in t.eboda_sentences %}
+                  <div class="line">
+                    <input type="radio" name="{{ t.id }}-e" id="{{ t.id }}-e-{{ s.n }}" class="sr">
+                    <label for="{{ t.id }}-e-{{ s.n }}" class="claim s-{{ s.slug }}"><span{% if not s.kept %} class="dropped-note"{% endif %}>{{ s.text }}</span><span class="mk">{{ s.marks | join(' ') if s.marks else '–' }}</span></label>
+                    <div class="why">
+                      <div class="why-head">
+                        <span class="verdict {{ s.slug }}">{{ s.label or 'no citation' }}</span>
+                        <span class="body-xxs muted">{{ 'kept' if s.kept else 'dropped by the gate' }}</span>
+                        <label for="{{ t.id }}-e-clear" class="close" title="close">✕</label>
+                      </div>
+                      {% if s.sources %}
+                        {% for src in s.sources %}
+                          {% if src.evidence_span %}
+                      <q>{{ src.evidence_span }}</q>
+                          {% endif %}
+                      <p class="src-line">{{ src.reason }}</p>
+                      <p class="src-line"><a href="{{ src.url }}">{{ src.title }}</a> · {{ src.chunk_id }}</p>
+                        {% endfor %}
+                      {% else %}
+                      <p class="src-line">{{ s.reason or 'Cited no retrievable source, so it could not be verified.' }}</p>
+                      {% endif %}
+                    </div>
+                  </div>
+                  {% endfor %}
+                  <input type="radio" name="{{ t.id }}-e" id="{{ t.id }}-e-clear" class="sr" checked>
+                </div>
+
+                {% if t.eboda_sources %}
+                <details class="srcs">
+                  <summary>Sources ({{ t.eboda_sources | length }})</summary>
+                  <ol>
+                    {% for s in t.eboda_sources %}
+                    <li><a href="{{ s.url }}">{{ s.title }}</a>{% if s.heading %} — {{ s.heading }}{% endif %}</li>
+                    {% endfor %}
+                  </ol>
                 </details>
-                {% endfor %}
+                {% endif %}
+                <div class="react"><span>👍</span><span>👎</span></div>
+                {% endif %}
               </div>
-              {% endif %}
-            {% endif %}
+              {% endfor %}
+            </div>
+
+            <div class="ask-foot">
+              <div class="ask-input"><span>Ask a question</span><span class="send">➤</span></div>
+              <p class="ask-legal">Eboda cites at the sentence level and drops claims it can't verify.</p>
+            </div>
           </div>
         </div>
 
       </div>
-    </article>
-    {% endfor %}
+
+      <div class="chips mt-s">
+        <p class="detail-m">Try another question</p>
+        {% for t in threads %}
+        <label class="chip" for="probe-{{ t.id }}"><span class="arr">↳</span>{{ t.prompt }}
+          <span class="body-xxs muted"> · {{ t.id }} · {{ t.category }}</span></label>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="notice mt-l measure">
+      <p class="body-s"><strong>What the markers mean.</strong> The small number after each sentence
+      is the source it maps to. Adobe cites at the response level, so most of its sentences carry
+      <em>every</em> source in the answer — the marker can't narrow it down.
+      {{ marker_derived_pct }}% of its claims had an inline marker tying them to one page. Eboda
+      cites per sentence, so each marker points at one passage, and the underline colour is the
+      judge's verdict on that exact pairing.</p>
+    </div>
   </div>
 </section>
 
@@ -322,14 +491,15 @@
           so every claim inherits all of that response's URLs and is judged against each one
           separately. A claim's verdict is the <em>best</em> result across its sources — the
           charitable reading. The judge never sees the URL, the question, or the brand; only the
-          claim text and the source text. {{ marker_derived_pct }}% of claims carried an inline
-          marker tying them to one specific source.</p>
+          claim text and the source text.</p>
         </div>
         <div class="notice">
           <p class="body-s"><strong>What is excluded.</strong> {{ n_claims_uncited }} extracted claims
           cited no source at all and so could not be judged against anything; they are outside both
           rates. Sources that could not be retrieved are counted separately
-          ({{ baseline.unfetchable }} here) and excluded from the headline rate.</p>
+          ({{ baseline.unfetchable }} here) and excluded from the headline rate. Two probes in the
+          interface above drew no citations from Adobe; the Eboda answers shown for them are
+          generated for display and are excluded from every number on this page.</p>
         </div>
       </div>
     </div>
@@ -342,8 +512,9 @@
     <div class="notice measure">
       <p class="body-s"><strong>About this prototype.</strong> The Eboda styling is a visual shell for
       a portfolio prototype. Eboda is a fictional brand. The content and product names underneath are
-      real Adobe pages, captured on {{ measured_at }}. This project is not affiliated with, endorsed
-      by, or connected to Adobe Inc.</p>
+      real Adobe pages, captured on {{ measured_at }}. The interface above is a static reconstruction
+      of recorded transcripts — it does not accept live input. This project is not affiliated with,
+      endorsed by, or connected to Adobe Inc.</p>
     </div>
   </div>
 </section>
